@@ -1,0 +1,35 @@
+{
+  "name": "refinebio",
+  "version": "0.1.0",
+  "description": "Javascript client for refine.bio",
+  "main": "index.js",
+  "repository": "https://github.com/AlexsLemonade/refinebio-js.git",
+  "author": "nozomione <nozomi@ccdatalab.org>",
+  "license": "BSD-3-Clause",
+  "dependencies": {
+    "@babel/runtime": "^7.17.9",
+    "isomorphic-unfetch": "^3.1.0"
+  },
+  "scripts": {
+    "test": "jest --no-cache",
+    "dev": "webpack --watch --progress",
+    "build": "webpack",
+    "lint": "npx eslint --fix --ext .js src/"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.17.6",
+    "@babel/core": "^7.17.9",
+    "@babel/plugin-transform-runtime": "^7.17.0",
+    "@babel/preset-env": "^7.16.11",
+    "babel-loader": "^8.2.4",
+    "eslint": "^8.13.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "jest": "^27.5.1",
+    "prettier": "^2.6.2",
+    "webpack": "^5.72.0",
+    "webpack-cli": "^4.9.2"
+  }
+}
