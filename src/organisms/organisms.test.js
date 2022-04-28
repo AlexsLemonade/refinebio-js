@@ -5,7 +5,7 @@ const api = Refinebio({ verbose: true })
 let filterRequest
 
 beforeAll(async () => {
-  filterRequest = await api.organisms.get()
+  filterRequest = await api.organisms.filter()
 })
 
 test('get all available organisms with filtering', async () => {

@@ -27,6 +27,7 @@ test('get dataset', async () => {
 
 test('update dataset', async () => {
   const createToken = await api.token.create({ is_activated: true })
+  api.updateConfig({ token: createToken.response.id }) // currently there is no token field in config object
   const data = {
     data: {},
     aggregate_by: 'ALL',
@@ -40,6 +41,6 @@ test('update dataset', async () => {
     svd_algorithm: 'NONE'
   }
 
-  const updateToken = await api.token.update(createToken.response.id, data)
-  expect(updateToken.isOk).toBeTruthy()
+  const updateDataset = await api.dataset.update(createToken.response.id, data)
+  expect(updateDataset.isOk).toBeTruthy()
 })

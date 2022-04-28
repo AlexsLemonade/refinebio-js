@@ -5,7 +5,7 @@ const api = Refinebio({ verbose: true })
 let filterRequest
 
 beforeAll(async () => {
-  filterRequest = await api.processors.get()
+  filterRequest = await api.processors.filter()
 })
 
 test('get all available processors with filtering', async () => {

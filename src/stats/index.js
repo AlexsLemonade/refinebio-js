@@ -6,12 +6,9 @@ export const stats = (config = defaultConfig) => {
   return {
     ...availableActions,
     get: (type = null) => {
-      if (!type) {
-        return makeRequest(config, `stats/`)
-      }
-      return type === 'downloader'
-        ? makeRequest(config, `stats/failures/downloader`)
-        : makeRequest(config, `stats/failures/processor`)
+      return !type
+        ? makeRequest(config, `stats/`)
+        : makeRequest(config, `stats/failures/${type}`)
     }
   }
 }
