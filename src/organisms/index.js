@@ -5,7 +5,7 @@ import { availableActions } from 'utils/availableActions'
 export const organisms = (config = defaultConfig) => {
   return {
     ...availableActions,
-    get: (name) => {
+    get: (name = null) => {
       if (!name) {
         return makeRequest(config, `organisms/`)
       }

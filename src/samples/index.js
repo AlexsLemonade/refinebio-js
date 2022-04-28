@@ -5,7 +5,7 @@ import { availableActions } from 'utils/availableActions'
 export const samples = (config = defaultConfig) => {
   return {
     ...availableActions,
-    get: (accessionCode) => {
+    get: (accessionCode = null) => {
       if (!accessionCode) {
         return makeRequest(config, `samples/`)
       }

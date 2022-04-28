@@ -6,7 +6,7 @@
 
 # Refine.bio JS
 
-This is a Javascript client for Refine.bio
+This is a Javascript API client for Refine.bio
 
 > Refine.bio is a multi-organism collection of genome-wide transcriptome or gene expression data that has been obtained from publicly available repositories and uniformly processed and normalized. Refine.bio allows biologists, clinicians, and machine learning researchers to search for experiments from different source repositories all in one place and build custom data sets for their questions of interest.
 
@@ -23,7 +23,7 @@ Here are the addtional resources for Refine.bio API.
 - [Links](#links)
 - [Getting Started](#getting-started)
   - [Built With](#built-with)
-  - [Add Refine.bio](#add-refinebio)
+  - [Add Refine.bio API](#add-refinebio-api)
 - [Usage](#usage)
 - [REST API](#rest-api)
   - [Available Actions](#available-actions)
@@ -40,11 +40,11 @@ Here are the addtional resources for Refine.bio API.
 
 ### Built With
 
-We use the npm package [isomorphic-unfetch](https://www.npmjs.com/package/isomorphic-unfetch) which supports API requests for both Node.js and a browser.
+We use the npm package [isomorphic-unfetch](https://www.npmjs.com/package/isomorphic-unfetch) which supports an API request for both Node.js and a browser.
 
-### Add Refine.bio
+### Add Refine.bio API
 
-To add this npm package, go to the root directory of your project and run the following command:
+To add Refine.bio API, go to the root directory of your project and run the following command:
 
 ```sh
 yarn add refinebio
@@ -54,7 +54,7 @@ yarn add refinebio
 
 ## Usage
 
-Import the `Refinebio` module into your Javascript file and instantiate it.
+Import `Refinebio` module into your Javascript file and instantiate it.
 
 ```js
 import Refinebio from 'refinebio'
@@ -62,13 +62,13 @@ import Refinebio from 'refinebio'
 const api = Refinebio()
 ```
 
-The instance `api` returns the following properties:
+This newly created instance `api` returns the following properties:
 | key| value |
 | :--- | :--- |
 | `updateConfig` | A method for accessing or updating the config object |
-| [resourceName](#resources) | A method for each resource |
+| [resourceName](#resources) | methods for each resource |
 
-To use the `updateConfig` method:
+To use `updateConfig` method:
 
 ```js
 // access the config
@@ -94,18 +94,18 @@ if (tokenRequest.isOkay) {
 
 ### Available Actions
 
-Our API supports the following actions.
+Our API supports the following actions:
 | Action | Description |
 | :--- | :--- |
-| `create` | send a POST request and returns a new instance |
-| `get` | send a GET request and returns a single object |
-| `filter` | send a GET resuest and returns a list of objects(maybe paginated) |
-| `update` | send a PUT request and returns a single object |
-| `delete` | send a DELETE request |
+| `create` | sends a POST request and returns a new instance |
+| `get` | sends a GET request and returns a single object |
+| `filter` | sends a GET resuest and returns a list of objects(maybe paginated) |
+| `update` | sends a PUT request and returns a single object |
+| `delete` | sends a DELETE request |
 
 - `create` takes an object as its payload
-- `get` takes an identifier or a filter objects as its URL parameter
-- `filter` takes a filter objects as its URL parameter
+- `get` takes an identifier or a filter object as its URL parameter
+- `filter` takes a filter object as its URL parameter
 - `update` takes an object as its payload
 - `delete` takes an identifiier as its URL parameter
 
@@ -157,11 +157,13 @@ Please view the API documentation for more details.
 const getCompendia = await api.compendia.get(ID)
 
 ````
+
 </details>
 
 ---
 
 #### computational_results
+
 This resource can be used to get the computational result. This may return a list of all computational results with or without filtering or a specific computational result by its corresponding identifier.
 
 Each one contains meta-information about the output of a computer process. This can also return valid S3 urls if a valid token is sent in the header `HTTP_API_KEY`.
@@ -176,11 +178,11 @@ Please view the API documentation for more details.
 <summary>Example</summary>
 
 ```js
-// get the list of computational results
+// get a list of computational results
   const getComputationalResults = await api.computational_results.get()
 
 // get a specific computational result
- const getComputationalResult = await api.computational_results.get(ID)
+const getComputationalResult = await api.computational_results.get(ID)
 ````
 
 </details>
@@ -204,19 +206,20 @@ Please view the API documentation for more details.
   <summary>Example</summary>
   
   ```js
-  // get the list of computed files
+  // get a list of computed files
   const getComputedFiles = await api.computed_files.get()
 
 // get a specific computed file
 const getComputedFile = await api.computed_files.get(ID)
 
 ````
+
 </details>
 
 ---
 
 #### dataset
-This resource can be used to create, get, and update a single dataset.
+This resource can be used to create, get, or update a single dataset.
 
 Please view the API documentation for more details.
 | Action | ReDoc | SwaggerUI |
@@ -259,16 +262,16 @@ Please view the API documentation for more details.
   ```js
   // get a list of experiments
   const getExpriments = await api.experiments.get()
+  // get a specific experiment
+  const getExperiment = await api.experiments.get(accessionCode)
+  ```
 
-// get a specific experiment
-const getExperiment = await api.experiments.get(accessionCode)
-
-````
 </details>
 
 ---
 
 #### institutions
+
 This resource can be used to get an unpaginated list of all the available "institution" information.
 
 Please view the API documentation for more details.
@@ -280,8 +283,8 @@ Please view the API documentation for more details.
 <summary>Example</summary>
 
 ```js
-const getInstitutions = async() => await api.institutions.get()
-````
+const getInstitutions = async () => await api.institutions.get()
+```
 
 </details>
 
@@ -289,7 +292,7 @@ const getInstitutions = async() => await api.institutions.get()
 
 #### jobs
 
-This resource can be used to get a downloader, processor, or survery job. This may return a list of jobs by its job type with or without filtering or a specific job by its corresponding identifier.
+This resource can be used to get the downloader, processor, or survery job. This may return a list of jobs by its job type with or without filtering or a specific job by its corresponding identifier.
 
 Please view the API documentation for more details.
 | Action | Type | ReDoc | SwaggerUI |
@@ -308,19 +311,19 @@ Please view the API documentation for more details.
   // get a list of downloader jobs
   getDownloaderJobs = await api.jobs.get('downloader')
   
-  // get a downloader job
+  // get a specific downloader job
   const getDownloaderJob = await api.jobs.get('downloader', id)
   
   // get a list of processor jobs
   getProcessorJobs = await api.jobs.get('processor')
   
-  // get a processor job
+  // get a specific processor job
   const getProcessorJob = await api.jobs.get('processor', id)
   
   // get a list of survey jobs
   getSurveyJobs = await api.jobs.get('survey')
   
-  // get a servey job
+  // get a specific servey job
   const getSurveyJob = await api.jobs.get('survey', id)
   ```
 </details>
@@ -366,7 +369,7 @@ Please view the API documentation for more details.
 <details>
 <summary>Example</summary>
 
- ```js
+```js
 // get a list of original files
 const getOriginalFiles = await api.original_files.get()
 
@@ -411,7 +414,7 @@ Please view the API documentation for more details.
   <summary>Example</summary>
   
   ```js
-  // get all processors
+  // get a lit of all processors
   const getProcessors = await api.processors.get()
 
 // get a specific processor
@@ -421,9 +424,8 @@ const getProcessor = await api.processors.get(ID)
 </details>
 
 ---
-
 #### qn_targets
-This resource can be used to get the organisms which have available QN Targets. This may return a list of all organisms with or without filtering or detailed view of the Quantile Normalization file for an organism by its name.
+This resource can be used to get the organisms which have available QN Targets. This may return a list of all organisms with or without filtering or a detailed view of the Quantile Normalization file for an organism by its name.
 
 Please view the API documentation for more details.
 | Action | Type | ReDoc | SwaggerUI |
@@ -435,7 +437,7 @@ Please view the API documentation for more details.
 <summary>Example</summary>
 
 ```js
-// get all organisms with available QN Targets
+// get a list of all organisms with available QN Targets
 const getOrganismsWithQnTargets = await api.qn_targets.get()
 
 // get a Quantile Normalization file for an organism
@@ -448,7 +450,7 @@ const getQnTarget = await api.qn_targets.get(name)
 
 #### samples
 
-This resource can be used to get the detailed information about the sample. This may return a list of all sample details with or without filtering or details for a specific sample by its corresponding accession code.
+This resource can be used to get the detailed information about the sample. This may return a list of all sample details with or without filtering or a specific sample information by its corresponding accession code.
 
 Please view the API documentation for more details.
 | Action | Type | ReDoc | SwaggerUI |
@@ -460,10 +462,10 @@ Please view the API documentation for more details.
   <summary>Example</summary>
   
   ```js
-  // get the detailed information on samples
+  // get a lit of samples
   const getOrganismsWithQnTargets = await api.qn_targets.get()
 
-// get details for a specific sample
+// get a specific sample
 const getQnTarget = await api.qn_targets.get(accessionCode)
 
 ````
@@ -496,7 +498,7 @@ const getSearchResults = await api.search.get()
 
 #### stats-about
 
-This resource can be used to get the general stats for the site used in the about page.
+This resource can be used to get the general statistics for the site used in the about page.
 
 Please view the API documentation for more details.
 | Action | ReDoc | SwaggerUI |
@@ -559,7 +561,7 @@ Please view the API documentation for more details.
   // create a new token
   const createToken = async() => await api.token.create({ is_activated: true })
 
-// get details on a specific token
+// get a specific token
 const getToken = async() => await api.token.get(tokenID)
 
 // update a specific token's active state
@@ -569,9 +571,8 @@ const updateToken = async() api.token.update(tokenID, { is_activated: true })
 </details>
 
 ---
-
 #### transcriptome_indices
-This resource can be used to get detailed information about a sample. This may return a list of all Transcriptome Indice with or without filtering or a S3 url associated with the organism and length, along with other metadata about the transcriptome index we have stored.
+This resource can be used to get the detailed information about a sample. This may return a list of all Transcriptome Indice with or without filtering or a S3 url associated with the organism and length, along with other metadata about the transcriptome index we have stored.
 
 Please view the API documentation for more details.
 | Action | Type | ReDoc | SwaggerUI |
@@ -583,7 +584,7 @@ Please view the API documentation for more details.
 <summary>Example</summary>
 
 ```js
-// get all transcriptome Indices
+// get a list of all transcriptome Indices
 const getTranScruptomeIndices = await api.transcriptome_indices.get()
 
 // get a S3 url associated with the transcriptome index

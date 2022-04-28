@@ -5,7 +5,7 @@ import { availableActions } from 'utils/availableActions'
 export const stats = (config = defaultConfig) => {
   return {
     ...availableActions,
-    get: (type) => {
+    get: (type = null) => {
       if (!type) {
         return makeRequest(config, `stats/`)
       }

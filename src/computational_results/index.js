@@ -5,7 +5,7 @@ import { availableActions } from 'utils/availableActions'
 export const computational_results = (config = defaultConfig) => {
   return {
     ...availableActions,
-    get: (id) => {
+    get: (id = null) => {
       if (!id) {
         return makeRequest(config, `computational_results/`)
       }

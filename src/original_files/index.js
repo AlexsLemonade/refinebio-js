@@ -6,7 +6,7 @@ import { availableActions } from 'utils/availableActions'
 export const original_files = (config = defaultConfig) => {
   return {
     ...availableActions,
-    get: (id) => {
+    get: (id = null) => {
       if (!id) {
         return makeRequest(config, `original_files/`)
       }

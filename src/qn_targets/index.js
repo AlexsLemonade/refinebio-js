@@ -6,7 +6,7 @@ import { availableActions } from 'utils/availableActions'
 export const qn_targets = (config = defaultConfig) => {
   return {
     ...availableActions,
-    get: (organismName) => {
+    get: (organismName = null) => {
       if (!organismName) {
         return makeRequest(config, `qn_targets/`)
       }

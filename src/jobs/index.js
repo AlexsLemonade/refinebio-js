@@ -5,7 +5,7 @@ import { availableActions } from 'utils/availableActions'
 export const jobs = (config = defaultConfig) => {
   return {
     ...availableActions,
-    get: (type, id) => {
+    get: (type, id = null) => {
       if (type === 'downloader') {
         if (!id) {
           return makeRequest(config, `jobs/downloader`)
@@ -24,7 +24,7 @@ export const jobs = (config = defaultConfig) => {
         }
         return makeRequest(config, `jobs/survey/${id}`)
       }
-      return new Error('Missing an argument for a job type')
+      throw new Error('Missing an argument for a job type')
     }
   }
 }
