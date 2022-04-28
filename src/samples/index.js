@@ -5,12 +5,8 @@ import { availableActions } from 'utils/availableActions'
 export const samples = (config = defaultConfig) => {
   return {
     ...availableActions,
-    get: (accessionCode = null) => {
-      if (!accessionCode) {
-        return makeRequest(config, `samples/`)
-      }
-      return makeRequest(config, `samples/${accessionCode}`)
-    }
+    get: (accessionCode) => makeRequest(config, `samples/${accessionCode}`),
+    filter: (query = {}) => makeRequest(config, `samples/`, query)
   }
 }
 

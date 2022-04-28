@@ -17,10 +17,11 @@ export const makeRequest = async (
     headers = { 'content-type': 'application/json' },
     authorization,
     ...options
-  } = {}
+  } = {},
+  query = {}
 ) => {
   const xhrConfig = { headers, ...options }
-  const APIUrl = getAPIUrl(config, url)
+  const APIUrl = getAPIUrl(config, url, query)
 
   // add authorization token to headers
   if (authorization) {

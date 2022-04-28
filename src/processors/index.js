@@ -5,12 +5,8 @@ import { availableActions } from 'utils/availableActions'
 export const processors = (config = defaultConfig) => {
   return {
     ...availableActions,
-    get: (id = null) => {
-      if (!id) {
-        return makeRequest(config, `processors/`)
-      }
-      return makeRequest(config, `processors/${id}`)
-    }
+    get: (id) => makeRequest(config, `processors/${id}`),
+    filter: (query = {}) => makeRequest(config, `processors/`, query)
   }
 }
 

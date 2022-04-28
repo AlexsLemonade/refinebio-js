@@ -5,7 +5,7 @@ import { availableActions } from 'utils/availableActions'
 export const search = (config = defaultConfig) => {
   return {
     ...availableActions,
-    get: () => makeRequest(config, `search/`)
+    filter: (query = {}) => makeRequest(config, `search/`, query)
   }
 }
 

@@ -5,12 +5,8 @@ import { availableActions } from 'utils/availableActions'
 export const organisms = (config = defaultConfig) => {
   return {
     ...availableActions,
-    get: (name = null) => {
-      if (!name) {
-        return makeRequest(config, `organisms/`)
-      }
-      return makeRequest(config, `organisms/${name}`)
-    }
+    get: (name) => makeRequest(config, `organisms/${name}`),
+    filter: (query = {}) => makeRequest(config, `organisms/`, query)
   }
 }
 

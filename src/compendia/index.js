@@ -5,12 +5,8 @@ import { availableActions } from 'utils/availableActions'
 export const compendia = (config = defaultConfig) => {
   return {
     ...availableActions,
-    get: (id = null) => {
-      if (!id) {
-        return makeRequest(config, `compendia/`)
-      }
-      return makeRequest(config, `compendia/${id}`)
-    }
+    get: (id) => makeRequest(config, `compendia/${id}`),
+    filter: (query = {}) => makeRequest(config, `compendia/`, query)
   }
 }
 

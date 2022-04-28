@@ -11,12 +11,12 @@ import { experiments } from 'experiments'
 import { search } from 'search'
 import { stats } from 'stats'
 import { jobs } from 'jobs'
-import { qn_targets } from 'qn_targets'
-import { computational_results } from 'computational_results'
-import { computed_files } from 'computed_files'
-import { original_files } from 'original_files'
-import { stats_about } from 'stats-about'
-import { transcriptome_indices } from 'transcriptome_indices'
+import { qnTargets } from 'qnTargets'
+import { computationalResults } from 'computationalResults'
+import { computedFiles } from 'computedFiles'
+import { originalFiles } from 'originalFiles'
+import { statsAbout } from 'statsAbout'
+import { transcriptomeIndices } from 'transcriptomeIndices'
 
 const updateConfig = (source, changes, clone = false) => {
   if (clone) {
@@ -51,16 +51,16 @@ export {
   search,
   stats,
   jobs,
-  qn_targets,
-  computational_results,
-  computed_files,
-  original_files,
-  stats_about,
-  transcriptome_indices
+  qnTargets,
+  computationalResults,
+  computedFiles,
+  originalFiles,
+  statsAbout,
+  transcriptomeIndices
 }
 
 export default (override = {}) => {
-  const config = updateConfig(defaultConfig, override, true) // { host, version, path, verbos, uuid }
+  const config = updateConfig(defaultConfig, override, true)
 
   return {
     updateConfig: (changes) => updateConfig(config, changes, false),
@@ -76,11 +76,11 @@ export default (override = {}) => {
     stats: stats(config),
     jobs: jobs(config),
     experiments: experiments(config),
-    qn_targets: qn_targets(config),
-    computational_results: computational_results(config),
-    computed_files: computed_files(config),
-    original_files: original_files(config),
-    stats_about: stats_about(config),
-    transcriptome_indices: transcriptome_indices(config)
+    qnTargets: qnTargets(config),
+    computationalResults: computationalResults(config),
+    computedFiles: computedFiles(config),
+    originalFiles: originalFiles(config),
+    statsAbout: statsAbout(config),
+    transcriptomeIndices: transcriptomeIndices(config)
   }
 }
