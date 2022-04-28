@@ -1,4 +1,5 @@
 import defaultConfig from 'config'
+import { mergeObject } from 'utils/mergeObject'
 import { token } from 'token'
 import { organisms } from 'organisms'
 import { dataset } from 'dataset'
@@ -17,27 +18,6 @@ import { computedFiles } from 'computedFiles'
 import { originalFiles } from 'originalFiles'
 import { statsAbout } from 'statsAbout'
 import { transcriptomeIndices } from 'transcriptomeIndices'
-
-const updateConfig = (source, changes, clone = false) => {
-  if (clone) {
-    return { ...source, ...changes }
-  }
-  if (!changes) {
-    return source
-  }
-
-  const modifiedSource = source
-
-  Object.keys(changes).forEach((key) => {
-    if (!Object.prototype.hasOwnProperty.call(source, key)) {
-      console.error(`${key} is an invalid key`)
-    }
-
-    modifiedSource[key] = changes[key]
-  })
-
-  return modifiedSource
-}
 
 export {
   token,
@@ -60,10 +40,10 @@ export {
 }
 
 export default (override = {}) => {
-  const config = updateConfig(defaultConfig, override, true)
+  const config = mergeObject(defaultConfig, override, true)
 
   return {
-    updateConfig: (changes) => updateConfig(config, changes, false),
+    updateConfig: (changes) => mergeObject(config, changes, false),
     token: token(config),
     dataset: dataset(config),
     organisms: organisms(config),
