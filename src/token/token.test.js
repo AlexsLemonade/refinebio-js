@@ -23,6 +23,6 @@ test('get token details', async () => {
 
 test('update a token', async () => {
   const { id } = createRequest.response
-  const updateToken = await api.token.update(id, { is_activated: true })
+  const updateToken = await api.token.update({ id, is_activated: true })
   expect(updateToken.isOk).toBeTruthy()
 })

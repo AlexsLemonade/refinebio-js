@@ -1,12 +1,14 @@
 import defaultConfig from 'config'
-import { makeRequest } from 'utils/makeRequest'
+import { getActions } from 'utils/getActions'
 import { availableActions } from 'utils/availableActions'
 
 export const computationalResults = (config = defaultConfig) => {
+  const { get, filter } = getActions(config, 'computational_results')
+
   return {
     ...availableActions,
-    get: (id) => makeRequest(config, `computational_results/${id}`),
-    filter: (query = {}) => makeRequest(config, `computational_results/`, query)
+    get,
+    filter
   }
 }
 

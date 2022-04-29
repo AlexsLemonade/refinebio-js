@@ -1,12 +1,14 @@
 import defaultConfig from 'config'
-import { makeRequest } from 'utils/makeRequest'
+import { getActions } from 'utils/getActions'
 import { availableActions } from 'utils/availableActions'
 
 export const samples = (config = defaultConfig) => {
+  const { get, filter } = getActions(config, 'samples')
+
   return {
     ...availableActions,
-    get: (accessionCode) => makeRequest(config, `samples/${accessionCode}`),
-    filter: (query = {}) => makeRequest(config, `samples/`, query)
+    get,
+    filter
   }
 }
 

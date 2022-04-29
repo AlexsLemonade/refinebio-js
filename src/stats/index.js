@@ -1,15 +1,13 @@
 import defaultConfig from 'config'
-import { makeRequest } from 'utils/makeRequest'
+import { getActions } from 'utils/getActions'
 import { availableActions } from 'utils/availableActions'
 
 export const stats = (config = defaultConfig) => {
+  const { get } = getActions(config, 'stats')
+
   return {
     ...availableActions,
-    get: (type = null) => {
-      return !type
-        ? makeRequest(config, `stats/`)
-        : makeRequest(config, `stats/failures/${type}`)
-    }
+    get
   }
 }
 

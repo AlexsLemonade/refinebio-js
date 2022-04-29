@@ -1,12 +1,14 @@
 import defaultConfig from 'config'
-import { makeRequest } from 'utils/makeRequest'
+import { getActions } from 'utils/getActions'
 import { availableActions } from 'utils/availableActions'
 
 export const organisms = (config = defaultConfig) => {
+  const { get, filter } = getActions(config, 'organisms')
+
   return {
     ...availableActions,
-    get: (name) => makeRequest(config, `organisms/${name}`),
-    filter: (query = {}) => makeRequest(config, `organisms/`, query)
+    get,
+    filter
   }
 }
 

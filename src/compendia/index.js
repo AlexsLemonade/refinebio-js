@@ -1,12 +1,14 @@
 import defaultConfig from 'config'
-import { makeRequest } from 'utils/makeRequest'
+import { getActions } from 'utils/getActions'
 import { availableActions } from 'utils/availableActions'
 
 export const compendia = (config = defaultConfig) => {
+  const { get, filter } = getActions(config, 'compendia')
+
   return {
     ...availableActions,
-    get: (id) => makeRequest(config, `compendia/${id}`),
-    filter: (query = {}) => makeRequest(config, `compendia/`, query)
+    get,
+    filter
   }
 }
 

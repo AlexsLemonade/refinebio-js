@@ -1,12 +1,14 @@
 import defaultConfig from 'config'
-import { makeRequest } from 'utils/makeRequest'
+import { getActions } from 'utils/getActions'
 import { availableActions } from 'utils/availableActions'
 
 export const qnTargets = (config = defaultConfig) => {
+  const { get, filter } = getActions(config, 'qn_targets')
+
   return {
     ...availableActions,
-    get: (organismName) => makeRequest(config, `qn_targets/${organismName}`),
-    filter: (query = {}) => makeRequest(config, `qn_targets/`, query)
+    get,
+    filter
   }
 }
 

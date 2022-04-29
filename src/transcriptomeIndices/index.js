@@ -1,12 +1,14 @@
 import defaultConfig from 'config'
-import { makeRequest } from 'utils/makeRequest'
+import { getActions } from 'utils/getActions'
 import { availableActions } from 'utils/availableActions'
 
 export const transcriptomeIndices = (config = defaultConfig) => {
+  const { get, filter } = getActions(config, 'transcriptome_indices')
+
   return {
     ...availableActions,
-    get: (id = null) => makeRequest(config, `transcriptome_indices/${id}`),
-    filter: (query) => makeRequest(config, `transcriptome_indices/`, query)
+    get,
+    filter
   }
 }
 

@@ -1,12 +1,14 @@
 import defaultConfig from 'config'
-import { makeRequest } from 'utils/makeRequest'
+import { getActions } from 'utils/getActions'
 import { availableActions } from 'utils/availableActions'
 
 export const originalFiles = (config = defaultConfig) => {
+  const { get, filter } = getActions(config, 'original_files')
+
   return {
     ...availableActions,
-    get: (id = null) => makeRequest(config, `original_files/${id}`),
-    filter: (query = {}) => makeRequest(config, `original_files/`, query)
+    get,
+    filter
   }
 }
 

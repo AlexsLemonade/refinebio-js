@@ -1,11 +1,13 @@
 import defaultConfig from 'config'
-import { makeRequest } from 'utils/makeRequest'
+import { getActions } from 'utils/getActions'
 import { availableActions } from 'utils/availableActions'
 
 export const search = (config = defaultConfig) => {
+  const { filter } = getActions(config, 'search')
+
   return {
     ...availableActions,
-    filter: (query = {}) => makeRequest(config, `search/`, query)
+    filter
   }
 }
 

@@ -9,7 +9,7 @@ test('get stats on the health of the system', async () => {
 })
 
 test('get stats on a failure downloader list', async () => {
-  const getFailureDownloader = await api.stats.get('downloader')
+  const getFailureDownloader = await api.stats.get('downloader', 'failures')
 
   expect(getFailureDownloader.isOk).toBeTruthy()
 })

@@ -1,12 +1,14 @@
 import defaultConfig from 'config'
-import { makeRequest } from 'utils/makeRequest'
+import { getActions } from 'utils/getActions'
 import { availableActions } from 'utils/availableActions'
 
 export const jobs = (config = defaultConfig) => {
+  const { get, filter } = getActions(config, 'jobs')
+
   return {
     ...availableActions,
-    get: (type, id) => makeRequest(config, `jobs/${type}/${id}`),
-    filter: (type, query = {}) => makeRequest(config, `jobs/${type}`, query)
+    get,
+    filter
   }
 }
 
