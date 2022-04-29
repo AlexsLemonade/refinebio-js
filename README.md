@@ -28,7 +28,7 @@ Here are the addtional resources for Refine.bio API.
 - [REST API](#rest-api)
   - [Available Actions](#available-actions)
   - [Resources](#resources)
-- [Contribution](#contribution)
+- [Contributing](#contributing)
   - [Prerequisites](#prerequisites)
   - [Installation](#installation)
   - [Development](#development)
@@ -62,15 +62,25 @@ import Refinebio from 'refinebio'
 const api = Refinebio()
 ```
 
+To override Refine.bio API default [`config`](#config) settings upon instantiation:
+
+```js
+const api = Refinebio({ verbose: true })
+```
+
 This newly created instance `api` returns the following properties:
 | key| value |
 | :--- | :--- |
 | `updateConfig` | A method for accessing or updating the config object |
-| [resourceName](#resources) | methods for each resource |
+| [resourceName](#resources) | Methods for each resource |
 
 To use `updateConfig` method:
 
 ```js
+import Refinebio from 'refinebio'
+
+const api = Refinebio()
+
 // access the config
 const config = api.updateConfig()
 
@@ -81,12 +91,24 @@ const updateConfiog = api.updateConfig({ verbose: true })
 To use one of the resouces:
 
 ```js
+import Refinebio from 'refinebio'
+
+const api = Refinebio()
+
 const tokenRequest = await api.token.create({ is_activated: true })
 
 if (tokenRequest.isOkay) {
   console.log('TokenRequest resolved')
 }
 ```
+
+#### `Config`
+
+The following properties can be overridden:
+| key| value | Description |
+| :--- | :--- | :--- |
+| `path` | urlString | Refine.bio API Url. It consists of host and API version number. |
+| `verbose` | boolean | By setting this option to true, it logs endpoints for each resrouce in terminal when HTTP request is made. The default value is false. |
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -115,23 +137,23 @@ Our API supports the following actions:
   <summary> List of resources</summary>
   
  * [**compendia**](#compendia)
- * [**computational_results**](#computational_results)
- * [**computedFiles**](#computedFiles)
+ * [**computationalResults**](#computationalresults)
+ * [**computedFiles**](#computedfiles)
  * [**dataset**](#dataset)
  * [**experiments**](#experiments)
  * [**institutions**](#institutions)
  * [**jobs**](#jobs)
  * [**organisms**](#organisms)
- * [**originalFiles**](#originalFiles)
+ * [**originalFiles**](#originalfiles)
  * [**platforms**](#platforms)
  * [**processors**](#processors)
- * [**qnTargets**](#qnTargets)
+ * [**qnTargets**](#qntargets)
  * [**samples**](#samples)
  * [**search**](#search)
- * [**statsAbout**](#statsAbout)
+ * [**statsAbout**](#statsabout)
  * [**stats**](#stats)
  * [**token**](#token)
- * [**transcriptomeIndices**](#transcriptomeIndices)
+ * [**transcriptomeIndices**](#transcriptomeindices)
 </details>
 
 ---
@@ -143,18 +165,18 @@ This resource can be used to get the compendia result. This may return a specifi
 Please view the API documentation for more details.
 | Action | Type | ReDoc | SwaggerUI |
 | :--- | :--- | :--- | :--- |
-| `get` | `compendia_read` | [view](https://api.refine.bio/v1/#operation/compendia_read) | [view](https://api.refine.bio/v1/swagger/) |
-| `filter` | `compendia_list` | [view](https://api.refine.bio/v1/#operation/compendia_list) | [view](https://api.refine.bio/v1/swagger/) |
+| `compendia.get` | `compendia_read` | [view](https://api.refine.bio/v1/#operation/compendia_read) | [view](https://api.refine.bio/v1/swagger/) |
+| `compendia.filter` | `compendia_list` | [view](https://api.refine.bio/v1/#operation/compendia_list) | [view](https://api.refine.bio/v1/swagger/) |
 
 <details> 
   <summary>Example</summary>
   
   ```js
   // get a specific compendia result
-  const getCompendia = await api.compendia.get(ID)
+  const getCompendia = Refinebio().compendia.get(ID)
   
   // get a list of all compendia results
-  const getCompendiaList = await api.compendia.filter(query)
+  const getCompendiaList = await Refinebio().compendia.filter(query)
   ```
 
 </details>
@@ -170,18 +192,20 @@ Each one contains meta-information about the output of a computer process. This 
 Please view the API documentation for more details.
 | Action | Type | ReDoc | SwaggerUI |
 | :--- | :--- | :--- | :--- |
-| `get` | `computational_results_read` | [view](https://api.refine.bio/v1/#operation/computational_results_read) | [view](https://api.refine.bio/v1/swagger/) |
-| `filter` | `computational_result_list` | [view](https://api.refine.bio/v1/#operation/computational_results_list) | [view](https://api.refine.bio/v1/swagger/) |
+| `computationalResults.get` | `computational_results_read` | [view](https://api.refine.bio/v1/#operation/computational_results_read) | [view](https://api.refine.bio/v1/swagger/) |
+| `computationalResults.filter` | `computational_result_list` | [view](https://api.refine.bio/v1/#operation/computational_results_list) | [view](https://api.refine.bio/v1/swagger/) |
 
 <details>
   <summary>Example</summary>
 
 ```js
 // get a specific computational result
-const getComputationalResult = await api.computational_results.get(ID)
+const getComputationalResult = await Refinebio().computationalResults.get(ID)
 
 // get a list of all computational results
-const getComputationalResults = await api.computationalResults.filter(query)
+const getComputationalResults = await Refinebio().computationalResults.filter(
+  query
+)
 ```
 
 </details>
@@ -198,18 +222,18 @@ acquire and activate an API key see the documentation for the [token](#token) en
 Please view the API documentation for more details.
 | Action | Type | ReDoc | SwaggerUI |
 | :--- | :--- | :--- | :--- |
-| `get` | `computed_files_read` | [view](https://api.refine.bio/v1/#operation/computed_files_read) | [view](https://api.refine.bio/v1/swagger/) |
-| `filter` | `computed_files_list` | [view](https://api.refine.bio/v1/#operation/computed_files_list) | [view](https://api.refine.bio/v1/swagger/) |
+| `computedFiles.get` | `computed_files_read` | [view](https://api.refine.bio/v1/#operation/computed_files_read) | [view](https://api.refine.bio/v1/swagger/) |
+| `computedFiles.filter` | `computed_files_list` | [view](https://api.refine.bio/v1/#operation/computed_files_list) | [view](https://api.refine.bio/v1/swagger/) |
 
 <details> 
   <summary>Example</summary>
   
   ```js
   // get a specific computed file
-  const getComputedFile = await api.computedFiles.get(ID)
+  const getComputedFile = await Refinebio().computedFiles.get(ID)
   
   // get a list of all computed files
-  const getComputedFiles = await api.computedFiles.filter(query)
+  const getComputedFiles = await Refinebio().computedFiles.filter(query)
   ```
 
 </details>
@@ -223,22 +247,22 @@ This resource can be used to create, get, or update a single dataset.
 Please view the API documentation for more details.
 | Action | ReDoc | SwaggerUI |
 | :--- | :--- | :--- |
-| `create` | [view](https://api.refine.bio/v1/#operation/dataset_create) | [view](https://api.refine.bio/v1/swagger/) |
-| `get` | [view](https://api.refine.bio/v1/#operation/dataset_read) | [view](https://api.refine.bio/v1/swagger/) |
-| `update` | [view](hhttps://api.refine.bio/v1/#operation/dataset_update) | [view](https://api.refine.bio/v1/swagger/) |
+| `dataset.create` | [view](https://api.refine.bio/v1/#operation/dataset_create) | [view](https://api.refine.bio/v1/swagger/) |
+| `dataset.get` | [view](https://api.refine.bio/v1/#operation/dataset_read) | [view](https://api.refine.bio/v1/swagger/) |
+| `dataset.update` | [view](hhttps://api.refine.bio/v1/#operation/dataset_update) | [view](https://api.refine.bio/v1/swagger/) |
 
 <details>
   <summary>Example</summary>
 
 ```js
 // create a dataset
-const createDataset = async() => await api.dataset.create({})
+const createDataset = async() => await Refinebio().dataset.create({})
 
 // get a dataset
-const getDataset = async() => await api.dataset.get(ID)
+const getDataset = async() => await Refinebio().dataset.get(ID)
 
 // update a dataset
-const updateDataset = async() api.dataset.update(tokenID, {})
+const updateDataset = async() Refinebio().dataset.update(tokenID, {})
 ```
 
 </details>
@@ -252,18 +276,18 @@ This resource can be used to get the experiment. This may return a specific expe
 Please view the API documentation for more details.
 | Action | Type | ReDoc | SwaggerUI |
 | :--- | :--- | :--- | :--- |
-| `get` | `experiments_read` | [view](https://api.refine.bio/v1/#operation/experiments_read) | [view](https://api.refine.bio/v1/swagger/) |
-| `filter` | `experiments_list` | [view](https://api.refine.bio/v1/#operation/experiments_list) | [view](https://api.refine.bio/v1/swagger/) |
+| `experiments.get` | `experiments_read` | [view](https://api.refine.bio/v1/#operation/experiments_read) | [view](https://api.refine.bio/v1/swagger/) |
+| `experiments.filter` | `experiments_list` | [view](https://api.refine.bio/v1/#operation/experiments_list) | [view](https://api.refine.bio/v1/swagger/) |
 
 <details> 
   <summary>Example</summary>
   
   ```js
   // get a specific experiment
-  const getExperiment = await api.experiments.get(accessionCode)
+  const getExperiment = await Refinebio().experiments.get(accessionCode)
   
   // get a list of all experiments
-  const getExpriments = await api.experiments.filter(query)
+  const getExpriments = await Refinebio().experiments.filter(query)
   ```
   
 </details>
@@ -277,13 +301,13 @@ This resource can be used to get an unpaginated list of all the available "insti
 Please view the API documentation for more details.
 | Action | ReDoc | SwaggerUI |
 | :--- | :--- | :--- |
-| `get` | [view](https://api.refine.bio/v1/#tag/institutions) | [view](https://api.refine.bio/v1/swagger/) |
+| `institutions.get` | [view](https://api.refine.bio/v1/#tag/institutions) | [view](https://api.refine.bio/v1/swagger/) |
 
 <details>
   <summary>Example</summary>
 
 ```js
-const getInstitutions = async () => await api.institutions.get()
+const getInstitutions = async () => await Refinebio().institutions.get()
 ```
 
 </details>
@@ -297,34 +321,34 @@ This resource can be used to get the downloader, processor, or survery job. This
 Please view the API documentation for more details.
 | Action | Type | ReDoc | SwaggerUI |
 | :--- | :--- | :--- | :--- |
-| `get` | `jobs_downloader_read` | [view](https://api.refine.bio/v1/#operation/jobs_downloader_read) | [view](https://api.refine.bio/v1/swagger/) |
-| `filter` | `jobs_downloader_list` | [view](https://api.refine.bio/v1/#operation/jobs_downloader_list) | [view](https://api.refine.bio/v1/swagger/) |
-| `get` | `jobs_processor_read` | [view](https://api.refine.bio/v1/#operation/jobs_processor_read) | [view](https://api.refine.bio/v1/swagger/) |
-| `filter` | `jobs_processor_list` | [view](https://api.refine.bio/v1/#operation/jobs_processor_list) | [view](https://api.refine.bio/v1/swagger/) |
-| `get` | `jobs_survey_read` | [view](https://api.refine.bio/v1/#operation/jobs_survey_read) | [view](https://api.refine.bio/v1/swagger/) |
-| `filter` | `jobs_survey_list` | [view](https://api.refine.bio/v1/#operation/jobs_survey_list) | [view](https://api.refine.bio/v1/swagger/) |
+| `jobs.get` | `jobs_downloader_read` | [view](https://api.refine.bio/v1/#operation/jobs_downloader_read) | [view](https://api.refine.bio/v1/swagger/) |
+| `jobs.filter` | `jobs_downloader_list` | [view](https://api.refine.bio/v1/#operation/jobs_downloader_list) | [view](https://api.refine.bio/v1/swagger/) |
+| `jobs.get` | `jobs_processor_read` | [view](https://api.refine.bio/v1/#operation/jobs_processor_read) | [view](https://api.refine.bio/v1/swagger/) |
+| `jobs.filter` | `jobs_processor_list` | [view](https://api.refine.bio/v1/#operation/jobs_processor_list) | [view](https://api.refine.bio/v1/swagger/) |
+| `jobs.get` | `jobs_survey_read` | [view](https://api.refine.bio/v1/#operation/jobs_survey_read) | [view](https://api.refine.bio/v1/swagger/) |
+| `jobs.filter` | `jobs_survey_list` | [view](https://api.refine.bio/v1/#operation/jobs_survey_list) | [view](https://api.refine.bio/v1/swagger/) |
 
 <details> 
   <summary>Example</summary>
  
   ```js  
   // get a specific downloader job
-  const getDownloaderJob = await api.jobs.get('downloader', id)
+  const getDownloaderJob = await Refinebio().jobs.get('downloader', id)
   
   // get a list of downloader jobs
-  getDownloaderJobs = await api.jobs.filter('downloader', query)
+  getDownloaderJobs = await Refinebio().jobs.filter('downloader', query)
   
   // get a specific processor job
-  const getProcessorJob = await api.jobs.get('processor', id)
+  const getProcessorJob = await Refinebio().jobs.get('processor', id)
   
   // get a list of processor jobs
-  getProcessorJobs = await api.jobs.filter('processor', query)
+  getProcessorJobs = await Refinebio().jobs.filter('processor', query)
   
   // get a specific servey job
-  const getSurveyJob = await api.jobs.get('survey', id)
+  const getSurveyJob = await Refinebio().jobs.get('survey', id)
   
   // get a list of survey jobs
-  getSurveyJobs = await api.jobs.filter('survey', query)
+  getSurveyJobs = await Refinebio().jobs.filter('survey', query)
   ```
   
 </details>
@@ -338,18 +362,18 @@ This resource can be used to get the organism. This may return an organism by it
 Please view the API documentation for more details.
 | Action | Type | ReDoc | SwaggerUI |
 | :--- | :--- | :--- | :--- |
-| `get` | `organisms_read` | [view](https://api.refine.bio/v1/#operation/organisms_read) | [view](https://api.refine.bio/v1/swagger/) |
-| `filter` | `organisms_list` | [view](https://api.refine.bio/v1/#operation/organisms_list) | [view](https://api.refine.bio/v1/swagger/) |
+| `organisms.get` | `organisms_read` | [view](https://api.refine.bio/v1/#operation/organisms_read) | [view](https://api.refine.bio/v1/swagger/) |
+| `organisms.filter` | `organisms_list` | [view](https://api.refine.bio/v1/#operation/organisms_list) | [view](https://api.refine.bio/v1/swagger/) |
 
 <details> 
   <summary>Example</summary>
   
   ```js
   // get a specific organism
-  const getOrganism = await api.organisms.get(name)
+  const getOrganism = await Refinebio().organisms.get(name)
   
   // get a list of all available organisms
-  const getOrganisms = await api.organisms.filter(query)
+  const getOrganisms = await Refinebio().organisms.filter(query)
   ```
 </details>
 
@@ -364,18 +388,18 @@ These are the files we proccess.
 Please view the API documentation for more details.
 | Action | Type | ReDoc | SwaggerUI |
 | :--- | :--- | :--- | :--- |
-| `get` | `original_files_read` | [view](https://api.refine.bio/v1/#operation/original_files_read) | [view](https://api.refine.bio/v1/swagger/) |
-| `filter` | `original_files_list` | [view](https://api.refine.bio/v1/#operation/original_files_list) | [view](https://api.refine.bio/v1/swagger/) |
+| `originalFiles.get` | `original_files_read` | [view](https://api.refine.bio/v1/#operation/original_files_read) | [view](https://api.refine.bio/v1/swagger/) |
+| `originalFiles.filter` | `original_files_list` | [view](https://api.refine.bio/v1/#operation/original_files_list) | [view](https://api.refine.bio/v1/swagger/) |
 
 <details>
   <summary>Example</summary>
 
 ```js
 // get a specific original file
-const getOriginalFile = await api.originalFiles.get(ID)
+const getOriginalFile = await Refinebio().originalFiles.get(ID)
 
 // get a list of all original files
-const getOriginalFiles = await api.originalFiles.filter(query)
+const getOriginalFiles = await Refinebio().originalFiles.filter(query)
 ```
 
 </details>
@@ -389,13 +413,13 @@ This resource can be used to get an unpaginated list of all available "platform"
 Please view the API documentation for more details.
 | Action | ReDoc | SwaggerUI |
 | :--- | :--- | :--- |
-| `get` | [view](https://api.refine.bio/v1/#tag/platforms) | [view](https://api.refine.bio/v1/swagger/) |
+| `platforms.get` | [view](https://api.refine.bio/v1/#tag/platforms) | [view](https://api.refine.bio/v1/swagger/) |
 
 <details> 
   <summary>Example</summary>
   
   ```js
-  const getPlatforms = await api.platforms.get()
+  const getPlatforms = await Refinebio().platforms.get()
   ```
 </details>
 
@@ -408,18 +432,18 @@ This resource can be used to get the processor. This may return a specific proce
 Please view the API documentation for more details.
 | Action | Type | ReDoc | SwaggerUI |
 | :--- | :--- | :--- | :--- |
-| `get` | `processors_read` | [view](https://api.refine.bio/v1/#operation/processors_read) | [view](https://api.refine.bio/v1/swagger/) |
-| `filter` | `processors_list` | [view](https://api.refine.bio/v1/#operation/processors_list) | [view](https://api.refine.bio/v1/swagger/) |
+| `processors.get` | `processors_read` | [view](https://api.refine.bio/v1/#operation/processors_read) | [view](https://api.refine.bio/v1/swagger/) |
+| `processors.filter` | `processors_list` | [view](https://api.refine.bio/v1/#operation/processors_list) | [view](https://api.refine.bio/v1/swagger/) |
 
 <details> 
   <summary>Example</summary>
   
   ```js
   // get a specific processor
-  const getProcessor = await api.processors.get(ID)
+  const getProcessor = await Refinebio().processors.get(ID)
   
   // get a list of all processors
-  const getProcessors = await api.processors.filter(query)
+  const getProcessors = await Refinebio().processors.filter(query)
   ```
 </details>
 
@@ -432,18 +456,18 @@ This resource can be used to get the organisms which have available QN Targets. 
 Please view the API documentation for more details.
 | Action | Type | ReDoc | SwaggerUI |
 | :--- | :--- | :--- | :--- |
-| `get` | `qn_targets_read` | [view](https://api.refine.bio/v1/#operation/qn_targets_read) | [view](https://api.refine.bio/v1/swagger/) |
-| `filter` | `qn_targets_list` | [view](https://api.refine.bio/v1/#operation/qn_targets_list) | [view](https://api.refine.bio/v1/swagger/) |
+| `qnTargets.get` | `qn_targets_read` | [view](https://api.refine.bio/v1/#operation/qn_targets_read) | [view](https://api.refine.bio/v1/swagger/) |
+| `qnTargets.filter` | `qn_targets_list` | [view](https://api.refine.bio/v1/#operation/qn_targets_list) | [view](https://api.refine.bio/v1/swagger/) |
 
 <details>
   <summary>Example</summary>
 
 ```js
 // get a Quantile Normalization file for an organism
-const getQnTarget = await api.qnTargets.get(name)
+const getQnTarget = await Refinebio().qnTargets.get(name)
 
 // get a list of all organisms with available QN Targets
-const getOrganismsWithQnTargets = await api.qnTargets.filter(query)
+const getOrganismsWithQnTargets = await Refinebio().qnTargets.filter(query)
 ```
 
 </details>
@@ -457,17 +481,17 @@ This resource can be used to get the detailed information about the sample. This
 Please view the API documentation for more details.
 | Action | Type | ReDoc | SwaggerUI |
 | :--- | :--- | :--- | :--- |
-| `get` | `samples_read` | [view](https://api.refine.bio/v1/#operation/samples_read) | [view](https://api.refine.bio/v1/swagger/) |
-| `filter` | `samples_list` | [view](https://api.refine.bio/v1/#operation/samples_list) | [view](https://api.refine.bio/v1/swagger/) |
+| `samples.get` | `samples_read` | [view](https://api.refine.bio/v1/#operation/samples_read) | [view](https://api.refine.bio/v1/swagger/) |
+| `samples.filter` | `samples_list` | [view](https://api.refine.bio/v1/#operation/samples_list) | [view](https://api.refine.bio/v1/swagger/) |
 
 <details> 
   <summary>Example</summary>
   
   ```js
   // get a specific sample
-  const getQnTarget = await api.qn_targets.get(accessionCode)
+  const getQnTarget = await Refinebio().samples.get(accessionCode)
   // get a list of all samples
-  const getOrganismsWithQnTargets = await api.qn_targets.filter(query)
+  const getOrganismsWithQnTargets = await Refinebio().samples.filter(query)
   ```
 </details>
 
@@ -484,13 +508,13 @@ There's an additional field in the response named `facets` that contain stats on
 Please view the API documentation for more details.
 | Action | ReDoc | SwaggerUI |
 | :--- | :--- | :--- |
-| `filter` | [view](https://api.refine.bio/v1/#tag/search) | [view](https://api.refine.bio/v1/swagger/) |
+| `search.filter` | [view](https://api.refine.bio/v1/#tag/search) | [view](https://api.refine.bio/v1/swagger/) |
 
 <details>
   <summary>Example</summary>
 
 ```js
-const getSearchResults = await api.search.filter(query)
+const getSearchResults = await Refinebio().search.filter(query)
 ```
 
 </details>
@@ -504,13 +528,13 @@ This resource can be used to get the general statistics for the site used in the
 Please view the API documentation for more details.
 | Action | ReDoc | SwaggerUI |
 | :--- | :--- | :--- |
-| `get` | [view](https://api.refine.bio/v1/#tag/stats-about) | [view](https://api.refine.bio/v1/swagger/) |
+| `statsAbout.get` | [view](https://api.refine.bio/v1/#tag/stats-about) | [view](https://api.refine.bio/v1/swagger/) |
 
 <details> 
   <summary>Example</summary>
   
   ```js
-  const getStatsAbout = await api.statsAbout.get()
+  const getStatsAbout = await Refinebio()api.statsAbout.get()
   ```
 </details>
 
@@ -523,22 +547,22 @@ This resource can be used to get the statistics about the health of the system.
 Please view the API documentation for more details.
 | Action | Type | ReDoc | SwaggerUI |
 | :--- | :--- | :--- | :--- |
-| `get` | `stats_list` | [view](https://api.refine.bio/v1/#operation/stats_list) | [view](https://api.refine.bio/v1/swagger/) |
-| `get` | `stats_failures_downloader_list` | [view](https://api.refine.bio/v1/#operation/stats_failures_downloader_list) | [view](https://api.refine.bio/v1/swagger/) |
-| `get` | `sstats_failures_processor_list` | [view](https://api.refine.bio/v1/#operation/stats_failures_processor_list) | [view](https://api.refine.bio/v1/swagger/) |
+| `stats.get` | `stats_list` | [view](https://api.refine.bio/v1/#operation/stats_list) | [view](https://api.refine.bio/v1/swagger/) |
+| `stats.get` | `stats_failures_downloader_list` | [view](https://api.refine.bio/v1/#operation/stats_failures_downloader_list) | [view](https://api.refine.bio/v1/swagger/) |
+| `stats.get` | `sstats_failures_processor_list` | [view](https://api.refine.bio/v1/#operation/stats_failures_processor_list) | [view](https://api.refine.bio/v1/swagger/) |
 
 <details> 
   <summary>Example</summary>
   
   ```js
   // get stats on the health of the system.
-  const getStatsOnHealth = await api.stats.get()
+  const getStatsOnHealth = await Refinebio().stats.get()
   
   // get stats on a failures downloader list
-  const getFailureDownloader = await api.stats.get('downloader')
+  const getFailureDownloader = await Refinebio().stats.get('downloader')
   
   // get stats on a failures processor list
-  const getFailureProcessor = await api.stats.get('processor')
+  const getFailureProcessor = await Refinebio().stats.get('processor')
   ```
   
 </details>
@@ -552,22 +576,22 @@ This resource can be used to create, get, or update a token. The token can be us
 Please view the API documentation for more details.
 | Action | ReDoc | SwaggerUI |
 | :--- | :--- | :--- |
-| `create` | [view](https://api.refine.bio/v1/#operation/token_create) | [view](https://api.refine.bio/v1/swagger/) |
-| `get` | [view](https://api.refine.bio/v1/#operation/token_read) | [view](https://api.refine.bio/v1/swagger/) |
-| `update` | [view](https://api.refine.bio/v1/#operation/token_update) | [view](https://api.refine.bio/v1/swagger/) |
+| `token.create` | [view](https://api.refine.bio/v1/#operation/token_create) | [view](https://api.refine.bio/v1/swagger/) |
+| `token.get` | [view](https://api.refine.bio/v1/#operation/token_read) | [view](https://api.refine.bio/v1/swagger/) |
+| `token.update` | [view](https://api.refine.bio/v1/#operation/token_update) | [view](https://api.refine.bio/v1/swagger/) |
 
 <details> 
   <summary>Example</summary>
   
   ```js
   // create a new token
-  const createToken = async() => await api.token.create({ is_activated: true })
+  const createToken = async() => await Refinebio().token.create({ is_activated: true })
   
   // get a specific token
-  const getToken = async() => await api.token.get(tokenID)
+  const getToken = async() => await Refinebio().token.get(tokenID)
   
   // update a specific token's active state
-  const updateToken = async() api.token.update(tokenID, { is_activated: true })
+  const updateToken = async() Refinebio().token.update(tokenID, { is_activated: true })
   ```
   
 </details>
@@ -581,25 +605,27 @@ This resource can be used to get the detailed information about a sample. This m
 Please view the API documentation for more details.
 | Action | Type | ReDoc | SwaggerUI |
 | :--- | :--- | :--- | :--- |
-| `get` | `transcriptome_indices_read` | [view](https://api.refine.bio/v1/#operation/transcriptome_indices_read) | [view](https://api.refine.bio/v1/swagger/) |
-| `filter` | `transcriptome_indices_list` | [view](https://api.refine.bio/v1/#operation/transcriptome_indices_list) | [view](https://api.refine.bio/v1/swagger/) |
+| `transcriptomeIndices.get` | `transcriptome_indices_read` | [view](https://api.refine.bio/v1/#operation/transcriptome_indices_read) | [view](https://api.refine.bio/v1/swagger/) |
+| `transcriptomeIndices.filter` | `transcriptome_indices_list` | [view](https://api.refine.bio/v1/#operation/transcriptome_indices_list) | [view](https://api.refine.bio/v1/swagger/) |
 
 <details>
   <summary>Example</summary>
 
 ```js
 // get a S3 url associated with the transcriptome index
-const getS3Url = await api.transcriptome_indices.get(id)
+const getS3Url = await Refinebio().transcriptomeIndices.get(id)
 
 // get a list of all transcriptome Indices
-const getTranScruptomeIndices = await api.transcriptome_indices.filter(query)
+const getTranScruptomeIndices = await Refinebio().transcriptomeIndices.filter(
+  query
+)
 ```
 
 </details> 
  
 <p align="right">(<a href="#top">back to top</a>)</p>
 
-## Contribution
+## Contributing
 
 Let's collaborate with us! Any contributions would be greatly appreciated. Please share your idea by making a pull request.
 
