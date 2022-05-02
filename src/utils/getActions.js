@@ -7,13 +7,10 @@ export const getActions = (config, path, pk = 'id') => {
         method: 'POST',
         body: JSON.stringify(data)
       }),
-    get: (id, type = '', subPath = '') => {
+    get: (id, type = '') => {
       if (!id && type) {
         // jobs - jobs/type
-        // stats - stats/subPath/type
-        return subPath
-          ? makeRequest(config, `stats/${subPath}/${type}`)
-          : makeRequest(config, `${path}/${type}`)
+        return makeRequest(config, `${path}/${type}`)
       }
 
       if (id) {
