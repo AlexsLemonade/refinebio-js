@@ -10,6 +10,8 @@ This is a Javascript API client for [refine.bio](https://www.refine.bio/).
 
 ## What is refine.bio?
 
+<img width="1808" alt="image" src="https://user-images.githubusercontent.com/31800566/166490678-d5f05080-5aff-40dc-bcd0-a657675e6b17.png">
+
 > refine.bio is a multi-organism collection of genome-wide transcriptome or gene expression data that has been obtained from publicly available repositories and uniformly processed and normalized. refine.bio allows biologists, clinicians, and machine learning researchers to search for experiments from different source repositories all in one place and build custom data sets for their questions of interest.
 
 ## Links
@@ -176,7 +178,7 @@ Please view the API documentation for more details.
   
   ```js
   // get a specific compendia result
-  const getCompendia = Refinebio().compendia.get(ID)
+  const getCompendia = Refinebio().compendia.get(id)
   
   // get a list of all compendia results
   const getCompendiaList = await Refinebio().compendia.filter(query)
@@ -203,7 +205,7 @@ Please view the API documentation for more details.
 
 ```js
 // get a specific computational result
-const getComputationalResult = await Refinebio().computationalResults.get(ID)
+const getComputationalResult = await Refinebio().computationalResults.get(id)
 
 // get a list of all computational results
 const getComputationalResults = await Refinebio().computationalResults.filter(
@@ -233,7 +235,7 @@ Please view the API documentation for more details.
   
   ```js
   // get a specific computed file
-  const getComputedFile = await Refinebio().computedFiles.get(ID)
+  const getComputedFile = await Refinebio().computedFiles.get(id)
   
   // get a list of all computed files
   const getComputedFiles = await Refinebio().computedFiles.filter(query)
@@ -262,7 +264,7 @@ Please view the API documentation for more details.
 const createDataset = async() => await Refinebio().dataset.create({})
 
 // get a dataset
-const getDataset = async() => await Refinebio().dataset.get(ID)
+const getDataset = async() => await Refinebio().dataset.get(id)
 
 // update a dataset
 const updateDataset = async() Refinebio().dataset.update(tokenID, {})
@@ -399,7 +401,7 @@ Please view the API documentation for more details.
 
 ```js
 // get a specific original file
-const getOriginalFile = await Refinebio().originalFiles.get(ID)
+const getOriginalFile = await Refinebio().originalFiles.get(id)
 
 // get a list of all original files
 const getOriginalFiles = await Refinebio().originalFiles.filter(query)
@@ -443,7 +445,7 @@ Please view the API documentation for more details.
   
   ```js
   // get a specific processor
-  const getProcessor = await Refinebio().processors.get(ID)
+  const getProcessor = await Refinebio().processors.get(id)
   
   // get a list of all processors
   const getProcessors = await Refinebio().processors.filter(query)
