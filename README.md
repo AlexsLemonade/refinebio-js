@@ -4,26 +4,29 @@
 [![formatter: prettier](https://img.shields.io/badge/formatter-prettier-ff69b4)](https://github.com/prettier/prettier)
 [![license: BSD-3-Clause](https://img.shields.io/badge/license-BSD--3--Clause-green)](https://opensource.org/licenses/BSD-3-Clause)
 
-# Refine.bio JS
+# refine.bio JS
 
-This is a Javascript API client for Refine.bio
+This is a Javascript API client for [refine.bio](https://www.refine.bio/).
 
-> Refine.bio is a multi-organism collection of genome-wide transcriptome or gene expression data that has been obtained from publicly available repositories and uniformly processed and normalized. Refine.bio allows biologists, clinicians, and machine learning researchers to search for experiments from different source repositories all in one place and build custom data sets for their questions of interest.
+## What is refine.bio?
+
+> refine.bio is a multi-organism collection of genome-wide transcriptome or gene expression data that has been obtained from publicly available repositories and uniformly processed and normalized. refine.bio allows biologists, clinicians, and machine learning researchers to search for experiments from different source repositories all in one place and build custom data sets for their questions of interest.
 
 ## Links
 
-Here are the addtional resources for Refine.bio API.
+Here are the addtional resources for refine.bio API.
 
-- [Refine.bio API (v1) ReDoc](https://api.refine.bio/v1/)
-- [Refine.bio API (v1) Swagger UI](https://api.refine.bio/v1/swagger/)
-- [Refine.bio Documentation](https://docs.refine.bio/en/latest/)
+- [refine.bio API (v1) ReDoc](https://api.refine.bio/v1/)
+- [refine.bio API (v1) Swagger UI](https://api.refine.bio/v1/swagger/)
+- [refine.bio Documentation](https://docs.refine.bio/en/latest/)
 
 ## Table of contents
 
+- [What is refine.bio?](#what-is-refinebio)
 - [Links](#links)
 - [Getting Started](#getting-started)
   - [Built With](#built-with)
-  - [Add Refine.bio API](#add-refinebio-api)
+  - [Add refine.bio API](#add-refinebio-api)
 - [Usage](#usage)
 - [REST API](#rest-api)
   - [Available Actions](#available-actions)
@@ -42,9 +45,9 @@ Here are the addtional resources for Refine.bio API.
 
 We use the npm package [isomorphic-unfetch](https://www.npmjs.com/package/isomorphic-unfetch) which supports an API request for both Node.js and a browser.
 
-### Add Refine.bio API
+### Add refine.bio API
 
-To add Refine.bio API, go to the root directory of your project and run the following command:
+To add refine.bio API, go to the root directory of your project and run the following command:
 
 ```sh
 yarn add refinebio
@@ -62,7 +65,7 @@ import Refinebio from 'refinebio'
 const api = Refinebio()
 ```
 
-To override Refine.bio API default [`config`](#config) settings upon instantiation:
+To override refine.bio API default [`config`](#config) settings upon instantiation:
 
 ```js
 const api = Refinebio({ verbose: true })
@@ -71,7 +74,7 @@ const api = Refinebio({ verbose: true })
 This newly created instance `api` returns the following properties:
 | key| value |
 | :--- | :--- |
-| `updateConfig` | A method for accessing or updating the config object |
+| `updateConfig` | A method for accessing or updating the `config` object |
 | [resourceName](#resources) | Methods for each resource |
 
 To use `updateConfig` method:
@@ -107,8 +110,8 @@ if (tokenRequest.isOkay) {
 The following properties can be overridden:
 | key| value | Description |
 | :--- | :--- | :--- |
-| `path` | urlString | Refine.bio API Url. It consists of host and API version number. |
-| `verbose` | boolean | By setting this option to true, it logs endpoints for each resrouce in terminal when HTTP request is made. The default value is false. |
+| `path` | urlString | refine.bio API Url consists of host and API version number. |
+| `verbose` | boolean | By setting this option to true, it logs endpoints for each resrouce in terminal when an HTTP request is made. The default value is false. |
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -126,7 +129,7 @@ Our API supports the following actions:
 | `delete` | sends a DELETE request |
 
 - `create` takes an object as its payload
-- `get` takes an identifier or a filter object as its URL parameter
+- `get` takes an identifier as its URL parameter
 - `filter` takes a filter object as its URL parameter
 - `update` takes an object as its payload
 - `delete` takes an identifiier as its URL parameter
@@ -499,7 +502,7 @@ Please view the API documentation for more details.
 
 #### search
 
-This resource can be used to search among the experiments.
+This resource can be used to search among the experiments with advanced filtering.
 
 This is powered by ElasticSearch, information regarding advanced usages of the filters can be found in the [Django-ES-DSL-DRF docs](https://django-elasticsearch-dsl-drf.readthedocs.io/en/0.17.1/filtering_usage_examples.html#filtering).
 
@@ -571,7 +574,7 @@ Please view the API documentation for more details.
 
 #### token
 
-This resource can be used to create, get, or update a token. The token can be used in requests that provide urls to download computed files. Setting `is_activated` to true indicates agreement with Refine.bio's [Terms of Use](https://www.refine.bio/terms) and [Privacy Policy](https://www.refine.bio/privacy).
+This resource can be used to create, get, or update a token. The token can be used in requests that provide urls to download computed files. Setting `is_activated` to true indicates agreement with refine.bio's [Terms of Use](https://www.refine.bio/terms) and [Privacy Policy](https://www.refine.bio/privacy).
 
 Please view the API documentation for more details.
 | Action | ReDoc | SwaggerUI |
