@@ -1,0 +1,4 @@
+# https://npm.github.io/publishing-pkgs-docs/publishing/the-npmignore-file.html
+# .DS_Store ignored by default
+node_modules
+src
