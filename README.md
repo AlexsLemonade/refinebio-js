@@ -306,13 +306,13 @@ This resource can be used to get an unpaginated list of all the available "insti
 Please view the API documentation for more details.
 | Action | ReDoc | SwaggerUI |
 | :--- | :--- | :--- |
-| `institutions.get` | [view](https://api.refine.bio/v1/#tag/institutions) | [view](https://api.refine.bio/v1/swagger/) |
+| `institutions.filter` | [view](https://api.refine.bio/v1/#tag/institutions) | [view](https://api.refine.bio/v1/swagger/) |
 
 <details>
   <summary>Example</summary>
 
 ```js
-const getInstitutions = async () => await Refinebio().institutions.get()
+const getInstitutions = async () => await Refinebio().institutions.filter(query)
 ```
 
 </details>
@@ -418,13 +418,13 @@ This resource can be used to get an unpaginated list of all available "platform"
 Please view the API documentation for more details.
 | Action | ReDoc | SwaggerUI |
 | :--- | :--- | :--- |
-| `platforms.get` | [view](https://api.refine.bio/v1/#tag/platforms) | [view](https://api.refine.bio/v1/swagger/) |
+| `platforms.filter` | [view](https://api.refine.bio/v1/#tag/platforms) | [view](https://api.refine.bio/v1/swagger/) |
 
 <details> 
   <summary>Example</summary>
   
   ```js
-  const getPlatforms = await Refinebio().platforms.get()
+  const getPlatforms = await Refinebio().platforms.filter(query)
   ```
 </details>
 
