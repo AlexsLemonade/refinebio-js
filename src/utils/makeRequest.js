@@ -9,27 +9,9 @@ const parseRequestResponse = async (response) => {
   }
 }
 
-// browser/server safe request api with standard pre-parsed responses
-export const makeRequest = async (
-  config,
-  url,
-  {
-    headers = { 'content-type': 'application/json' },
-    authorization,
-    ...options
-  } = {},
-  query = {}
-) => {
-  const xhrConfig = { headers, ...options }
-  const APIUrl = getAPIUrl(config, url, query)
-
-  // add authorization token to headers
-  if (authorization) {
-    xhrConfig.headers['api-key'] = authorization
-  }
-
+const getReponse = async (config, APIUrl, xhrConfig) => {
   try {
-    const response = await fetch(APIUrl, xhrConfig)
+    const response = await (config.fetch || fetch)(APIUrl, xhrConfig)
     return {
       isOk: response.ok,
       status: response.status,
@@ -42,6 +24,28 @@ export const makeRequest = async (
       error: e
     }
   }
+}
+
+// browser/server safe request api with standard pre-parsed responses
+export const makeRequest = async (
+  config,
+  url,
+  {
+    headers = { 'content-type': 'application/json' },
+    authorization,
+    ...options
+  } = {},
+  query = {}
+) => {
+  const APIUrl = getAPIUrl(config, url, query)
+  const xhrConfig = { headers, ...options }
+
+  // add authorization token to headers
+  if (authorization) {
+    xhrConfig.headers['api-key'] = authorization
+  }
+
+  return getReponse(config, APIUrl, xhrConfig)
 }
 
 export default makeRequest
