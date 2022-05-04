@@ -136,7 +136,7 @@ Our API supports the following actions:
 - `update` takes an object as an argument
 - `delete` takes an identifiier as a URL parameter
 
-#### How filters work?
+#### How filters work
 
 Our `filter` action automatically converts a `filter` object into a URL parameter.
 
