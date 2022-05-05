@@ -10,8 +10,12 @@ const parseRequestResponse = async (response) => {
 }
 
 const getReponse = async (config, APIUrl, xhrConfig) => {
+  if (config.test) {
+    return config.fetch(APIUrl, xhrConfig)
+  }
+
   try {
-    const response = await (config.fetch || fetch)(APIUrl, xhrConfig)
+    const response = await fetch(APIUrl, xhrConfig)
     return {
       isOk: response.ok,
       status: response.status,

@@ -1,17 +1,19 @@
 import Refinebio from 'index'
 
-const mockFetch = async (APIUrl, xhrConfig) => {
+const mockData = {
+  test: 'test'
+}
+
+const mockFetch = jest.fn(async (APIUrl, xhrConfig) => {
   return {
-    ok: true,
     status: 200,
-    response: {
-      json: async () => ({})
-    },
+    response: Promise.resolve(mockData),
     APIUrl,
     xhrConfig
   }
-}
-const api = Refinebio({ verbose: true, fetch: mockFetch })
+})
+
+const api = Refinebio({ verbose: true, fetch: mockFetch, test: true })
 test('get all compendia results with filtering', async () => {
   const filterRequest = await api.compendia.filter()
   console.log(filterRequest)
