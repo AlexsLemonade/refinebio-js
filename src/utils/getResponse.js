@@ -9,7 +9,6 @@ const parseRequestResponse = async (response) => {
 }
 
 export const getResponse = async (config, APIUrl, xhrConfig) => {
-  console.log('called?')
   try {
     const response = await fetch(APIUrl, xhrConfig)
     return {
