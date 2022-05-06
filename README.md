@@ -131,25 +131,25 @@ Our API supports the following actions:
 | `delete` | sends a DELETE request |
 
 - `create` takes an object as an argument
-- `get` takes an identifier or an optional parameter as an object
-- `filter` takes a filter object as a URL parameter
+- `get` takes an identifier and an optional parameter as an object
+- `filter` takes a filter object as a query string
 - `update` takes an object as an argument
-- `delete` takes an identifiier as a URL parameter
+- `delete` takes an identifiier as a query string
 
 #### How filters work
 
-Our `filter` action automatically converts a `filter` object into a URL parameter.
+Our `filter` action automatically converts a `filter` object into a query string.
 
 Example:
 
 ```js
 // get advanced filtered search results
 const getSearchResults = await api.search.filter({
-  downloadable_organism: ['HOMO_SAPIENS'],
-  technology: ['microarray']
+  downloadable_organism: 'HOMO_SAPIENS',
+  technology: ['microarray', 'rna-seq']
 })
 
-// 'search?filter_order=technology&technology=microarray'
+// 'search?filter_order=downloadable_organism%2Ctechnology%2Ctechnology&downloadable_organism=HOMO_SAPIENS&technology=microarray&technology=rna-seq'
 ```
 
 ### Resources
