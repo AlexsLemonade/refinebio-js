@@ -13,14 +13,14 @@ export const makeRequest = async (
   query = {}
 ) => {
   const APIUrl = getAPIUrl(config, url, query)
-  const xhrConfig = { headers, ...options }
+  const requestConfig = { headers, ...options }
 
   // add authorization token to headers
   if (authorization) {
-    xhrConfig.headers['api-key'] = authorization
+    requestConfig.headers['api-key'] = authorization
   }
 
-  return getResponse(config, APIUrl, xhrConfig)
+  return getResponse(config, APIUrl, requestConfig)
 }
 
 export default makeRequest

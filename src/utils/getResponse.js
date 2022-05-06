@@ -8,13 +8,15 @@ const parseRequestResponse = async (response) => {
   }
 }
 
-export const getResponse = async (config, APIUrl, xhrConfig) => {
+export const getResponse = async (config, url, requestConfig) => {
   try {
-    const response = await fetch(APIUrl, xhrConfig)
+    const response = await fetch(url, requestConfig)
     return {
       isOk: response.ok,
       status: response.status,
-      response: await parseRequestResponse(response)
+      response: await parseRequestResponse(response),
+      url,
+      requestConfig
     }
   } catch (e) {
     return {
