@@ -131,14 +131,14 @@ Our API supports the following actions:
 | `delete` | sends a DELETE request |
 
 - `create` takes an object as an argument
-- `get` takes an identifier and an optional parameter as an object
-- `filter` takes a filter object as a query string
+- `get` takes an identifier and an optional query parameter object
+- `filter` takes a filter object and coverts it to a query parameter
 - `update` takes an object as an argument
-- `delete` takes an identifiier as a query string
+- `delete` takes an identifiier
 
 #### How filters work
 
-Our `filter` action automatically converts a `filter` object into a query string.
+Our `filter` action automatically converts a `filter` object into a query parameter.
 
 Example:
 
