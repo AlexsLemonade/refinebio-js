@@ -1,9 +1,13 @@
-export const availableActions = {
-  create: () => console.error('This resource does not support CREATE'),
-  get: () => console.error('This resource does not support GET'),
-  filter: () => console.error('This resource does not support FILTER'),
-  update: () => console.error('This resource does not support UPDATE'),
-  delete: () => console.error('This resource does not support DELETE')
+const actions = ['create', 'get', 'filter', 'update', 'delete']
+
+export const availableActions = (resource) => {
+  const defaultActions = {}
+  actions.forEach((action) => {
+    defaultActions[action] = () =>
+      console.error(`${resource} does not support ${action.toUpperCase()}`)
+  })
+
+  return defaultActions
 }
 
 export default availableActions

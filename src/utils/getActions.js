@@ -24,7 +24,7 @@ export const getActions = (config, path, pk = 'id') => {
         body: JSON.stringify(data)
       })
     },
-    remove: (id) =>
+    delete: (id) =>
       makeRequest(config, `${path}/${id}`, {
         method: 'DELETE'
       })
