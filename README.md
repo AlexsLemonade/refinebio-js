@@ -128,13 +128,13 @@ Our API supports the following actions:
 | `get` | sends a GET request and returns a single object |
 | `filter` | sends a GET resuest with a query string and returns a list of objects(maybe paginated) |
 | `update` | sends a PUT request and returns a single object |
-| `delete` | sends a DELETE request |
+| `remove` | sends a DELETE request |
 
 - `create` takes an object as its payload
 - `get` takes an identifier as its URL parameter
 - `filter` takes a filter object as its URL parameter
 - `update` takes an object as its payload
-- `delete` takes an identifiier as its URL parameter
+- `remove` takes an identifiier as its URL parameter
 
 ### Resources
 

@@ -3,11 +3,12 @@ import { makeRequest } from 'utils/makeRequest'
 export const getActions = (config, path, pk = 'id') => {
   return {
     create: (data) =>
-      makeRequest(config, `${path}/`, {
+      makeRequest(config, `${path}`, {
         method: 'POST',
         body: JSON.stringify(data)
       }),
-    get: (id = '', query = {}) => makeRequest(config, `${path}/${id}`, query),
+    get: (id = '', query = {}) =>
+      makeRequest(config, `${path}/${id}`, { method: 'GET' }, query),
     filter: (query = {}) =>
       makeRequest(
         config,
@@ -23,7 +24,7 @@ export const getActions = (config, path, pk = 'id') => {
         body: JSON.stringify(data)
       })
     },
-    delete: (id) =>
+    remove: (id) =>
       makeRequest(config, `${path}/${id}`, {
         method: 'DELETE'
       })
