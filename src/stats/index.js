@@ -10,9 +10,13 @@ export const stats = (config = defaultConfig) => {
   return {
     ...availableActions,
     get,
-    filter: {
-      downloader,
-      processor
+    failures: {
+      downloader: {
+        filter: downloader
+      },
+      processor: {
+        filter: processor
+      }
     }
   }
 }

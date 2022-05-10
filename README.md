@@ -130,11 +130,27 @@ Our API supports the following actions:
 | `update` | sends a PUT request and returns a single object |
 | `remove` | sends a DELETE request |
 
-- `create` takes an object as its payload
-- `get` takes an identifier as its URL parameter
-- `filter` takes a filter object as its URL parameter
-- `update` takes an object as its payload
-- `remove` takes an identifiier as its URL parameter
+- `create` takes an object as an argument
+- `get` takes an identifier and an optional query parameter object
+- `filter` takes a filter object and coverts it to a query parameter
+- `update` takes an object as an argument
+- `delete` takes an identifiier
+
+#### How filters work
+
+Our `filter` action automatically converts a `filter` object into a query parameter.
+
+Example:
+
+```js
+// get advanced filtered search results
+const getSearchResults = await api.search.filter({
+  downloadable_organism: 'HOMO_SAPIENS',
+  technology: ['microarray', 'rna-seq']
+})
+
+// 'search?filter_order=downloadable_organism%2Ctechnology%2Ctechnology&downloadable_organism=HOMO_SAPIENS&technology=microarray&technology=rna-seq'
+```
 
 ### Resources
 
@@ -326,34 +342,34 @@ This resource can be used to get the downloader, processor, or survery job. This
 Please view the API documentation for more details.
 | Action | Type | ReDoc | SwaggerUI |
 | :--- | :--- | :--- | :--- |
-| `jobs.get.downloader` | `jobs_downloader_read` | [view](https://api.refine.bio/v1/#operation/jobs_downloader_read) | [view](https://api.refine.bio/v1/swagger/) |
-| `jobs.filter.downloader` | `jobs_downloader_list` | [view](https://api.refine.bio/v1/#operation/jobs_downloader_list) | [view](https://api.refine.bio/v1/swagger/) |
-| `jobs.get.processor` | `jobs_processor_read` | [view](https://api.refine.bio/v1/#operation/jobs_processor_read) | [view](https://api.refine.bio/v1/swagger/) |
-| `jobs.filter.processor` | `jobs_processor_list` | [view](https://api.refine.bio/v1/#operation/jobs_processor_list) | [view](https://api.refine.bio/v1/swagger/) |
-| `jobs.get.survey` | `jobs_survey_read` | [view](https://api.refine.bio/v1/#operation/jobs_survey_read) | [view](https://api.refine.bio/v1/swagger/) |
-| `jobs.filter.survey` | `jobs_survey_list` | [view](https://api.refine.bio/v1/#operation/jobs_survey_list) | [view](https://api.refine.bio/v1/swagger/) |
+| `jobs.downloader.get` | `jobs_downloader_read` | [view](https://api.refine.bio/v1/#operation/jobs_downloader_read) | [view](https://api.refine.bio/v1/swagger/) |
+| `jobs.downloader.filter` | `jobs_downloader_list` | [view](https://api.refine.bio/v1/#operation/jobs_downloader_list) | [view](https://api.refine.bio/v1/swagger/) |
+| `jobs.processor.get` | `jobs_processor_read` | [view](https://api.refine.bio/v1/#operation/jobs_processor_read) | [view](https://api.refine.bio/v1/swagger/) |
+| `jobs.processor.filter` | `jobs_processor_list` | [view](https://api.refine.bio/v1/#operation/jobs_processor_list) | [view](https://api.refine.bio/v1/swagger/) |
+| `jobs.survey.get` | `jobs_survey_read` | [view](https://api.refine.bio/v1/#operation/jobs_survey_read) | [view](https://api.refine.bio/v1/swagger/) |
+| `jobs.survey.filter` | `jobs_survey_list` | [view](https://api.refine.bio/v1/#operation/jobs_survey_list) | [view](https://api.refine.bio/v1/swagger/) |
 
 <details> 
   <summary>Example</summary>
  
   ```js  
   // get a specific downloader job
-  const getDownloaderJob = await Refinebio().jobs.get.downloader(id)
+  const getDownloaderJob = await Refinebio().jobs.downloader.get(id)
   
   // get a list of downloader jobs
-  getDownloaderJobs = await Refinebio().jobs.filter.downloader(query)
+  getDownloaderJobs = await Refinebio().jobs.downloader.filter(query)
   
   // get a specific processor job
-  const getProcessorJob = await Refinebio().jobs.get.processor(id)
+  const getProcessorJob = await Refinebio().jobs.processor.get(id)
   
   // get a list of processor jobs
-  getProcessorJobs = await Refinebio().jobs.filter.processor(query)
+  getProcessorJobs = await Refinebio().jobs.processor.filter(query)
   
   // get a specific servey job
-  const getSurveyJob = await Refinebio().jobs.get.survey(id)
+  const getSurveyJob = await Refinebio().jobs.survey.get(id)
   
   // get a list of survey jobs
-  getSurveyJobs = await Refinebio().jobs.filter.survey(query)
+  getSurveyJobs = await Refinebio().jobs.survey.filter(query)
   ```
   
 </details>
@@ -553,8 +569,8 @@ Please view the API documentation for more details.
 | Action | Type | ReDoc | SwaggerUI |
 | :--- | :--- | :--- | :--- |
 | `stats.get` | `stats_list` | [view](https://api.refine.bio/v1/#operation/stats_list) | [view](https://api.refine.bio/v1/swagger/) |
-| `stats.filter.downloader` | `stats_failures_downloader_list` | [view](https://api.refine.bio/v1/#operation/stats_failures_downloader_list) | [view](https://api.refine.bio/v1/swagger/) |
-| `stats.filter.processor` | `sstats_failures_processor_list` | [view](https://api.refine.bio/v1/#operation/stats_failures_processor_list) | [view](https://api.refine.bio/v1/swagger/) |
+| `stats.failures.downloader.filter` | `stats_failures_downloader_list` | [view](https://api.refine.bio/v1/#operation/stats_failures_downloader_list) | [view](https://api.refine.bio/v1/swagger/) |
+| `stats.failures.processor.filter` | `sstats_failures_processor_list` | [view](https://api.refine.bio/v1/#operation/stats_failures_processor_list) | [view](https://api.refine.bio/v1/swagger/) |
 
 <details> 
   <summary>Example</summary>
@@ -564,10 +580,10 @@ Please view the API documentation for more details.
   const getStatsOnHealth = await Refinebio().stats.get()
   
   // get stats on a failures downloader list
-  const getFailureDownloader = await Refinebio().stats.filter.downloader()
+  const getFailureDownloader = await Refinebio().stats.failures.downloader.filter()
   
   // get stats on a failures processor list
-  const getFailureProcessor = await Refinebio().stats.filter.processor()
+  const getFailureProcessor = await Refinebio().stats.failures.processor.filter()
   ```
   
 </details>

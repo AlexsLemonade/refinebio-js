@@ -12,15 +12,17 @@ export const jobs = (config = defaultConfig) => {
 
   return {
     ...availableActions,
-    get: {
-      downloader: downloaderGet,
-      processor: processorGet,
-      survey: surveyGet
+    downloader: {
+      get: downloaderGet,
+      filter: downloaderFilter
     },
-    filter: {
-      downloader: downloaderFilter,
-      processor: processorFilter,
-      survey: surveyFilter
+    processor: {
+      get: processorGet,
+      filter: processorFilter
+    },
+    survey: {
+      get: surveyGet,
+      filter: surveyFilter
     }
   }
 }
