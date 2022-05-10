@@ -3,7 +3,7 @@ import { getActions } from 'utils/getActions'
 import { availableActions } from 'utils/availableActions'
 
 export const organisms = (config = defaultConfig) => {
-  const { get, filter } = getActions(config, 'organisms')
+  const { get, filter } = getActions(config, 'organisms', 'name')
 
   return {
     ...availableActions,
