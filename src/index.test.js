@@ -20,7 +20,7 @@ beforeEach(() => {
   jest.clearAllMocks()
 })
 
-describe('GET Request(get/filter)', () => {
+describe('GET Request - get/filter actions)', () => {
   test('get all compendia results with filtering', async () => {
     const filterRequest = await api.compendia.filter()
     expect(filterRequest.url).toEqual(`${path}compendia`)

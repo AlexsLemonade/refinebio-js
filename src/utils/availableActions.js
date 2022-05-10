@@ -1,8 +1,8 @@
-const actions = ['create', 'get', 'filter', 'update', 'delete']
+const ACTIONS = ['create', 'get', 'filter', 'update', 'delete']
 
 export const availableActions = (resource) => {
   const defaultActions = {}
-  actions.forEach((action) => {
+  ACTIONS.forEach((action) => {
     defaultActions[action] = () =>
       console.error(`${resource} does not support ${action.toUpperCase()}`)
   })
