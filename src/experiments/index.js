@@ -6,7 +6,7 @@ export const experiments = (config = defaultConfig) => {
   const { get, filter } = getActions(config, 'experiments')
 
   return {
-    ...availableActions,
+    ...availableActions('experiments'),
     get,
     filter
   }

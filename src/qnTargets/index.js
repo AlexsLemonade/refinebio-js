@@ -6,7 +6,7 @@ export const qnTargets = (config = defaultConfig) => {
   const { get, filter } = getActions(config, 'qn_targets')
 
   return {
-    ...availableActions,
+    ...availableActions('qn_targets'),
     get,
     filter
   }

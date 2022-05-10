@@ -6,7 +6,7 @@ export const organisms = (config = defaultConfig) => {
   const { get, filter } = getActions(config, 'organisms')
 
   return {
-    ...availableActions,
+    ...availableActions('organisms'),
     get,
     filter
   }

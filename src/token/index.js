@@ -6,7 +6,7 @@ export const token = (config = defaultConfig) => {
   const { create, get, update } = getActions(config, 'token')
 
   return {
-    ...availableActions,
+    ...availableActions('token'),
     create,
     get,
     update
