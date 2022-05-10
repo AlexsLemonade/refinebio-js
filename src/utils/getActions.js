@@ -7,28 +7,11 @@ export const getActions = (config, path, pk = 'id') => {
         method: 'POST',
         body: JSON.stringify(data)
       }),
-    get: (id, type = '', subPath = '') => {
-      if (!id && type) {
-        // jobs - jobs/type
-        // stats - stats/subPath/type
-        return subPath
-          ? makeRequest(config, `stats/${subPath}/${type}`)
-          : makeRequest(config, `${path}/${type}`)
-      }
-
-      if (id) {
-        // jobs - jobs/type/id
-        return type
-          ? makeRequest(config, `${path}/${type}/${id}`)
-          : makeRequest(config, `${path}/${id}`)
-      }
-
-      return makeRequest(config, `${path}`)
-    },
-    filter: (query = {}, type = '') =>
-      !type
-        ? makeRequest(config, `${path}`, query)
-        : makeRequest(config, `${path}/${type}`, query),
+    get: (id) =>
+      id
+        ? makeRequest(config, `${path}/${id}`)
+        : makeRequest(config, `${path}`),
+    filter: (query = {}) => makeRequest(config, `${path}`, query),
     update: (data) => {
       return makeRequest(config, `${path}/${data[pk]}`, {
         method: 'PUT',
