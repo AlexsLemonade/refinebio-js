@@ -1,22 +1,21 @@
-export const mergeObject = (source, changes, clone = false) => {
-  if (clone) {
-    return { ...source, ...changes }
+const makeDeepCopy = (...objs) => {
+  const newObj = {}
+  for (const obj of objs) {
+    const keys = Object.keys(obj)
+    keys.forEach((key) => {
+      const descriptor = Object.getOwnPropertyDescriptor(obj, key)
+      Object.defineProperty(newObj, key, descriptor)
+    })
   }
-  if (!changes) {
+  return newObj
+}
+
+export const mergeObject = (source, changes) => {
+  if (!Object.keys(changes).length === 0) {
     return source
   }
 
-  const modifiedSource = source
-
-  Object.keys(changes).forEach((key) => {
-    if (!Object.prototype.hasOwnProperty.call(source, key)) {
-      console.error(`${key} is an invalid key`)
-    }
-
-    modifiedSource[key] = changes[key]
-  })
-
-  return modifiedSource
+  return makeDeepCopy(source, changes)
 }
 
 export default mergeObject
