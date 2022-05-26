@@ -1,46 +1,36 @@
 import Refinebio from 'index'
 
 const api = Refinebio({ verbose: true })
+let createRequest
 
-test('create dataset', async () => {
-  const data = {
-    data: { SRX3001077: ['SRS2351916'] },
-    aggregate_by: 'ALL',
-    scale_by: 'NONE',
-    email_address: 'user@example.com',
-    email_ccdl_ok: true,
-    notify_me: true,
-    start: true,
-    quantile_normalize: true,
-    quant_sf_only: true,
-    svd_algorithm: 'NONE'
+beforeAll(async (email = false) => {
+  const dataset = { data: {} }
+  if (email) {
+    dataset.email_address = email
   }
-  const createDataset = await api.dataset.create(data)
+  createRequest = await api.dataset.create(dataset)
+})
 
-  expect(createDataset.isOk).toBeTruthy()
+test('create dataset', () => {
+  expect(createRequest.isOk).toBeTruthy()
 })
 
 test('get dataset', async () => {
-  const getDataset = await api.dataset.get('')
+  const { id } = createRequest.response
+  const getDataset = await api.dataset.get(id)
   expect(getDataset.isOk).toBeTruthy()
 })
 
 test('update dataset', async () => {
-  const createToken = await api.token.create({ is_activated: true })
-  api.updateConfig({ token: createToken.response.id }) // currently there is no token field in config object
-  const data = {
-    data: {},
-    aggregate_by: 'ALL',
-    scale_by: 'NONE',
-    email_address: 'user@example.com',
-    email_ccdl_ok: true,
-    notify_me: true,
-    start: true,
-    quantile_normalize: true,
-    quant_sf_only: true,
-    svd_algorithm: 'NONE'
+  const { aggregate_by: aggregateBy } = createRequest.response
+  const newAggreatedBy = 'ALL'
+  const dataset = {
+    ...createRequest.response,
+    aggregate_by: newAggreatedBy
   }
 
-  const updateDataset = await api.dataset.update(createToken.response.id, data)
+  const updateDataset = await api.dataset.update(dataset)
+  expect(aggregateBy).not.toBe(newAggreatedBy)
+  expect(updateDataset.response.aggregate_by).toBe(newAggreatedBy)
   expect(updateDataset.isOk).toBeTruthy()
 })
