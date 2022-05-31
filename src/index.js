@@ -18,6 +18,7 @@ import { computedFiles } from 'resources/computedFiles'
 import { originalFiles } from 'resources/originalFiles'
 import { statsAbout } from 'resources/statsAbout'
 import { transcriptomeIndices } from 'resources/transcriptomeIndices'
+import { Dataset } from 'dataset'
 
 export {
   token,
@@ -36,7 +37,8 @@ export {
   computedFiles,
   originalFiles,
   statsAbout,
-  transcriptomeIndices
+  transcriptomeIndices,
+  Dataset
 }
 
 export default (override = {}) => {
@@ -61,6 +63,7 @@ export default (override = {}) => {
     computedFiles: computedFiles(config),
     originalFiles: originalFiles(config),
     statsAbout: statsAbout(config),
-    transcriptomeIndices: transcriptomeIndices(config)
+    transcriptomeIndices: transcriptomeIndices(config),
+    Dataset: Dataset(dataset(config))
   }
 }
