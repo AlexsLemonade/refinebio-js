@@ -1,15 +1,9 @@
+import { isAccessor, isArray, isObject } from 'utils/dataTypeChecker'
+
 /*
 @param obj - a source object to be deep copied
 Return valie: a new object
 */
-
-// TODO: create a datatype check helper
-const isObject = (prop) => typeof prop === 'object'
-const isArray = (arr) => Array.isArray(arr)
-const isAccessor = (obj, prop) =>
-  typeof Object.getOwnPropertyDescriptor(obj, prop).get === 'function' ||
-  typeof Object.getOwnPropertyDescriptor(obj, prop).set === 'function'
-
 export const makeDeepCopy = (source) => {
   const newObj = {}
 
