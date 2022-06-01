@@ -11,7 +11,7 @@ export const mergeObject = (base, change) => {
   if (!Object.keys(change).length === 0) {
     return base
   }
-
+  // TODO: it should combine values instead of overwriting(e.g: base {a: [1,2]} and change { a: [2,3]} should produce { a: [1, 2, 3])
   const newObj = { ...makeDeepCopy(base), ...makeDeepCopy(change) }
 
   return newObj
