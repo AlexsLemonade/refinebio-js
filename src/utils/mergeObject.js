@@ -21,7 +21,7 @@ export const mergeObject = (base, override) => {
   const overrideCopy = makeDeepCopy(override)
 
   keys.forEach((key) => {
-    if (!isObject(newObj[key])) {
+    if (!isObject(overrideCopy[key])) {
       if (!newObj[key] || newObj[key] !== overrideCopy[key]) {
         newObj[key] = overrideCopy[key]
       }

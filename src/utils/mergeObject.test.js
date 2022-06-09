@@ -1,6 +1,6 @@
 import { mergeObject } from 'utils/mergeObject'
 
-describe('Merge two objets', () => {
+describe('Merge two objects', () => {
   const input = [
     [{ a: 'a' }],
     [
