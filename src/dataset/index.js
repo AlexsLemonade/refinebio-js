@@ -1,4 +1,4 @@
-import { makeDeepCopy } from 'utils/makeDeepCopy'
+import { mergeObject } from 'utils/mergeObject'
 import { publicInterface } from 'dataset/publicInterface'
 
 export const Dataset = (api) => {
@@ -15,7 +15,7 @@ export const Dataset = (api) => {
       svd_algorithm: 'NONE'
     }
 
-    const model = Object.seal(makeDeepCopy(configurable, settings))
+    const model = Object.seal(mergeObject(configurable, settings))
 
     const get = (key) => model[key]
 
