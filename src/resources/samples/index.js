@@ -2,8 +2,8 @@ import defaultConfig from 'config'
 import { getActions } from 'utils/getActions'
 import { availableActions } from 'utils/availableActions'
 
-export const qnTargets = (config = defaultConfig) => {
-  const { get, filter } = getActions(config, 'qn_targets')
+export const samples = (config = defaultConfig) => {
+  const { get, filter } = getActions(config, 'samples', 'accession_code')
 
   return {
     ...availableActions,
@@ -12,4 +12,4 @@ export const qnTargets = (config = defaultConfig) => {
   }
 }
 
-export default qnTargets
+export default samples
