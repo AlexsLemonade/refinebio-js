@@ -1,4 +1,4 @@
-import { makeDeepCopy } from 'utils/makeDeepCopy'
+import { deepCopy } from 'utils/deepCopy'
 import { isAccessor } from './dataTypeChecker'
 
 describe('Make a deeo copy of an object', () => {
@@ -15,7 +15,7 @@ describe('Make a deeo copy of an object', () => {
   }
 
   test('should return a deep copied object', () => {
-    const output = makeDeepCopy(input)
+    const output = deepCopy(input)
     expect(output).not.toBe(input)
     expect(output.c).not.toBe(input.c)
     expect(isAccessor(output, 'getA')).toBeTruthy()

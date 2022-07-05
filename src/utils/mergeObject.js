@@ -1,5 +1,5 @@
 import { isArray, isObject } from 'utils/dataTypeChecker'
-import { makeDeepCopy } from 'utils/makeDeepCopy'
+import { deepCopy } from 'utils/deepCopy'
 import { unionArray } from 'utils/unionArray'
 import { sortArray } from 'utils/sortArray'
 
@@ -17,8 +17,8 @@ export const mergeObject = (base, override) => {
   if (!override) return base
 
   const keys = Object.keys(override)
-  const newObj = makeDeepCopy(base)
-  const overrideCopy = makeDeepCopy(override)
+  const newObj = deepCopy(base)
+  const overrideCopy = deepCopy(override)
 
   keys.forEach((key) => {
     if (!isObject(overrideCopy[key])) {

@@ -1,13 +1,13 @@
 import { isAccessor, isArray, isObject } from 'utils/dataTypeChecker'
 
 /*
-@name makeDeepCopy
+@name deepCopy
 @description performs a deep copy of an object and returns a new copied object
 @param {object} source - a source object to be deep copied
 @return {object} a new object
 */
 
-export const makeDeepCopy = (source) => {
+export const deepCopy = (source) => {
   if (isArray(source)) return Object.values(source)
 
   const newObj = {}
@@ -18,13 +18,11 @@ export const makeDeepCopy = (source) => {
       const accessor = Object.getOwnPropertyDescriptor(source, key)
       Object.defineProperty(newObj, key, accessor)
     } else {
-      newObj[key] = isObject(source[key])
-        ? makeDeepCopy(source[key])
-        : source[key]
+      newObj[key] = isObject(source[key]) ? deepCopy(source[key]) : source[key]
     }
   })
 
   return newObj
 }
 
-export default makeDeepCopy
+export default deepCopy
