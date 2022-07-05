@@ -1,5 +1,5 @@
 import defaultConfig from 'config'
-import { mergeObject } from 'utils/mergeObject'
+import { mergeDatasets } from 'utils/mergeDatasets'
 import { token } from 'resources/token'
 import { organisms } from 'resources/organisms'
 import { dataset } from 'resources/dataset'
@@ -40,10 +40,10 @@ export {
 }
 
 export default (override = {}) => {
-  const config = mergeObject(defaultConfig, override, true)
+  const config = mergeDatasets(defaultConfig, override, true)
 
   return {
-    updateConfig: (changes) => mergeObject(config, changes, false),
+    updateConfig: (changes) => mergeDatasets(config, changes, false),
     token: token(config),
     dataset: dataset(config),
     organisms: organisms(config),

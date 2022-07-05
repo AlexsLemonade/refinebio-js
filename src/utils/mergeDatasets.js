@@ -4,7 +4,7 @@ import { unionArray } from 'utils/unionArray'
 import { sortArray } from 'utils/sortArray'
 
 /*
-@name mergeObject 
+@name mergeDatasets 
 @description merges two objects and returns a new merged object 
  - If no second argument was passed, then it returns the first argument
  - If both objects have the same keys with the array datatyp, then it returns a union of those arrays
@@ -13,7 +13,7 @@ import { sortArray } from 'utils/sortArray'
 @param {object} override - an object which gets merged into a base object
 @return {object} a new object or a base object if no second argument
 */
-export const mergeObject = (base, override) => {
+export const mergeDatasets = (base, override) => {
   if (!override) return base
 
   const keys = Object.keys(override)
@@ -42,7 +42,7 @@ export const mergeObject = (base, override) => {
         }
 
         newObj[key] = { ...newObj[key], ...overrideCopy[key] }
-        mergeObject(newObj[key], overrideCopy[key])
+        mergeDatasets(newObj[key], overrideCopy[key])
       })
     }
   })
@@ -50,4 +50,4 @@ export const mergeObject = (base, override) => {
   return newObj
 }
 
-export default mergeObject
+export default mergeDatasets

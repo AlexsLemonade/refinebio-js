@@ -1,4 +1,4 @@
-import { mergeObject } from 'utils/mergeObject'
+import { mergeDatasets } from 'utils/mergeDatasets'
 
 describe('Merge two objects', () => {
   const input = [
@@ -53,17 +53,17 @@ describe('Merge two objects', () => {
   ]
 
   test('should return the first argument', () => {
-    const output = mergeObject(input[0][0])
+    const output = mergeDatasets(input[0][0])
     expect(output).toBe(input[0][0])
   })
 
   test('should return a new merged object', () => {
-    const outputOne = mergeObject(input[1][0], input[1][1])
+    const outputOne = mergeDatasets(input[1][0], input[1][1])
     expect(outputOne.a).toBe('a2')
     expect(JSON.stringify(outputOne.b)).toBe(JSON.stringify([1, 2, 3, 4, 5]))
     expect(JSON.stringify(outputOne.c.d)).toBe(JSON.stringify([1, 2, 3]))
 
-    const outputTwo = mergeObject(input[2][0], input[2][1])
+    const outputTwo = mergeDatasets(input[2][0], input[2][1])
     expect(outputTwo.email).toBe('jonedoe@test.com')
     expect(outputTwo.aggregate_by).toBe('EXPERIMENT')
     expect(outputTwo.scale_by).toBe('NONE')
