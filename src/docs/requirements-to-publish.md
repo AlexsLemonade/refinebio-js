@@ -296,6 +296,8 @@ mkdir project-name && cd project-name && npm init -y
 
 ## Step &#10103; Publishing a npm Package
 
+**NOTE:** GitHub Packages **only supports scoped npm packages**. Similar to publishing scoped packages directly to the npm registry, it uses the format of `@owner/name` to define the scope of the package. The scope is the account holder either can be the name of the user or organization account that owns the repository.
+
 <details open>
 <summary><h3>&#10112; Publish a npm Package</h3></summary>
   
