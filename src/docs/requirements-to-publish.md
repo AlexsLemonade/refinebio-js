@@ -74,7 +74,7 @@ npmrc files are runtime configuration used by Node.js which can be utilized to o
     
 **1 ) Open and edit ~/.npmrc**
   
-The [npm config](https://docs.npmjs.com/cli/v8/commands/npm-config) command opens a per-user .npmrc(by default) or create a new one if it doesn't exist:
+The [npm config](https://docs.npmjs.com/cli/v8/commands/npm-config) command opens a per-user .npmrc(by default) or creates a new one if it doesn't exist:
 ```
 npm config edit 
 ```
@@ -138,7 +138,7 @@ A package name must;
 
 **Schema:** 0.MINOR.PATCH
 
-A package with a **MAJOR** version 0 is considered to be unstable before its official release.
+A package with a **MAJOR** version 0 is considered to be unstable and to be before an official release.
 
 <img width="224" alt="image" src="https://user-images.githubusercontent.com/31800566/181129636-cb62a522-fb4c-489e-b262-3202a43c972d.png">
 
@@ -148,8 +148,8 @@ A package with a **MAJOR** version 0 is considered to be unstable before its off
 
 **Spec:**
 
-- It can be denoted by appending a hyphen and a series of dot separated identifiers immediately following the patch version.
-- Only ASCII alphanumerics and hyphens [0-9A-Za-z-] allowed
+- It can be denoted by appending a hyphen and a series of dot-separated identifiers immediately following the patch version.
+- Only ASCII alphanumerics and hyphens [0-9A-Za-z-] are allowed
 - Identifiers cannot be empty
 
 e.g.) 1.0.0-alpha, 1.0.0-alpha.1, 1.0.0-0.3.7, 1.0.0-x.7.z.92, 1.0.0-x-y-z.–.
@@ -303,7 +303,7 @@ mkdir project-name && cd project-name && npm init -y
   
 > By default, GitHub Packages publishes a package in the GitHub repository you specify in the name field of the package.json file.   
  
-There is multiple ways in which we can publish a package.   
+There are multiple ways in which we can publish a package.   
   
 <details>
 <summary><h4>Option 1 &horbar; Using command line</h4></summary>   
