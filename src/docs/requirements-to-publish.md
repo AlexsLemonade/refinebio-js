@@ -13,17 +13,17 @@ Step-by-Step Guide for Publishing npm Packages with Github Packages
 <details open>
 <summary><h4>Table of Contents</h4></summary>
 
-- [Prerequisite](https://github.com/freshcapsule/how-to-publish-npm-packages/edit/main/publish.md#prerequisite)
-  - [&#10112; Create a Personal Access Token(PAT)](https://github.com/freshcapsule/how-to-publish-npm-packages/edit/main/publish.md#-create-a-personal-access-tokenpat)
-  - [&#10113; Edit ~/.npmrc(per-user)](https://github.com/freshcapsule/how-to-publish-npm-packages/edit/main/publish.md#-edit-npmrcper-user)
-- [Step 1: Setting up a npm Package](https://github.com/freshcapsule/how-to-publish-npm-packages/edit/main/publish.md#step--setting-up-a-npm-package)
-  - [&#10112; Initalize a npm Project and Github Repository](https://github.com/freshcapsule/how-to-publish-npm-packages/edit/main/publish.md#-initalize-a-npm-project-and-github-repository)
-  - [&#10113; Setup a Testing Environment with Docker](https://github.com/freshcapsule/how-to-publish-npm-packages/edit/main/publish.md#-setup-a-local-testing-environment-with-docker)
-- [Step 2: Publishing a npm Package](https://github.com/freshcapsule/how-to-publish-npm-packages/edit/main/publish.md#step--publishing-a-npm-package)
-  - [&#10112; Publish a npm Package](https://github.com/freshcapsule/how-to-publish-npm-packages/edit/main/publish.md#-publish-a-npm-package)
-    - [Option 1: Using command line](https://github.com/freshcapsule/how-to-publish-npm-packages/edit/main/publish.md#step--publishing-a-npm-package)
-    - [Option 2: Using Github Action workflows](https://github.com/freshcapsule/how-to-publish-npm-packages/edit/main/publish.md#option-2-using-github-action-workflows)
-  - [&#10113; Test the published npm Package](https://github.com/freshcapsule/how-to-publish-npm-packages/edit/main/publish.md#-test-the-published-npm-package)
+- [Prerequisite](https://github.com/refinebio-js/blob/nozomione/how-to-publish-npm-packages/edit/main/publish.md#prerequisite)
+  - [&#10112; Create a Personal Access Token(PAT)](https://github.com/refinebio-js/blob/nozomione/how-to-publish-npm-packages/edit/main/publish.md#-create-a-personal-access-tokenpat)
+  - [&#10113; Edit ~/.npmrc(per-user)](https://github.com/refinebio-js/blob/nozomione/how-to-publish-npm-packages/edit/main/publish.md#-edit-npmrcper-user)
+- [Step 1: Setting up a npm Package](https://github.com/refinebio-js/blob/nozomione/how-to-publish-npm-packages/edit/main/publish.md#step--setting-up-a-npm-package)
+  - [&#10112; Initalize a npm Project and Github Repository](https://github.com/refinebio-js/blob/nozomione/how-to-publish-npm-packages/edit/main/publish.md#-initalize-a-npm-project-and-github-repository)
+  - [&#10113; Setup a Testing Environment with Docker](https://github.com/refinebio-js/blob/nozomione/how-to-publish-npm-packages/edit/main/publish.md#-setup-a-local-testing-environment-with-docker)
+- [Step 2: Publishing a npm Package](https://github.com/refinebio-js/blob/nozomione/how-to-publish-npm-packages/edit/main/publish.md#step--publishing-a-npm-package)
+  - [&#10112; Publish a npm Package](https://github.com/refinebio-js/blob/nozomione/how-to-publish-npm-packages/edit/main/publish.md#-publish-a-npm-package)
+    - [Option 1: Using command line](https://github.com/refinebio-js/blob/nozomione/how-to-publish-npm-packages/edit/main/publish.md#step--publishing-a-npm-package)
+    - [Option 2: Using Github Action workflows](https://github.com/refinebio-js/blob/nozomione/how-to-publish-npm-packages/edit/main/publish.md#option-2-using-github-action-workflows)
+  - [&#10113; Test the published npm Package](https://github.com/refinebio-js/blob/nozomione/how-to-publish-npm-packages/edit/main/publish.md#-test-the-published-npm-package)
   </details>
 
 ## Prerequisite
@@ -165,14 +165,14 @@ e.g.) 1.0.0-alpha, 1.0.0-alpha.1, 1.0.0-0.3.7, 1.0.0-x.7.z.92, 1.0.0-x-y-z.–.
 
 To setup a package.json for the npm package, the following fields should be included as minimal:
 
-#### &#10074; Required fields
+**&#10074; Required fields**
 
 |                                      Field                                      | Value                                                       |
 | :-----------------------------------------------------------------------------: | ----------------------------------------------------------- |
 |    [`name`](https://docs.npmjs.com/cli/v6/configuring-npm/package-json#name)    | a name of the package and its scope                         |
 | [`version`](https://docs.npmjs.com/cli/v6/configuring-npm/package-json#version) | a value _x.y.z_ following the [SemVer](https://semver.org/) |
 
-#### &#10074; Other fields
+**&#10074; Other fields**
 
 |                                                     Field                                                     | Value                                                                                                                               |
 | :-----------------------------------------------------------------------------------------------------------: | ----------------------------------------------------------------------------------------------------------------------------------- |
@@ -426,8 +426,10 @@ We can visit the package page in our repository to grab the installation scripts
 
 Install from the command line:
 
+- `PACKAGE_NAME` - the package name
+
 ```
-npm install @freshcapsule/github-package-test@1.0.0
+npm install @OWENER/PACKAGE_NAME@1.0.0
 ```
 
 OR
@@ -437,10 +439,16 @@ In the package.json, add the package as its `dependenies` and then run the `npm 
 ```
 // package.json
  "dependencies": {
-    "@freshcapsule/github-package-test": "^1.0.0"
+    "@OWENER/PACKAGE_NAME": "^1.0.0"
  }
 ```
 
 </details>  
   
+<p align="right">(<a href="#top">back to top</a>)</p>
+
+## Step &#10104; Managing a npm Package
+
+Coming soon
+
 <p align="right">(<a href="#top">back to top</a>)</p>
