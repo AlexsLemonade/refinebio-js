@@ -192,7 +192,13 @@ There are **public** and **private npm registries** available to publish npm pac
 
 <details>
 <summary>&horbar; Package visibility and scopes</summary>
-
+  
+>   Unscoped packages are always public.<br/>
+    Private packages are always scoped.<br/>
+    Scoped packages are private by default; you must pass a command-line flag when publishing to make them public.  
+  
+We'll be publishing and managing the **organization scoped packages**.
+  
 <table>
   <thead>
     <tr>
@@ -205,7 +211,7 @@ There are **public** and **private npm registries** available to publish npm pac
   <tbody>
     <tr>
       <td align="center">Public</td>
-      <td align="center">global,<br/>User,<br/>Organization</td>
+      <td align="center">global,<br/>User,<br/><strong>Organization</strong></td>
       <td align="center">Free</td>
       <td>
         A <a href="https://docs.npmjs.com/about-public-packages">public package</a> may be unscoped or scoped and is visible to everyone.
@@ -217,15 +223,17 @@ There are **public** and **private npm registries** available to publish npm pac
     </tr>
     <tr>
       <td align="center">Private</td>
-      <td align="center">User,<br/>Organization</td>
+      <td align="center">User,<br/><strong>Organization</strong></td>
       <td align="center">Monthly Paid Subscription</td>
       <td>A <a href="https://docs.npmjs.com/about-private-packages">private package</a> belongs to a user or an organization namespace and is only visible to its account owner and its organization and selected collaborators.<br/> 
       </td>
     </tr>
   </tbody>
 </table>
+    
+**NOTE:** An organization sopced package are private by defailt. Thus, to publish our packages to the public npm registry, we'll need to explicitely set thier visibility to **public** upon publishing.
   
-(For more information: [Packages scope access level and visibility](https://docs.npmjs.com/package-scope-access-level-and-visibility))
+(For more information: [About scopes](https://docs.npmjs.com/about-scopes), [Packages scope access level and visibility](https://docs.npmjs.com/package-scope-access-level-and-visibility))
 
 ---
 
@@ -825,7 +833,6 @@ npm publish
 
 <details>
 <summary><strong>Option 1 &horbar; Using command line</strong></summary><br/>
-
 
 ---
 
