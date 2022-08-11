@@ -6,7 +6,7 @@ export const institutions = (config = defaultConfig) => {
   const { filter } = getActions(config, 'institutions')
 
   return {
-    ...availableActions,
+    ...availableActions('institutions'),
     filter
   }
 }

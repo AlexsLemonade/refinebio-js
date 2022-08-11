@@ -6,7 +6,7 @@ export const compendia = (config = defaultConfig) => {
   const { get, filter } = getActions(config, 'compendia')
 
   return {
-    ...availableActions,
+    ...availableActions('compendia'),
     get,
     filter
   }

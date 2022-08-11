@@ -11,7 +11,7 @@ export const jobs = (config = defaultConfig) => {
   const surveyFilter = getActions(config, 'jobs/survey/').filter
 
   return {
-    ...availableActions,
+    ...availableActions('jobs'),
     downloader: {
       get: downloaderGet,
       filter: downloaderFilter

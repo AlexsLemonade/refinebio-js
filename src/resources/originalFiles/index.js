@@ -6,7 +6,7 @@ export const originalFiles = (config = defaultConfig) => {
   const { get, filter } = getActions(config, 'original_files')
 
   return {
-    ...availableActions,
+    ...availableActions('original_files'),
     get,
     filter
   }
