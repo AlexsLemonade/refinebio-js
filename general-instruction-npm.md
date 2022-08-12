@@ -1002,32 +1002,33 @@ npm install @OWNER/PACKAGE-NAME
 <details>
 <summary><strong>Option 2 &horbar; Using Github Actions</strong></summary><br/>
   
-To use [Github Actions](https://github.com/features/actions), we need to make sure that our npm package code is hosted in Github. 
+To use [Github Actions](https://github.com/features/actions), our npm package must be hosted in Github. 
   
-(Skip [&#10112; Setup the Github Repository]() if it already exists.)  
+(Skip [&#10112; Setup Github Repositories]() if it already exists.)  
   
 <details>
-<summary><h3>&#10112; Setup the Github Repository</h3></summary>
+<summary><h3>&#10112; Setup Github Repositories</h3></summary>
   
- **1 ) Initialize a git locally**
+ **1 ) Initialize a local git repository**
   
- Navigate to the root of the local package and run run the [`git init`](https://git-scm.com/docs/git-init):   
+ Navigate to the root of the local package and run run the [`git init`](https://git-scm.com/docs/git-init) command:   
  ```
  git init
  ```  
   
 <br />
   
-**2 ) Create a Github repository of the npm package**
+**2 ) Create a new Github repository for the local package**
   
-We can manually create a new Github repository via Web interface or use the [`gh repo create`](https://cli.github.com/manual/gh_repo_create) command([Install Github CLI](https://github.com/cli/cli#installation)).
-
-To create a remote repository in;
-
+We can manually create a new Github repository via the web interface or use the [`gh repo create`](https://cli.github.com/manual/gh_repo_create) command([install Github CLI](https://github.com/cli/cli#installation)).  
+  
+**&#10074; Create a new repository with Github CLI**
+  
+To create a remote repository in;  
 - interactive mode, pass no arguments.
-- non-interactive mode, pass the repository name and one of `--public`, `--private`, or `--internal` flag.
-
-To add remote to local repository, pass the `--source <string>` flag.
+- non-interactive mode, pass the repository name and one of the `--public`, `--private`, or `--internal` flags. 
+  
+To add the remote repository, pass the `--source <string>` flag.
 
 - `REPOSITORY-NAME` - a name of the npm package without the organization scope
 - `PATH-TO-LOCAL-REPO` - a path to the local repository(i.e. `.` in this case)
@@ -1040,13 +1041,13 @@ hg repo create REPOSITORY-NAME --private --source PATH-TO-LOCAL-REPO
   
 **3 ) Push the local files to Github repository** 
   
-Once the Github repository has been created, add a [.gitignore](https://git-scm.com/docs/gitignore) and commit your local files, then push them to this remote.
+Once the Github repository has been created, add a [.gitignore](https://git-scm.com/docs/gitignore) and commit our local files, then push them to this remote.
   
 ---  
 </details> 
   
 <details>
-<summary><h3>&#10113; Setup the Github Actions workflows</h3></summary>
+<summary><h3>&#10113; Setup Github Actions workflows</h3></summary>
   
 **Resources:**
   
@@ -1108,7 +1109,7 @@ Upon the token generation, make sure to;
 
 :link: [Creating and using encrypted secrets](https://docs.github.com/en/actions/security-guides/encrypted-secrets#creating-encrypted-secrets-for-a-repository)
 
-Now we need to add a new [secret](<[https://docs.github.com/en/rest/actions/secrets](https://docs.github.com/en/actions/security-guides/encrypted-secrets#about-encrypted-secrets)>) in Github and assign the value of the newly generated npm token. It's easy to add a new token, we can use the Web Interface.
+Add a new [secret](<[https://docs.github.com/en/rest/actions/secrets](https://docs.github.com/en/actions/security-guides/encrypted-secrets#about-encrypted-secrets)>) in Github and assign the value of the newly generated npm token. It's easy to generate a new token using the web interface.
 
 Upon creating a new secret, make sure to;
 
@@ -1133,7 +1134,7 @@ node_modules/
   
 <br/>
   
-**4 ) Configure the workflows**    
+**4 ) Configure a workflow**    
   
 We can configure Github Actions workflows to publish the npm package on each new release.
   
@@ -1141,9 +1142,9 @@ We can configure Github Actions workflows to publish the npm package on each new
   
 :link: [Releasing Projects on Github](https://docs.github.com/en/repositories/releasing-projects-on-github)
 
-> A Git tag is similar to a [Git reference](https://docs.github.com/en/rest/git/refs), but the Git commit that it points to never changes. Git tags are helpful when you want to point to specific releases. These endpoints allow you to read and write [tag objects](https://git-scm.com/book/en/v2/Git-Internals-Git-References#Tags) to your Git database on GitHub. The Git tags API only supports annotated [tag objects](<(https://git-scm.com/book/en/v2/Git-Internals-Git-References#Tags)>), not lightweight tags.
+> A Git tag is similar to a [Git reference](https://docs.github.com/en/rest/git/refs), but the Git commit that it points to never changes. Git tags are helpful when you want to point to specific releases. These endpoints allow you to read and write [tag objects](https://git-scm.com/book/en/v2/Git-Internals-Git-References#Tags) to your Git database on GitHub. The Git tags API only supports annotated [tag objects](https://git-scm.com/book/en/v2/Git-Internals-Git-References#Tags), not lightweight tags.
 
-A new relase can be created manually using the Web Interface, or setup a workflow to automatically create a new release upon [tagging](https://git-scm.com/book/en/v2/Git-Basics-Tagging) prefixed with **v**, for instance. [See Step &#10125; Managing a npm Package with Github Actions]().
+A new relase can be created manually using the web interface, or setup a workflow to automatically create a new release upon [tagging](https://git-scm.com/book/en/v2/Git-Basics-Tagging) prefixed with **v**, for instance(see [Step &#10125; Managing a npm Package with Github Actions]()).
 
 <br/>  
    
@@ -1151,7 +1152,7 @@ A new relase can be created manually using the Web Interface, or setup a workflo
   
 :link: [Publishing packages to the npm registry](https://docs.github.com/en/actions/publishing-packages/publishing-nodejs-packages#publishing-packages-to-the-npm-registry)  
   
-To trigger the workflow upon creation of a new tag in Github repository, use the [`release`](https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#release) event and its `ativity type` set as `created`. Any number of steps can be included in the workflow.
+To trigger the workflow upon creation of a new tag in Github repository, use the [`release`](https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#release) event and its `Ativity types` set as `created`. Events can be defined in [**`on`**](https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#on) property. We can run any number of [**`jobs`**](https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#jobs) and they run in parallel. And we can define any number of [**`steps`**](https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idsteps) to be included in each job.
  
 e.g.) Publishes a package to the [public npm registry](https://docs.npmjs.com/about-the-public-npm-registry) if [CI tests](https://docs.github.com/en/actions/automating-builds-and-tests/about-continuous-integration) pass.    
   
