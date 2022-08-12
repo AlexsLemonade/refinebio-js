@@ -5,7 +5,7 @@ import { availableActions } from 'utils/availableActions'
 export const statsAbout = (config = defaultConfig) => {
   const { get } = getActions(config, 'stats-about')
   return {
-    ...availableActions,
+    ...availableActions('stats-about'),
     get
   }
 }

@@ -6,7 +6,7 @@ export const search = (config = defaultConfig) => {
   const { filter } = getActions(config, 'search')
 
   return {
-    ...availableActions,
+    ...availableActions('search'),
     filter
   }
 }

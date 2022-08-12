@@ -1,13 +1,5 @@
-import fetch from 'isomorphic-unfetch'
 import { getAPIUrl } from 'utils/getAPIUrl'
-
-const parseRequestResponse = async (response) => {
-  try {
-    return await response.json()
-  } catch (e) {
-    return {}
-  }
-}
+import { getResponse } from 'utils/getResponse'
 
 // browser/server safe request api with standard pre-parsed responses
 export const makeRequest = async (
@@ -20,28 +12,15 @@ export const makeRequest = async (
   } = {},
   query = {}
 ) => {
-  const xhrConfig = { headers, ...options }
   const APIUrl = getAPIUrl(config, url, query)
+  const requestConfig = { headers, ...options }
 
   // add authorization token to headers
   if (authorization) {
-    xhrConfig.headers['api-key'] = authorization
+    requestConfig.headers['api-key'] = authorization
   }
 
-  try {
-    const response = await fetch(APIUrl, xhrConfig)
-    return {
-      isOk: response.ok,
-      status: response.status,
-      response: await parseRequestResponse(response)
-    }
-  } catch (e) {
-    return {
-      isOk: false,
-      status: e.status,
-      error: e
-    }
-  }
+  return getResponse(config, APIUrl, requestConfig)
 }
 
 export default makeRequest

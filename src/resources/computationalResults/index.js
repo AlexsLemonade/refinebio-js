@@ -6,7 +6,7 @@ export const computationalResults = (config = defaultConfig) => {
   const { get, filter } = getActions(config, 'computational_results')
 
   return {
-    ...availableActions,
+    ...availableActions('computational_results'),
     get,
     filter
   }

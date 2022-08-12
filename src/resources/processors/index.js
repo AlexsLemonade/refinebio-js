@@ -6,7 +6,7 @@ export const processors = (config = defaultConfig) => {
   const { get, filter } = getActions(config, 'processors')
 
   return {
-    ...availableActions,
+    ...availableActions('processors'),
     get,
     filter
   }
