@@ -24,17 +24,18 @@ Step-by-Step Guide for Publishing npm Packages to the Public npm Registry.
 - [&#10113; Create an Organization]()
 - [&#10114; Manage Organization Teams and Members]()
 
-[Step 2: Setting Up a npm Package]()
+[Step 2: Developing a npm Package]()
 
-- [&#10112; Access to a npm User Account from a Local Machine]()
+- [&#10112; Access to a npm User Account]()
 - [&#10113; Manage npmrc Configuration files]()
+- [&#10114; Test a npm Package Locally]()
 
 [Step 3: Publishing a Package to npm Registory]()
 
-- [&#10112; Publish a npm Package]()
-- [&#10113; Test the published npm Package]()
+- [Option 1 &horbar; Using command line]()
+- [Option 2 &horbar; Using Github Actions]()
 
-[Step 4: Managing a package]()
+[Step 4: Managing a npm Package with Github Actions]()
 
 </details>
 
@@ -979,7 +980,7 @@ It runs the tests defined in both `a/package.json` and `b/package.json`.
 ## Step &#10124; Publishing a Package to npm Registory
 
 <details>
-<summary><strong>Option 1 &horbar; Using command line</strong></summary><br/>
+<summary><h4>Option 1 &horbar; Using command line</h4></summary>
   
 By using the [`npm publish`](https://docs.npmjs.com/cli/v8/commands/npm-publish) command, we can publish a local package. By default, an organization scoped package is private, thus we need to use the <code>--access <<strong>public</strong>|restricted></code> flag to explicitly set its access level to public upon publishing.
   
@@ -999,26 +1000,27 @@ npm install @OWNER/PACKAGE-NAME
   
 </details>
   
+  
 <details>
-<summary><strong>Option 2 &horbar; Using Github Actions</strong></summary><br/>
+<summary><h4>Option 2 &horbar; Using Github Actions</h4></summary>
   
 To use [Github Actions](https://github.com/features/actions), our npm package must be hosted in Github. 
   
-(Skip [&#10112; Setup Github Repositories]() if it already exists.)  
+(Skip [&#10112; Setup Github Repositories]() if they already exist.)  
   
 <details>
 <summary><h3>&#10112; Setup Github Repositories</h3></summary>
   
  **1 ) Initialize a local git repository**
   
- Navigate to the root of the local package and run run the [`git init`](https://git-scm.com/docs/git-init) command:   
+ Navigate to the root of the local package and run the [`git init`](https://git-scm.com/docs/git-init) command:   
  ```
  git init
  ```  
   
 <br />
   
-**2 ) Create a new Github repository for the local package**
+**2 ) Create a Github repository for the local package**
   
 We can manually create a new Github repository via the web interface or use the [`gh repo create`](https://cli.github.com/manual/gh_repo_create) command([install Github CLI](https://github.com/cli/cli#installation)).  
   
@@ -1028,7 +1030,7 @@ To create a remote repository in;
 - interactive mode, pass no arguments.
 - non-interactive mode, pass the repository name and one of the `--public`, `--private`, or `--internal` flags. 
   
-To add the remote repository, pass the `--source <string>` flag.
+To add the remote repository to the local repository, pass the `--source <string>` flag.
 
 - `REPOSITORY-NAME` - a name of the npm package without the organization scope
 - `PATH-TO-LOCAL-REPO` - a path to the local repository(i.e. `.` in this case)
@@ -1062,7 +1064,7 @@ Once the Github repository has been created, add a [.gitignore](https://git-scm.
 
 > [YAML](https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions) is a human-friendly data serialization language for all programming languages.
 
-Github Ations workflows use YAML syntax to define its workflow configuration.
+Github Ations workflows use YAML syntax to define a workflow configuration.
 
 - A YAML file extension is either **.yml** or **.yaml**.
 - Workflow files are stored in `.github/workflows` directory of a Github repository.
@@ -1075,7 +1077,7 @@ Github Ations workflows use YAML syntax to define its workflow configuration.
   
 **1 ) Generate the npm Auth Token** 
   
-We need to create our custom access token to privde Github access to our npm packages. To create an access token is fairly simple and can be done using the web interface or the npm CLI.
+We need to create our custom access token to privde Github temporary access to our npm packages. To create an access token is fairly simple and can be done using the web interface or the npm CLI.
   
 Upon the token generation, make sure to;  
 - choose the access token type as **publish**  
@@ -1152,7 +1154,7 @@ A new relase can be created manually using the web interface, or setup a workflo
   
 :link: [Publishing packages to the npm registry](https://docs.github.com/en/actions/publishing-packages/publishing-nodejs-packages#publishing-packages-to-the-npm-registry)  
   
-To trigger the workflow upon creation of a new tag in Github repository, use the [`release`](https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#release) event and its `Ativity types` set as `created`. Events can be defined in [**`on`**](https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#on) property. We can run any number of [**`jobs`**](https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#jobs) and they run in parallel. And we can define any number of [**`steps`**](https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idsteps) to be included in each job.
+To trigger a workflow upon creation of release in Github repository, use the [`release`](https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#release) event and its `Ativity types` set as `created`. Events can be defined in [**`on`**](https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#on) property. In a workflow, we can run any number of [**`jobs`**](https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#jobs) which run in parallel, as well as we can define any number of [**`steps`**](https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idsteps) to be included in each job.
  
 e.g.) Publishes a package to the [public npm registry](https://docs.npmjs.com/about-the-public-npm-registry) if [CI tests](https://docs.github.com/en/actions/automating-builds-and-tests/about-continuous-integration) pass.    
   
