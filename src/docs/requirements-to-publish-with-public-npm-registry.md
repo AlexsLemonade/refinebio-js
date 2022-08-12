@@ -9,33 +9,32 @@ Step-by-Step Guide for Publishing npm Packages to the Public npm Registry.
 **Resources:**<br/>
 
 :link: [npm Docs](https://docs.npmjs.com)<br />
-:link: [Github Docs](https://docs.github.com)
+:link: [Git Docs](https://git-scm.com/doc)<br />
+:link: [Github Docs](https://docs.github.com)<br />
+:link: [GithubCLI Docs](https://cli.github.com)
 
-<details open>
+<details>
 <summary><h4>Table of Contents</h4></summary>
 
-- [Prerequisite]()
-- [Step 1: Setting up npm Accounts]()
-  - [&#10112; Register npm User Accounts]()
-  - [&#10113; Create an Organization]()
-    - [Option 1: Add an organization to a newly created user account]()
-    - [Option 2: Converting an already exsisting user account to an organization]()
-  - [&#10114; Manage Organization Teams and Members]()
-  - [Option 1: Using Web Interface]()
-  - [Option 2: Using command line]()
-- [Step 2: Setting Up a npm Package]()
-  - [&#10112; Access to a npm User Account from a Local Machine]()
-  - [&#10113; Manage npmrc Configuration files]()
-- [Step 3: Publishing a Package to npm Registory]()
-  - [&#10112; Publish a npm Package]()
-    - [Option 1 ― Using command line]()
-    - [Option 2 ― Using Github Action workflows]()
-  - [&#10113; Test the published npm Package]()
-    - [Option 1 ― Using command line]()
-    - [Option 2 ― Using Github Action workflows]()
-- [Step 4: Managing a package]()
-  - [Option 1 ― Using command line]()
-  - [Option 2 ― Using Github Action workflows]()
+[Prerequisite]()
+
+[Step 1: Setting up npm Accounts]()
+
+- [&#10112; Register npm User Accounts]()
+- [&#10113; Create an Organization]()
+- [&#10114; Manage Organization Teams and Members]()
+
+[Step 2: Setting Up a npm Package]()
+
+- [&#10112; Access to a npm User Account from a Local Machine]()
+- [&#10113; Manage npmrc Configuration files]()
+
+[Step 3: Publishing a Package to npm Registory]()
+
+- [&#10112; Publish a npm Package]()
+- [&#10113; Test the published npm Package]()
+
+[Step 4: Managing a package]()
 
 </details>
 
@@ -58,6 +57,8 @@ node -v && npm -v
 </details>
 
 ## Step &#10102; Setting Up npm Accounts
+
+**(Basic Terminologie)**
 
 <details>
 <summary>&horbar; Information to get started</summary>
@@ -193,11 +194,9 @@ There are **public** and **private npm registries** available to publish npm pac
 <details>
 <summary>&horbar; Package visibility and scopes</summary>
   
->   Unscoped packages are always public.<br/>
-    Private packages are always scoped.<br/>
-    Scoped packages are private by default; you must pass a command-line flag when publishing to make them public.  
+>   Unscoped packages are always public. Private packages are always scoped. Scoped packages are private by default;...
   
-We'll be publishing and managing the **organization scoped packages**.
+We'll be publishing and managing the **organization scoped packages**. An organization sopced package are private by defailt. Thus, to publish our packages to the public npm registry, we'll need to explicitely set thier visibility to **public** upon publishing.
   
 <table>
   <thead>
@@ -216,8 +215,8 @@ We'll be publishing and managing the **organization scoped packages**.
       <td>
         A <a href="https://docs.npmjs.com/about-public-packages">public package</a> may be unscoped or scoped and is visible to everyone.
         <ul>
-          <li><strong>Unscoped public packages</strong>  belong to the global public registry namespace</li>
-          <li><strong>Scoped public packages</strong> belong to a user or an organization namespace</li>
+          <li>Unscoped public packages belong to the global public registry namespace</li>
+          <li>Scoped public packages belong to a user or an organization namespace</li>
         </ul>
       </td>
     </tr>
@@ -230,8 +229,6 @@ We'll be publishing and managing the **organization scoped packages**.
     </tr>
   </tbody>
 </table>
-    
-**NOTE:** An organization sopced package are private by defailt. Thus, to publish our packages to the public npm registry, we'll need to explicitely set thier visibility to **public** upon publishing.
   
 (For more information: [About scopes](https://docs.npmjs.com/about-scopes), [Packages scope access level and visibility](https://docs.npmjs.com/package-scope-access-level-and-visibility))
 
@@ -241,8 +238,7 @@ We'll be publishing and managing the **organization scoped packages**.
 
 <details>
 <summary>&horbar; Organizational user roles</summary>
-In npm, each role can be assigned to multiple users, whereas a single user cannot have multiple roles.
-
+  
 There are three organizational user roles:
 |Role|Permisson|
 |:---:|---|
@@ -260,28 +256,30 @@ There are three organizational user roles:
 <summary><h3>&#10112; Register npm User Accounts</h3></summary>
   
   :link: [Creating a new user account on the public registry](https://docs.npmjs.com/creating-a-new-npm-user-account)
+    
+  **1 ) Create the CCDL User Account**
   
-  **1 ) Create the CCDL User Account(a super user)**
-  
-  This account will be used for creating an organiazation in the [next step (EDIT)]().
+  This account will be used for creating an organiazation in the next step [&#10113; Create an Organization]().
   
   An email address used for this account is public facing and will be **visible** to anyone who downloads our packages.
   
   Once the organization is created, this account will be; 
   - converted to an **organization**(i.e. an **Organization Name** will be added to this account).
-  - an **Owner user**(role non-reassignable) who has all privileges including managing organizational members and billing.
-  - automatically added as a member of **Team** called [**developers**](https://docs.npmjs.com/about-developers-team)(default team)
+  - an **Owner user**(non-reassignable).
+  - automatically added as a member of a team [**developers**](https://docs.npmjs.com/about-developers-team)
   
   e.g.)
-  <pre>
   
-  <strong>Username</strong>: ccdl-npm, ccdl-master, ccdl-super etc <i>// this will be a super user</i>
-  <strong>Email Address</strong>: ccdl-npm@ccdatalab.org, npm@ccdatalab.org etc <i>// visibility of this email address is public</i>
-  </pre>
+  <strong>Username</strong>
+  : ccdl-npm, ccdl-master, ccdl-super 
   
-  <br/>  
+  <strong>Email Address</strong>
+  : ccdl-npm@ccdatalab.org, npm@ccdatalab.org 
+ 
+  <br/>
   
-  **2 ) Create Collaborators User Account**
+  
+  **2 ) Create User Accounts for Collaborators**
   
   Each account will be used for either; 
   - an **Owner user** who manages the organizational tasks including bullings
@@ -289,17 +287,18 @@ There are three organizational user roles:
   - a **Member user** who creates and publishes packages within the organizational scope.
   
   e.g.)
-  <pre>
   
-   <strong>Username</strong>: github-username<i> // the Github contributor of our repository</i>
-   <strong>Email Address</strong>: github-email@address.com <i> // an email associated with the above Github account</i>
-  </pre>
+   <strong>Username</strong>
+  : a Github contributor's username of our repository
+  
+   <strong>Email Address</strong>
+  : an email address associated with the above Github account
 
 ---
 
 </details>
   
-<details open>
+<details>
 <summary><h3>&#10113; Create an Organization</h3></summary>
    
   Depending on the needs, there are two ways in which we can create an organization.
@@ -330,7 +329,10 @@ There are three organizational user roles:
    
   We can invite a person to be a member of our organization using an existing **npm username** or an **email adress**(it can also be a non-npm email address and npm will ask the invitee to signup). The invitation will be sent out via an email which expires in 7 days and is revokable.
    
-  Once the invitation has been accepted, we can reassign a different role or **Teams** to that newly added member. A member can belong to multiple teams or no team.   
+  Once the invitation has been accepted, we can reassign a different role or a team to that newly added member. 
+    
+  - A single user can belong to multiple teams or no team. 
+  - Each role can be assigned to multiple users, whereas a single user cannot have multiple roles.  
     
   **IMPORTANT:** For the paid organization, adding a new member costs $7 per /mo for each new member.
 
@@ -352,11 +354,13 @@ The steps will be similar to **Option 1** except we'll need to come up with a ne
   </details>
 </details>
 
-<details open>
+<details>
 <summary><h3>&#10114; Manage Organization Teams and Members</h3></summary>
   
-Managing teams and memberships can be done using the web interface or the npm CLI.
-
+Managing teams and memberships can be done using the web interface or the npm CLI. 
+  
+**Note:** A user must be **Admin user** to manage teams and packages.  
+  
 <details>
 <summary><strong>Option 1 &horbar; Using Web Interface</strong></summary><br/>
       
@@ -394,9 +398,7 @@ We can create and manage our custom teams:
 <details>
 <summary><strong>Option 2 &horbar; Using command line</strong></summary><br/>
 
-By using [`npm team`](https://docs.npmjs.com/cli/v8/commands/npm-team) command, we can manage teams. However, no support for managing permissions for packages.
-
-**Note:** A user must be **Admin user** to manage teams and packages.
+By using [`npm team`](https://docs.npmjs.com/cli/v8/commands/npm-team) command, we can manage teams. However, no support for managing package permissions.
 
 </details> 
 </details>
@@ -405,7 +407,9 @@ By using [`npm team`](https://docs.npmjs.com/cli/v8/commands/npm-team) command, 
 
 ---
 
-## Step &#10103; Setting Up a npm Package
+## Step &#10103; Developing a npm Package
+
+**(Basic Terminologie)**
 
 <details>
 <summary>&horbar; npmrc files</summary>
@@ -434,7 +438,7 @@ npmrc files are runtime configuration used by Node.js which can be utilized to o
 
 An [access token](https://docs.npmjs.com/about-access-tokens)(a hexadecimal string with an identifiable prefix `_npm`) can be used for authentication instead of using a npm username and password.
 
-The npm CLI will auto-generate an temporary access token upon running the [`npm login`](https://docs.npmjs.com/cli/v7/commands/npm-adduser) command or we can [create our custom access token](https://docs.npmjs.com/creating-and-viewing-access-tokens) to privde a third-party temporary access to our npm packages.
+The npm CLI will auto-generate an temporary access token upon running the [`npm login`](https://docs.npmjs.com/cli/v8/commands/npm-adduser) command or we can [create our custom access token](https://docs.npmjs.com/creating-and-viewing-access-tokens) to privde a third-party temporary access to our npm packages.
 
 e.g.) [Github Actions](https://docs.github.com/en/actions) using [secrets](https://docs.github.com/en/actions/security-guides/encrypted-secrets)
 
@@ -619,15 +623,13 @@ To add a LICENSE file can be easily done via Github Web Interface:
 </details>
 
 <details>
-<summary><h3>&#10112; Access to a npm User Account from a Local Machine</h3></summary>
+<summary><h3>&#10112; Access to a npm User Account</h3></summary>
    
-  We can access to the registered npm account using the npm CLI via Terminal.
+We can access to the registered npm account from a local device using the npm CLI.
 
-**&#10074; Login**
+**&#10074; Login to npm**
 
-(alias) [`adduser`](https://docs.npmjs.com/cli/v8/commands/npm-adduser),`add-user`
-
-**1 )** Run the `login` command. To specify an organization scope, use `--scope` flag:
+**1 )** Run the [`login`](https://docs.npmjs.com/cli/v8/commands/npm-adduser)(aliases: `adduser`) command. To specify an organization scope, use `--scope` flag:
 
 - `OWNER` - the name of a user or an organization of the repository containing the project
 
@@ -637,24 +639,24 @@ npm login
 npm login --scope@OWENER
 ```
 
-  <br />
-    
-  **2 )** Follow the prompt and enter the username, password, email address, and a one-time password respectively.
-  
-  The one-time password will either be sent to the registered email address or can be accessed through [2FA](https://docs.npmjs.com/accessing-npm-using-2fa). 
-   
-  e.g.) Accessing a npm account using 2FA with [YubiKey](https://www.yubico.com) 
-  
-  After entering the valid username and email address, the npm CLI will output a URL with a ramdom hash:
-    
-  ```
-  npm notice Open https://www.npmjs.com/login/xxxxxxx to use your security key for authentication
-  Enter one-time password:  
-  ```
-    
-  We can access the URL via a browser and follow the web interface to generate a one-time password using the YubiKey device.
-    
-  <br />
+<br />
+
+**2 )** Follow the prompt and enter the username, password, email address, and a one-time password respectively.
+
+The one-time password will either be sent to the registered email address or can be generated if [2FA](https://docs.npmjs.com/configuring-two-factor-authentication) is configured.
+
+e.g.) In our case, we configure [2FA](https://docs.npmjs.com/accessing-npm-using-2fa) with [YubiKey](https://www.yubico.com)
+
+After entering the valid username and email address, the npm CLI will output a URL with a ramdom hash:
+
+```
+npm notice Open https://www.npmjs.com/login/xxxxxxx to use your security key for authentication
+Enter one-time password:
+```
+
+We can access the URL via a browser and follow the web interface to generate a one-time password using the [YubiKey](https://www.yubico.com) device.
+
+<br />
 
 **3 )** Upon successful login, the stdin outputs a message as follows:
 
@@ -662,30 +664,26 @@ npm login --scope@OWENER
 Logged in as USERNAME on https://registry.npmjs.org/.
 ```
 
+**NOTE:** By running [`npm login`](https://docs.npmjs.com/cli/v8/commands/npm-adduser), it will either auto-generate a **per-user .npmrc** with the registry and a temporary access token(whose value differs at each login) or write that information to an exsisting one(npm will also auto-generate an access token in the portal at [npmjs](https://www.npmjs.com)).
+
   <br />  
     
-  **NOTE**: By running `npm login`command, npm will either auto-generate a **per-user .npmrc** with the registry and a temporary access token(whose value differs at each login) or write that information to an exsisting one.
+  **&#10074; Logout from npm**
+  
+  The [`logout`](https://docs.npmjs.com/cli/v7/commands/npm-logout) command logouts without outputting any message to stdout. 
   ```
-  //registry.npmjs.org/:_authToken=npm_TOKEN...  
-  ```  
-    
-  <br />  
-    
-  **&#10074; Logout**
-  The [`logout`](https://docs.npmjs.com/cli/v7/commands/npm-logout) command logouts without providing any feedback.
-  ```
-  npm logout  
+  npm logout 
+  
+  npm logout --scope=@OWENER
   ```     
+  
+**NOTE:** By running [`npm logout`](https://docs.npmjs.com/cli/v8/commands/npm-logout), it will automatically remove a **per-user .npmrc**(if no other settings were added in that file) or delete the auto-generated line from the existing one(npm will also remove the auto-generated access token from the portal at [npmjs](https://www.npmjs.com)).     
     
-  **NOTE**:  By running `npm logout` command, npm will automatically remove a **per-user .npmrc**(if no other settings were added in that file) or delete the auto-generated line from the existing one.
-    
- (npm will remove the auto-generated access token from the web account at npmjs)     
-    
-  <br />
+<br />
 
-**&#10074; Check the current user**
+**&#10074; Display the current user**
 
-To display the currently logged in username:
+We can check the currently logged-in username with the [`whoami`](https://docs.npmjs.com/cli/v8/commands/npm-whoami) command:
 
 ```
 npm whoami
@@ -698,37 +696,31 @@ npm whoami
 <details>
 <summary><h3>&#10113; Manage npmrc Configuration files</h3></summary>
 
-The [`config`](https://docs.npmjs.com/cli/v8/commands/npm-config) command can be used to edit the contents of npmrc files.
+The [`config`](https://docs.npmjs.com/cli/v8/commands/npm-config) command can be used to edit the contents of [npmrc](https://docs.npmjs.com/cli/v8/configuring-npm/npmrc) files.
 
-There are five sub-commands:
-|Verb||
-|:--:|--|
-|`set`|Sets the value of a config key|  
-|`get`|Display the config value(s)|  
-|`delete`|Deletes a specified keys from a configuration file|  
-|`list`|Show all the config settings|  
-|`edit`|Opens a config file in an editor(e.g. vim)|
+**&#10074; List npmrc files**
 
-<br />
-  
-**&#10074; List the npmrc files**
-  
-To output configuration files and its settings, use the `--l` (ini-formatted list) or `--json`(json format) flag:
-```  
+We can utput the npmrc files using the sub-command [`list`](https://docs.npmjs.com/cli/v8/commands/npm-config#list).
+
+To choose a preferred display format, use the `--l` (ini-formatted list) or `--json`(json format) flag:
+
+```
 npm config list -l
-```  
-  
+```
+
 <details>
 <summary><strong>per-project .npmcr</strong></summary>
 
-A per-project(a.k.a local) .npmrc file must be created in the root of a project.
+A [per-project .npmrc](https://docs.npmjs.com/cli/v8/configuring-npm/npmrc#per-project-config-file) file must be created in the root of a project.
 
 We can;
 
 - manually create a local .npmrc.
-- use the `config` along with the <code>--location <global|user|<strong>project</strong>></code> flag to open and edit the per-project .npmrc.
+- use the `config` along with the <code>--location <global|user|<strong>project</strong>></code> flag to open and edit the local .npmrc.
 
 **&#10074; Open and edit per-project .npmrc**
+
+We can open and edit the configuration file using the sub-command [`edit`](https://docs.npmjs.com/cli/v8/commands/npm-config#edit):
 
 ```
 cd path/to/project && npm config edit --location project
@@ -741,24 +733,35 @@ cd path/to/project && npm config edit --location project
 <details>
 <summary><strong>per-user .npmcr</strong></summary>
   
-By default, by running the `edit` sub-command will open a per-user .npmrc.
-  
+By default, the sub-command [`edit`](https://docs.npmjs.com/cli/v8/commands/npm-config#edit) opens a [per-user .npmrc](https://docs.npmjs.com/cli/v8/configuring-npm/npmrc#per-user-config-file).
+
 **&#10074; Open and edit ~/.npmrc**
-  
+
 ```
-npm config edit 
-```  
-   
-    
-e.g.) Set the value of license
+npm config edit
+```
+
+<br />
+  
+**&#10074; Set the value of a key**
+  
+We can assign the value of a key using the sub-command [`set`](https://docs.npmjs.com/cli/v8/commands/npm-config#set).
+  
+e.g.) Set a value of [`init-license`](https://docs.npmjs.com/cli/v8/using-npm/config#init-license)    
 ```
 npm config set init-license "MIT" 
 ```
 
-e.g.) Display the value of `init-license`
+<br />
+  
+**&#10074; Get the value of a key**
+
+We can display the value of a key using the sub-command [`get`](https://docs.npmjs.com/cli/v8/commands/npm-config#get).
+
+e.g.) Display the value of `init-author-name`(https://docs.npmjs.com/cli/v8/using-npm/config#init-author-name)
 
 ```
-npm config get init-license
+npm config get init-author-name
 ```
 
 **NOTE:** In case a project has already been initialized, delete the existing package.json and re-generate a new one to see new changes.
@@ -770,9 +773,9 @@ npm config get init-license
 <details>
 <summary><strong>global npmcr</strong></summary><br />
   
-A global configuration will be overwitten by a per-user .npmrc file.
+A global configuration will be overwitten by a [per-user .npmrc](https://docs.npmjs.com/cli/v8/configuring-npm/npmrc#per-user-config-file) file.
 
-To edit a global npmrc file, use the `--global`, `-g`, or <code>--location <global|user|<strong>project</strong>></code> flag.
+To edit a [global npmrc](https://docs.npmjs.com/cli/v8/configuring-npm/npmrc#global-config-file) file, use the `--global`, `-g`, or <code>--location <global|user|<strong>project</strong>></code> flag.
 
 **&#10074; Open and edit global npmrc**
 
@@ -786,61 +789,412 @@ npm config -g edit
 
 </details>
 
+<details>
+<summary><h3>&#10114; Test a npm Package Locally</h3></summary>
+  
+It's important to test a npm package during the development phase and **before publishing it to the [public npm registry](https://docs.npmjs.com/about-the-public-npm-registry)**. 
+  
+There are several ways to test our packages locally:
+  
+<details>
+<summary><strong>Option 1 &horbar; Symbolic linking a npm package</strong></summary>
+ 
+<br />
+  
+**&#10074; Linking a package**
+  
+The [`link`](https://docs.npmjs.com/cli/v8/commands/npm-link) command allows us to install our own package to a project and test it iteratively without having to continually rebuild.
+    
+**1 ) Create a symlink of the package in the global folder**
+
+Navitate to the root of the package directory and run the following:
+
+- `PACKAGE-NAME` - the name of the npm package
+
+```
+cd ~/PACKAGE-NAME && npm link
+```
+
+It creates a global symlink which links to the package.
+
+<br />
+  
+**2 ) Install the globally-installed package**  
+  
+Navigate to a project folder where you want to use this globally-installed package to and run the following:
+  
+**NOTE:** If a package name is prefixed with a [scope](https://docs.npmjs.com/cli/v8/using-npm/scope), it must be included upon linking.  
+  
+- `OWNER` - the name of a user or an organization of the repository containing the project  
+  
+```
+npm link @OWNER/PACKAGE-NAME 
+```  
+    
+It creates a symbolic link from the globally-installed `@OWNER/PACKAGE-NAME` to `node_modules/` of this project directory.
+  
+Once successfully linked, any changes made to the linked-package will instantly be mirrored in this project.
+  
+**NOTE:** By default, a symbloic linked package won't be saved as `dependencies` to package.json(for more information: [Caveat](https://docs.npmjs.com/cli/v8/commands/npm-link#caveat)).
+  
+<br />
+  
+**&#10074; Removing a linked-package**
+
+Once testing is done, we can remove symbolic links using [`uninstall`](https://docs.npmjs.com/cli/v8/commands/npm-uninstall)(aliases: `unlink`) command.
+
+**1 ) Unlink the linked-package from the project**
+
+In the project directory, run the following to unlink the linked-package:
+
+```
+npm uninstall @OWNER/PACKAGE-NAME
+```
+
+<br /> 
+  
+**2 ) Delete the symbolic link**   
+ 
+In the npm package directory, run the following to remove its symbolic link in the global folder.
+  
+```
+npm uninstall  
+```  
+  
+--- 
+  
+</details>  
+  
+<details>
+<summary><strong>Option 2 &horbar; Packing a npm package</strong></summary>
+  
+Before publising a locally developed npm package to the [public npm registry](https://docs.npmjs.com/about-the-public-npm-registry)**, we can test it using the [`pack`](https://docs.npmjs.com/cli/v6/commands/npm-pack) command. 
+  
+**1 ) Create a tarball of the package**  
+  
+In the npm package directory, run the following to pack it into a tarball:
+  
+(To only see what will be packaged, use `--dry-run` flag) 
+```
+npm pack  
+```  
+  
+It creates a tarball from a npm package as `<PACKAGE-NAME>-<VERSION>.tgz` and writes its filenames to stdout. Using this tarball, we can test our local package. 
+   
+<br />
+  
+**2 ) Install the local package using the tarball**  
+  
+Copy the tarball file into the root of a project folder where you want to install it.
+  
+And in the project folder, run the following:    
+```
+npm install <PACKAGE-NAME>-<VERSION>.tgz  
+```  
+  
+It installs the local package using this tarball and add it to the `node_modules/` in this project directry instead of fetching the data from the [public npm registry](https://docs.npmjs.com/about-the-public-npm-registry), thus no need to be online to run the [`npm install`](https://docs.npmjs.com/cli/v8/commands/npm-install).    
+  
+**NOTE:**  Every time we make a change to the local package, we'll need to re-pack it and then re-install it to the project.
+  
+---  
+  
+</details>    
+    
+<details>
+<summary><strong>Option 3 &horbar; Using workspaces</strong></summary>
+  
+By defining the [`workspaces`](https://docs.npmjs.com/cli/v8/configuring-npm/package-json#workspaces) in package.json, we can manage multiple linked packages from the local file system without manually using `npm link` to create and reference each symbolic link of packages.
+  
+**1 ) Add the local packages to in a project**  
+  
+Add local packages to a project folder where you want to install them.
+  
+e.g.) The directory structure of project `demo` which contains packages, `package_a` and `package_b`, in its sub-directory. 
+  
+```
+package.json  
+node_modules/  
+packages/
+  a/
+    package.json
+  b/
+    package.json
+```  
+<br />
+  
+**2 ) Define workspaces in package json**
+  
+In the `demo`'s package.json, define the `workspaces` property and add the paths to those local packages:
+  
+```
+"workspaces": ["./packages/a", "./packages/b"], 
+```
+  
+<br />
+  
+**3 ) Link the local packages** 
+  
+By running the [`npm install`](https://docs.npmjs.com/cli/v8/commands/npm-install) command, it creates symbolic links of that local packages.
+  
+```
+npm install  
+```  
+  
+e.g.) Those packages are now included in `node_modules/` as linked packages. 
+```
+package.json  
+node_modules/
+  a/
+  b/
+packages/
+```    
+  
+**4 ) Specify the workspace from the top-level**
+  
+By using the `--workspace=PAKCAGE-NAME` flag, we can run a command in the context of that specified workspace.
+
+e.g.) Running the test defined in `a/package.json`.
+
+```
+ npm run test --workspace=a
+```
+
+To run a command in the context of all workspaces, use `--workspaces`:
+
+```
+npm run test --workspaces
+```
+
+It runs the tests defined in both `a/package.json` and `b/package.json`.
+
+(For more information: [Workspaces](https://docs.npmjs.com/cli/v8/using-npm/workspaces))
+
+</details>          
+</details>
+
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 ---
 
 ## Step &#10124; Publishing a Package to npm Registory
 
-<details open>
-<summary><h3>&#10112; Publish a npm Package</h3></summary>
-  
 <details>
 <summary><strong>Option 1 &horbar; Using command line</strong></summary><br/>
   
-**1 ) Navigate to the package directry to be published**
+By using the [`npm publish`](https://docs.npmjs.com/cli/v8/commands/npm-publish) command, we can publish a local package. By default, an organization scoped package is private, thus we need to use the <code>--access <<strong>public</strong>|restricted></code> flag to explicitly set its access level to public upon publishing.
   
-**2 ) Push the package**
+**IMPORTANT:** Before publisihg, make sure the local package is well tested and configured correctly. 
   
-- Before running the [`npm publish`](https://docs.npmjs.com/cli/v8/commands/npm-publish) command, make sure everything is correct.
+Navigate to the local package directory and run the following:
+```
+npm publish --access public
+```
+  
+Once it's published succressfully, it can be installed by its name:
+  
+```
+npm install @OWNER/PACKAGE-NAME  
+```  
+---
+  
+</details>
+  
+<details open>
+<summary><strong>Option 2 &horbar; Using Github Actions</strong></summary><br/>
+    
+<details>
+<summary><strong>Prerequisite</strong></summary>
+   
+:link: [Install Github CLI](https://github.com/cli/cli#installation)
+      
+To use [Github Actions](https://github.com/features/actions), we need to make sure that our npm package code is hosted in Github. If not, then [&#10112; Setup the Github Repository](). 
+  
+---  
+</details>
+
+<details>
+<summary><h3>&#10112; Setup the Github Repository</h3></summary>
+
+**1 ) Initialize a git locally**
+
+Navigate to the root of the local package and run run the [`git init`](https://git-scm.com/docs/git-init):
 
 ```
-npm publish
+git init
 ```
+
+<br />
+  
+**2 ) Create a Github repository of the npm package**
+  
+We can manually create a new Github repository via Web interface or use the [`gh repo create`](https://cli.github.com/manual/gh_repo_create) command.
+
+To create a remote repository in;
+
+- interactive mode, pass no arguments.
+- non-interactive mode, pass the repository name and one of `--public`, `--private`, or `--internal` flag.
+
+To add remote to local repository, pass the `--source <string>` flag.
+
+- `REPOSITORY-NAME` - a name of the npm package without the organization scope
+- `PATH-TO-LOCAL-REPO` - a path to the local repository(i.e. `.` in this case)
+
+```
+hg repo create REPOSITORY-NAME --private --source PATH-TO-LOCAL-REPO
+```
+
+<br />
+  
+**3 ) Push the local files to Github repository** 
+  
+Once the Github repository has been created, add a [.gitignore](https://git-scm.com/docs/gitignore) and commit your local files, then push them to this remote.
+  
+---  
+</details> 
+  
+<details>
+<summary><h3>&#10113; Setup the Github Actions workflows</h3></summary>
+  
+**Resources:**
+  
+:link: [Github Marketplace](https://github.com/marketplace)   
+:link: [Using workflows](https://docs.github.com/en/actions/using-workflows)  
+      
+  
+**(Basic Terminologies)**
+
+<details>
+<summary>&horbar; YMAL</summary>
+
+> [YAML](https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions) is a human-friendly data serialization language for all programming languages.
+
+Github Ations workflows use YAML syntax to define its workflow configuration.
+
+- A YAML file extension is either **.yml** or **.yaml**.
+- Workflow files are stored in `.github/workflows` directory of a Github repository.
+
+(For more information: [Workflow syntax for GitHub Actions](https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions), [Metadata syntax for GitHub Actions](https://docs.github.com/en/actions/creating-actions/metadata-syntax-for-github-actions))
 
 ---
 
-</details>
+</details>    
+  
+**1 ) Generate the npm Auth Token** 
+  
+We need to create our custom access token to privde Github access to our npm packages. To create an access token is fairly simple and can be done using the web interface or the npm CLI.
+  
+Upon the token generation, make sure to;  
+- choose the access token type as **publish**  
+- copy the token value(only visible at the time of creation)  
+  
+<details>
+<summary><strong>Option 1 &horbar; Using Web Interface</strong></summary>
+ 
+- [Creating tokens on the website](https://docs.npmjs.com/creating-and-viewing-access-tokens) 
+  
+- [Viewing tokens on the website](https://docs.npmjs.com/creating-and-viewing-access-tokens#viewing-tokens-on-the-website)
 
-<details> 
-<summary><strong>Option 2 &horbar; Using Github Action workflows</strong></summary><br/>
+---
 
 </details>  
-  
----    
-</details>
-
+ 
 <details>
-<summary><h3>&#10113; Test the published npm Package</h3></summary>  
-  
-</details>
+<summary><strong>Option 2 &horbar; Using command line</strong></summary>
+ 
+- [Creating tokens on the website](https://docs.npmjs.com/creating-and-viewing-access-tokens)
 
+- [Viewing tokens on the website](https://docs.npmjs.com/creating-and-viewing-access-tokens#viewing-tokens-on-the-website)
+
+---
+
+</details>    
+  
+<br/>  
+  
+**2 ) Store the npm Auth Token in Github**
+
+:link: [Creating and using encrypted secrets](https://docs.github.com/en/actions/security-guides/encrypted-secrets#creating-encrypted-secrets-for-a-repository)
+
+Now we need to add a new [secret](<[https://docs.github.com/en/rest/actions/secrets](https://docs.github.com/en/actions/security-guides/encrypted-secrets#about-encrypted-secrets)>) in Github and assign the value of the newly generated npm token. It's easy to add a new token, we can use the Web Interface.
+
+Upon creating a new secret, make sure to;
+
+- follow the [naming rules](https://docs.github.com/en/actions/security-guides/encrypted-secrets#naming-your-secrets)
+- prefix with **NPM\_**(e.g. NPM_TOKEN, NPM_AUTH_TOKEN) as its general naming convention.
+
+<br/>  
+  
+**3 ) Create a workflow file in the Github repository**   
+  
+In the root of the local package folder, create a `.github/workflows/NAME-OF-WORKFLOW.yml` file.
+  
+- `NAME-OF-WORKFLOW` - a name of the workflow(e.g. publish, push, etc)
+  
+```
+package.json  
+node_modules/  
+.github/
+  workflows/
+    publish.yml
+```    
+  
+<br/>
+  
+**4 ) Configure the workflows**    
+  
+We can configure Github Actions workflows to publish the npm package on each new release.
+  
+**&#10074; Creating a new release**  
+  
+:link: [Releasing Projects on Github](https://docs.github.com/en/repositories/releasing-projects-on-github)
+
+> A Git tag is similar to a [Git reference](https://docs.github.com/en/rest/git/refs), but the Git commit that it points to never changes. Git tags are helpful when you want to point to specific releases. These endpoints allow you to read and write [tag objects](https://git-scm.com/book/en/v2/Git-Internals-Git-References#Tags) to your Git database on GitHub. The Git tags API only supports annotated [tag objects](<(https://git-scm.com/book/en/v2/Git-Internals-Git-References#Tags)>), not lightweight tags.
+
+A new relase can be created manually using the Web Interface, or setup a workflow to automatically create a new release upon [tagging](https://git-scm.com/book/en/v2/Git-Basics-Tagging) prefixed with **v**, for instance. [See Step &#10125; Managing a npm Package with Github Actions]().
+
+<br/>  
+   
+**&#10074; Publishing a npm package**
+  
+:link: [Publishing packages to the npm registry](https://docs.github.com/en/actions/publishing-packages/publishing-nodejs-packages#publishing-packages-to-the-npm-registry)  
+  
+To trigger the workflow upon creation of a new tag in Github repository, use the [`release`](https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#release) event and its `ativity type` set as `created`. Any number of steps can be included in the workflow.
+ 
+e.g.) Publishes a package to the [public npm registry](https://docs.npmjs.com/about-the-public-npm-registry) if [CI tests](https://docs.github.com/en/actions/automating-builds-and-tests/about-continuous-integration) pass.    
+  
+**publish.yml:**  
+```yaml
+name: Publish npm package to npmjs
+on:
+  release:
+    types: [created]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '16.x'
+          registry-url: 'https://registry.npmjs.org'
+      - name: Clean install dependencies
+        run: rm -rf node_modules/ && yarn install --frozen-lockfile
+      - name: Publish the package
+        run: yarn npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+```
+
+</details>  
+</details>  
+  
 <p align="right">(<a href="#top">back to top</a>)</p>
-
+  
 ---
+  
+## Step &#10125; Managing a npm Package with Github Actions
 
-## Step &#10125;: Managing a package
-
-<details>
-<summary><strong>Option 1 &horbar; Using command line</strong></summary><br/>
-
----
-
-</details>
-
-<details>
-<summary><strong>Option 2 &horbar; Using Github Action workflows</strong></summary><br/>
-
-</details>
+Automatic relasing, versioning, runner, other tests etc  
+(in progress)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
