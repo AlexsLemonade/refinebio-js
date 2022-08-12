@@ -6,7 +6,7 @@ export const platforms = (config = defaultConfig) => {
   const { filter } = getActions(config, 'platforms')
 
   return {
-    ...availableActions,
+    ...availableActions('platforms'),
     filter
   }
 }

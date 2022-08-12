@@ -8,7 +8,7 @@ export const stats = (config = defaultConfig) => {
   const processor = getActions(config, 'stats/failures/processor').filter
 
   return {
-    ...availableActions,
+    ...availableActions('stats'),
     get,
     failures: {
       downloader: {

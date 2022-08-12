@@ -6,7 +6,7 @@ export const dataset = (config = defaultConfig) => {
   const { create, get, update } = getActions(config, 'dataset')
 
   return {
-    ...availableActions,
+    ...availableActions('dataset'),
     create,
     get,
     update
