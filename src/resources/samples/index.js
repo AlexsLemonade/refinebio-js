@@ -6,7 +6,7 @@ export const samples = (config = defaultConfig) => {
   const { get, filter } = getActions(config, 'samples', 'accession_code')
 
   return {
-    ...availableActions,
+    ...availableActions('samples'),
     get,
     filter
   }
