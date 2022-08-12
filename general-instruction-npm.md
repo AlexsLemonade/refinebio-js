@@ -999,35 +999,28 @@ npm install @OWNER/PACKAGE-NAME
   
 </details>
   
-<details open>
-<summary><strong>Option 2 &horbar; Using Github Actions</strong></summary><br/>
-    
 <details>
-<summary><strong>Prerequisite</strong></summary>
-   
-:link: [Install Github CLI](https://github.com/cli/cli#installation)
-      
-To use [Github Actions](https://github.com/features/actions), we need to make sure that our npm package code is hosted in Github. If not, then [&#10112; Setup the Github Repository](). 
+<summary><strong>Option 2 &horbar; Using Github Actions</strong></summary><br/>
   
----  
-</details>
-
+To use [Github Actions](https://github.com/features/actions), we need to make sure that our npm package code is hosted in Github. 
+  
+(Skip [&#10112; Setup the Github Repository]() if it already exists.)  
+  
 <details>
 <summary><h3>&#10112; Setup the Github Repository</h3></summary>
-
-**1 ) Initialize a git locally**
-
-Navigate to the root of the local package and run run the [`git init`](https://git-scm.com/docs/git-init):
-
-```
-git init
-```
-
+  
+ **1 ) Initialize a git locally**
+  
+ Navigate to the root of the local package and run run the [`git init`](https://git-scm.com/docs/git-init):   
+ ```
+ git init
+ ```  
+  
 <br />
   
 **2 ) Create a Github repository of the npm package**
   
-We can manually create a new Github repository via Web interface or use the [`gh repo create`](https://cli.github.com/manual/gh_repo_create) command.
+We can manually create a new Github repository via Web interface or use the [`gh repo create`](https://cli.github.com/manual/gh_repo_create) command([Install Github CLI](https://github.com/cli/cli#installation)).
 
 To create a remote repository in;
 
