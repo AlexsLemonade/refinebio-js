@@ -6,7 +6,7 @@ export const transcriptomeIndices = (config = defaultConfig) => {
   const { get, filter } = getActions(config, 'transcriptome_indices')
 
   return {
-    ...availableActions,
+    ...availableActions('transcriptome_indices'),
     get,
     filter
   }
