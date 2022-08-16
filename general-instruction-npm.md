@@ -552,15 +552,8 @@ e.g.)
   "version": "1.0.0",
   "description": "A package for ....",
   "main": "index.js",
-  "script": {
-     "start": "...",
-     "build": "..."
-  },
+  "script": { ... },
   "dependencies" :  {...},
-    "repository": {
-    "type": "git",
-    "url": "https://github.com/monatheoctocat/my_package.git"
-  },
   "repository": {
     "type": "git",
     "url": "https://github.com/socope/pakage-name.git"
