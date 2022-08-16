@@ -41,28 +41,29 @@ To setup a package.json for the npm package, the following fields should be incl
   "version": "0.1.0",
   "description": "refinebio JS client.",
   "main": "index.js",
-  "script": { },
-  "dependencies" :  { },
+  "script": {},
+  "dependencies": {},
   "repository": {
     "type": "git",
     "url": "https://github.com/AlexsLemonade/refinebio-js.git"
   },
   "keywords": ["refinebio", "refinebio-js", "refinebo JS client"],
-  "contributors" : [
+  "contributors": [
     {
-       "name": "davidsmejia",
-       "email": "...@ccdatalab.org"
+      "name": "davidsmejia",
+      "email": "...@ccdatalab.org"
     },
     {
-       "name": "nozomione",
-       "email": "...@ccdatalab.org"
+      "name": "nozomione",
+      "email": "...@ccdatalab.org"
     }
- ],
- "license": "BSD-3-Clause",
- "bugs": {
+  ],
+  "license": "BSD-3-Clause",
+  "bugs": {
     "url": "https://github.com/AlexsLemonade/refinebio-js/issues"
   },
- "homepage": "https://github.com/AlexsLemonade/refinebio-js"
+  "homepage": "https://github.com/AlexsLemonade/refinebio-js"
+}
 ```
 
 (For more information: [Creating a package.json file](https://docs.npmjs.com/creating-a-package-json-file), [package.json](https://docs.npmjs.com/cli/v8/configuring-npm/package-json))
