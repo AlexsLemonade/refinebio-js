@@ -1,5 +1,5 @@
 import defaultConfig from 'config'
-import { deepCopy } from 'utils/deepCopy'
+import { mergeConfig } from 'utils/mergeConfig'
 import { compendia } from 'resources/compendia'
 import { computationalResults } from 'resources/computationalResults'
 import { computedFiles } from 'resources/computedFiles'
@@ -41,10 +41,10 @@ export {
 }
 
 export default (override = {}) => {
-  const config = { ...deepCopy(defaultConfig), ...deepCopy(override) }
+  const config = mergeConfig(defaultConfig, override)
 
   return {
-    updateConfig: (changes) => ({ ...deepCopy(config), ...deepCopy(changes) }),
+    updateConfig: (changes) => mergeConfig(config, changes),
     compendia: compendia(config),
     computationalResults: computationalResults(config),
     computedFiles: computedFiles(config),
