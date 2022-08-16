@@ -2,28 +2,27 @@
 
 # Publishing the refinebio npm Package
 
-Step-by-Step Guide for Publishing a npm Package for refinebio JS client
+Step-by-Step Guide for manually publishing a npm package for refinebio JS client
 
 **Resources:**<br/>
 :link: [npm Docs](https://docs.npmjs.com)
 
 ## Table of Contents
 
-- [Prerequisite](https://github.com/freshcapsule/how-to-publish-npm-packages/edit/main/publish.md#prerequisite)
-  - [&#10112; Create a Personal Access Token(PAT)](https://github.com/freshcapsule/how-to-publish-npm-packages/edit/main/publish.md#-create-a-personal-access-tokenpat)
-  - [&#10113; Edit ~/.npmrc(per-user)](https://github.com/freshcapsule/how-to-publish-npm-packages/edit/main/publish.md#-edit-npmrcper-user)
-- [Step 1: Setting up a npm Package](https://github.com/freshcapsule/how-to-publish-npm-packages/edit/main/publish.md#step--setting-up-a-npm-package)
-  - [&#10112; Initalize a npm Project and Github Repository](https://github.com/freshcapsule/how-to-publish-npm-packages/edit/main/publish.md#-initalize-a-npm-project-and-github-repository)
-  - [&#10113; Setup a Testing Environment with Docker](https://github.com/freshcapsule/how-to-publish-npm-packages/edit/main/publish.md#-setup-a-local-testing-environment-with-docker)
-- [Step 2: Publishing a npm Package](https://github.com/freshcapsule/how-to-publish-npm-packages/edit/main/publish.md#step--publishing-a-npm-package)
-  - [&#10112; Publish a npm Package](https://github.com/freshcapsule/how-to-publish-npm-packages/edit/main/publish.md#-publish-a-npm-package)
-    - [Option 1: Using command line](https://github.com/freshcapsule/how-to-publish-npm-packages/edit/main/publish.md#step--publishing-a-npm-package)
-    - [Option 2: Using Github Action workflows](https://github.com/freshcapsule/how-to-publish-npm-packages/edit/main/publish.md#option-2-using-github-action-workflows)
-  - [&#10113; Test the published npm Package](https://github.com/freshcapsule/how-to-publish-npm-packages/edit/main/publish.md#-test-the-published-npm-package)
+- [Prerequisite]()
+- [Step &#10102; Access an npm Account]()
+  - [Login]()
+  - [Check Username]()
+  - [Logout]()
+- [Step &#10103; Register a Local Package to npm]()
+  - [Publish]()
+  - [Unpublish]()
 
 ## Prerequisite
 
-Before publishing to [the public npm registory](https://docs.npmjs.com/about-the-public-npm-registry), make sure that;
+> Registry data is immutable, ...once published, a package cannot change.
+
+Before registering our local package to [the public npm registory](https://docs.npmjs.com/about-the-public-npm-registry), make sure that;
 
 - all the configuration files are setup correctly.
 - no credentials or any other sensitive information is included in an installable.
@@ -34,40 +33,21 @@ Before publishing to [the public npm registory](https://docs.npmjs.com/about-the
 
 To setup a package.json for the npm package, the following fields should be included as minimal:
 
-**&#10074; Required fields**
+**pakage.json**
 
-|                                      Field                                      | Value                                                       |
-| :-----------------------------------------------------------------------------: | ----------------------------------------------------------- |
-|    [`name`](https://docs.npmjs.com/cli/v6/configuring-npm/package-json#name)    | a name of the package and its scope                         |
-| [`version`](https://docs.npmjs.com/cli/v6/configuring-npm/package-json#version) | a value _x.y.z_ following the [SemVer](https://semver.org/) |
-
-**&#10074; Other fields**
-
-|                                                     Field                                                     | Value                                                                                                                               |
-| :-----------------------------------------------------------------------------------------------------------: | ----------------------------------------------------------------------------------------------------------------------------------- |
-|           [`description`](https://docs.npmjs.com/cli/v6/configuring-npm/package-json#description-1)           | a desription of the package in string format and will be listed in `npm search`                                                     |
-|                   [`main`](https://docs.npmjs.com/cli/v6/configuring-npm/package-json#main)                   | a path to an entry file of the package and by default `index.js`                                                                    |
-|                [`script`](https://docs.npmjs.com/cli/v6/configuring-npm/package-json#scripts)                 | necessary scripts to run and manage the lifecycle of the package                                                                    |
-|             [`repository`](https://docs.npmjs.com/cli/v6/configuring-npm/package-json#repository)             | a remote url of the package repository                                                                                              |
-|               [`keywords`](https://docs.npmjs.com/cli/v6/configuring-npm/package-json#keywords)               | keywords of the package in an array of strings and will be listed in `npm search`                                                   |
-| [people fields](https://docs.npmjs.com/cli/v6/configuring-npm/package-json#people-fields-author-contributors) | either `author`(a single person) or `contributors`(2 or more) which includes `name` and optionally `email` and `url` of each author |
-|                   [`bugs`](https://docs.npmjs.com/cli/v6/configuring-npm/package-json#bugs)                   | a url to the repository issue tracker and / or an email address for reporting issues                                                |
-|                [`license`](https://docs.npmjs.com/cli/v6/configuring-npm/package-json#license)                | a license for the package                                                                                                           |
-|               [`homepage`](https://docs.npmjs.com/cli/v6/configuring-npm/package-json#homepage)               | a url to the package homepage, typically the README                                                                                 |
-
-```
+```json
 {
-  "name": "@ccdl/refinebio-js",
+  "name": "@ccdl/refinebio",
   "version": "0.1.0",
   "description": "refinebio JS client.",
   "main": "index.js",
-  "script": { ... },
-  "dependencies" :  { ... },
+  "script": { },
+  "dependencies" :  { },
   "repository": {
     "type": "git",
     "url": "https://github.com/AlexsLemonade/refinebio-js.git"
   },
-  "keywords": ['refinebio', ‘refinebio-js’, 'refinebo JS client'],
+  "keywords": ["refinebio", "refinebio-js", "refinebo JS client"],
   "contributors" : [
     {
        "name": "davidsmejia",
@@ -114,15 +94,134 @@ Necessary information to be included:
  
 > You can include an open source license in your repository to make it easier for other people to contribute.
   
-To add a LICENSE file can be easily done via Github Web Interface:
-- Create a new file and name it as `LICENSE` or `LICENSE.md`
-- Select a license template from the list provided by Github 
-- Commit the LICENSE file
+[Licensing a repository](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/licensing-a-repository) with [BSD 3-Clause](https://opensource.org/licenses/BSD-3-Clause) can be easily done via the Github repository:
+- Create a new file and named `LICENSE` or `LICENSE.md`
+- Select the [BSD 3-Clause](https://opensource.org/licenses/BSD-3-Clause) template from the license picker provided by Github 
+- Review and commit the LICENSE file
 
 (For more information: [Adding a license to a repository](https://docs.github.com/en/communities/setting-up-your-project-for-healthy-contributions/adding-a-license-to-a-repository))
 
 ---
 
 </details>
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+
+---
+
+## Step &#10102; Access an npm Account
+
+### &#10074; Login
+
+<br/>
+
+**1 )** Navigate to the local package and run the [`npm login`](https://docs.npmjs.com/cli/v8/commands/npm-adduser)(aliases: `adduser`) command.
+
+To specify an organization scope, pass the `--scope` flag.
+
+```
+npm login
+
+npm login --scope@ccdl
+```
+
+<br/>
+
+**2 )** Follow the prompt and enter the username, password, email address, and a one-time password respectively.
+
+After entering the valid username and email address, the npm CLI outputs a URL with a ramdom hash:
+
+```
+npm notice Open https://www.npmjs.com/login/xxxxxxx to use your security key for authentication
+```
+
+Since we configured [2FA](https://docs.npmjs.com/configuring-two-factor-authentication) with [YubiKey](https://www.yubico.com), we'll neeed to [generate a one-time password](https://docs.npmjs.com/accessing-npm-using-2fa) using the npm Web interface.
+
+Access the URL via a browser and follow the web interface to generate a one-time password using the [YubiKey](https://www.yubico.com) device.
+
+Once done, enter it into the prompt:
+
+```
+Enter one-time password: ONE-TIME-PASSWORD
+```
+
+<br/>
+
+**3 )** Upon successful login, the stdin outputs a message as follows:
+
+```
+Logged in as USERNAME on https://registry.npmjs.org/.
+```
+
+### &#10074; Check Username
+
+We can display the currently logged-in username with the [`npm whoami`](https://docs.npmjs.com/cli/v8/commands/npm-whoami) command:
+
+```
+npm whoami
+```
+
+### &#10074; Logout
+
+The [`logout`](https://docs.npmjs.com/cli/v7/commands/npm-logout) command logouts without writting any message to stdout.
+
+```
+npm logout
+npm logout --scope=@ccdl
+```
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+
+---
+
+## Step &#10103; Register a Local Package to npm
+
+### &#10074; Publish
+
+We can publish a local package using the [`npm publish`](https://docs.npmjs.com/cli/v8/commands/npm-publish) command.
+
+**NOTE:** By default, an organization scoped package is private, thus we need to use the <code>--access <<strong>public</strong>|restricted></code> flag to explicitly set its access level to public upon publishing.
+
+**1 )** In the root of the local package folder, run the following:
+
+```
+npm publish --access public
+```
+
+**2 )** Install the published npm package
+
+Once it's published succressfully, it can be installed by its name:
+
+```
+npm install @ccdl/refinebio
+```
+
+### &#10074; Unpublish
+
+**IMPORTANT:**
+
+> Registry data is immutable, meaning once published, a package cannot change. We do this for reasons of security and stability of the users who depend on those packages. So if you've ever published a package called "bob" at version 1.1.0, no other package can ever be published with that name at that version. This is true even if that package is unpublished.
+
+- Once `package@version` has been published, that combination will be permanently unavailable.
+- Once a npm package has been unpublished, it cannot be undone.
+- Once a npm package is entirely unpublished(inluding all versions), it cannot be published again with any new versions within 24 hours.
+
+(For more infomration: [npm Unpublish Policy](https://docs.npmjs.com/policies/unpublish))
+
+**Unpublish a entire package**
+
+We can unpublish all versions at once using the [npm unpublish](https://docs.npmjs.com/cli/v8/commands/npm-unpublish) command and the `-f`(`--force`) flag.
+
+Since we configured [2FA](https://docs.npmjs.com/about-two-factor-authentication) using [YubiKey](https://www.yubico.com), we also need to pass a one-time passward using the `--otp=CODE-FROM-AUTH-APP` flag.
+
+```
+npm unpublish ccdl@refinebio -f --otp=XXXXXX
+```
+
+**Unpublish a specific version**
+
+```
+ npm unpublish @ccdl/refinebio@0.1.0
+```
 
 <p align="right">(<a href="#top">back to top</a>)</p>
