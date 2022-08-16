@@ -189,6 +189,8 @@ We can publish a local package using the [`npm publish`](https://docs.npmjs.com/
 npm publish --access public
 ```
 
+Since we configured [2FA](https://docs.npmjs.com/configuring-two-factor-authentication) with [YubiKey](https://www.yubico.com), we'll neeed to [generate a one-time password](https://docs.npmjs.com/accessing-npm-using-2fa) using the npm Web interface(follow the same steps as we did when login to the npm account).
+
 **2 )** Install the published npm package
 
 Once it's published succressfully, it can be installed by its name:
@@ -213,10 +215,10 @@ npm install @ccdl/refinebio
 
 We can unpublish all versions at once using the [npm unpublish](https://docs.npmjs.com/cli/v8/commands/npm-unpublish) command and the `-f`(`--force`) flag.
 
-Since we configured [2FA](https://docs.npmjs.com/about-two-factor-authentication) using [YubiKey](https://www.yubico.com), we also need to pass a one-time passward using the `--otp=CODE-FROM-AUTH-APP` flag.
+Since we configured [2FA](https://docs.npmjs.com/configuring-two-factor-authentication) with [YubiKey](https://www.yubico.com), we'll neeed to [generate a one-time password](https://docs.npmjs.com/accessing-npm-using-2fa) using the npm Web interface(follow the same steps as we did when login to the npm account). Alternatively we may also pass a one-time passward using the `--otp=CODE-FROM-AUTH-APP` flag.
 
 ```
-npm unpublish ccdl@refinebio -f --otp=XXXXXX
+npm unpublish ccdl@refinebio -f
 ```
 
 **Unpublish a specific version**
