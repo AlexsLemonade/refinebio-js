@@ -2,8 +2,8 @@ import { mergeDatasets } from 'utils/mergeDatasets'
 import { publicInterface } from 'dataset/publicInterface'
 
 export const Dataset = (api) => {
-  return (settings = {}) => {
-    const configurable = {
+  return (override = {}) => {
+    const defaults = {
       start: false,
       data: {}, // via helpers
       email: '', // setEmail
@@ -15,7 +15,7 @@ export const Dataset = (api) => {
       svd_algorithm: 'NONE'
     }
 
-    const model = Object.seal(mergeDatasets(configurable, settings))
+    const model = Object.seal(mergeDatasets(defaults, override))
 
     const get = (key) => model[key]
 
