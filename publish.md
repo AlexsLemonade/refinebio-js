@@ -164,7 +164,7 @@ npm whoami
 
 ### &#10074; Logout
 
-The [`logout`](https://docs.npmjs.com/cli/v7/commands/npm-logout) command logouts without writting any message to stdout.
+The [`npm logout`](https://docs.npmjs.com/cli/v7/commands/npm-logout) command logouts without writting any message to stdout.
 
 ```
 npm logout
@@ -193,7 +193,7 @@ Since we configured [2FA](https://docs.npmjs.com/configuring-two-factor-authenti
 
 **2 )** Install the published npm package
 
-Once it's published succressfully, it can be installed by its name:
+Once it's published succressfully, it can be installed by its name as well as will be listed on the CCDL account.
 
 ```
 npm install @ccdl/refinebio
@@ -213,7 +213,7 @@ npm install @ccdl/refinebio
 
 **Unpublish a entire package**
 
-We can unpublish all versions at once using the [npm unpublish](https://docs.npmjs.com/cli/v8/commands/npm-unpublish) command and the `-f`(`--force`) flag.
+We can unpublish all versions at once using the [`npm unpublish`](https://docs.npmjs.com/cli/v8/commands/npm-unpublish) command and the `-f`(`--force`) flag.
 
 Since we configured [2FA](https://docs.npmjs.com/configuring-two-factor-authentication) with [YubiKey](https://www.yubico.com), we'll neeed to [generate a one-time password](https://docs.npmjs.com/accessing-npm-using-2fa) using the npm Web interface(follow the same steps as we did when login to the npm account). Alternatively we may also pass a one-time passward using the `--otp=CODE-FROM-AUTH-APP` flag.
 
