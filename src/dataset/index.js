@@ -1,4 +1,4 @@
-import { mergeObject } from 'utils/mergeObject'
+import { mergeDatasets } from 'utils/mergeDatasets'
 import { publicInterface } from 'dataset/publicInterface'
 
 export const Dataset = (api) => {
@@ -15,7 +15,7 @@ export const Dataset = (api) => {
       svd_algorithm: 'NONE'
     }
 
-    const model = Object.seal(mergeObject(configurable, settings))
+    const model = Object.seal(mergeDatasets(configurable, settings))
 
     const get = (key) => model[key]
 
