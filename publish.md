@@ -31,7 +31,7 @@ Before registering our local package to [the public npm registory](https://docs.
 <details>
 <summary>&horbar; package.json</summary>
 
-To setup a package.json for the npm package, the following fields should be included as minimal:
+To setup a package.json for a npm package, the following fields should be included as minimal:
 
 **pakage.json**
 
@@ -148,7 +148,7 @@ Enter one-time password: ONE-TIME-PASSWORD
 
 <br/>
 
-**3 )** Upon successful login, the stdin outputs a message as follows:
+**3 )** Upon successful login, it outputs a message to stdout as follows:
 
 ```
 Logged in as USERNAME on https://registry.npmjs.org/.
@@ -156,7 +156,7 @@ Logged in as USERNAME on https://registry.npmjs.org/.
 
 ### &#10074; Check Username
 
-We can display the currently logged-in username with the [`npm whoami`](https://docs.npmjs.com/cli/v8/commands/npm-whoami) command:
+To display the currently logged-in username, use the [`npm whoami`](https://docs.npmjs.com/cli/v8/commands/npm-whoami) command:
 
 ```
 npm whoami
@@ -179,9 +179,9 @@ npm logout --scope=@ccdl
 
 ### &#10074; Publish
 
-We can publish a local package using the [`npm publish`](https://docs.npmjs.com/cli/v8/commands/npm-publish) command.
+To publish a local package, use the [`npm publish`](https://docs.npmjs.com/cli/v8/commands/npm-publish) command.
 
-**NOTE:** By default, an organization scoped package is private, thus we need to use the <code>--access <<strong>public</strong>|restricted></code> flag to explicitly set its access level to public upon publishing.
+**NOTE:** By default, an organization scoped package is private; thus use the <code>--access <<strong>public</strong>|restricted></code> flag to explicitly set its access level to public upon publishing.
 
 **1 )** In the root of the local package folder, run the following:
 
@@ -193,7 +193,7 @@ Since we configured [2FA](https://docs.npmjs.com/configuring-two-factor-authenti
 
 **2 )** Install the published npm package
 
-Once it's published succressfully, it can be installed by its name as well as will be listed on the CCDL account.
+Once successfully published , it can be installed by its name as well as will be listed on the CCDL account.
 
 ```
 npm install @ccdl/refinebio
@@ -213,7 +213,7 @@ npm install @ccdl/refinebio
 
 **Unpublish a entire package**
 
-We can unpublish all versions at once using the [`npm unpublish`](https://docs.npmjs.com/cli/v8/commands/npm-unpublish) command and the `-f`(`--force`) flag.
+To unpublish all versions at once, use the [`npm unpublish`](https://docs.npmjs.com/cli/v8/commands/npm-unpublish) command and the `-f`(`--force`) flag.
 
 Since we configured [2FA](https://docs.npmjs.com/configuring-two-factor-authentication) with [YubiKey](https://www.yubico.com), we'll neeed to [generate a one-time password](https://docs.npmjs.com/accessing-npm-using-2fa) using the npm Web interface(follow the same steps as we did when login to the npm account). Alternatively we may also pass a one-time passward using the `--otp=CODE-FROM-AUTH-APP` flag.
 
