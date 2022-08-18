@@ -1,3 +1,6 @@
-export const getData = (get) => () => get('data')
+export const getData =
+  ({ get }) =>
+  () =>
+    get('data')
 
 export default getData

@@ -1,5 +1,6 @@
 export const addExperiment =
-  (publicMethods, model, set) => (experimentAccession) => {
+  ({ model, set }) =>
+  (experimentAccession) => {
     const newData = { ...model.data }
     newData[experimentAccession] = ['ALL']
 

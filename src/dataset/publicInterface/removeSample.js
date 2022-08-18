@@ -1,5 +1,6 @@
 export const removeSample =
-  (publicMethods, model, set) => (experimentAccession, sampleAccession) => {
+  ({ model, set }) =>
+  (experimentAccession, sampleAccession) => {
     const newData = { ...model.data }
     const i = newData[experimentAccession].indexOf(sampleAccession)
 
