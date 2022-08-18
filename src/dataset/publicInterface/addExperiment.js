@@ -1,7 +1,9 @@
+import { deepCopy } from 'utils/deepCopy'
+
 export const addExperiment =
   ({ model, set }) =>
   (experimentAccession) => {
-    const newData = { ...model.data }
+    const newData = { ...deepCopy(model.data) }
     newData[experimentAccession] = ['ALL']
 
     return set('data', newData)
