@@ -1,10 +1,17 @@
-export const save = (publicMethods, model, api) => async () => {
-  const action = model.id ? 'update' : 'create'
-  const request = await api[action](model)
+export const save =
+  ({ publicInterface, model, api, set }) =>
+  async () => {
+    const action = model.id ? 'update' : 'create'
+    const request = await api[action](model)
 
-  return request.isOK
-    ? publicMethods
-    : { isOk: request.isOk, status: request.status, error: request.error }
-}
+    if (request.isOK) {
+      Object.entries(request.response).forEach(([k, v]) => {
+        set(k, v)
+      })
+
+      return publicInterface
+    }
+    return { isOk: request.isOk, status: request.status, error: request.error }
+  }
 
 export default save
