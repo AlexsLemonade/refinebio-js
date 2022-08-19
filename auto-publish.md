@@ -283,6 +283,30 @@ To push all the local tags to the remote at once, use the `--tags` flag which wi
 git push origin --tags
 ```
 
+<br />
+
+**&#10074; Delete tags**
+
+To delete a tag in the local repository, use the [`git tag -d <tagname>`](https://git-scm.com/book/en/v2/Git-Basics-Tagging#_deleting_tags) command:
+
+```
+git tag -d v1.0.0
+```
+
+To delete a tag in the remote repository, run the `git push <remote> :refs/tags/<tagname>` command:
+
+(It pushes the null value to the remote tag name that results in the deletion of that tag.)
+
+```
+git push origin :refs/tags/v1.0.0
+```
+
+Or run the `git push origin -d <tagname>` command:
+
+```
+git push origin -d v1.0.0
+```
+
 ### 2) Create a new release to trigger the publish workflow
 
 Now we can create a new release using the [web](https://docs.github.com/en/repositories/releasing-projects-on-github/managing-releases-in-a-repository#creating-a-release) in the Github repository, and our publish workflow will be triggered and register our local package to the [public npm registory](https://docs.npmjs.com/about-the-public-npm-registry).
