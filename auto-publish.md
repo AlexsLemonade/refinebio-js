@@ -11,14 +11,18 @@ Step-by-Step Guide for publishing the refinebio npm package with Github Actions
 
 ## Table of Contents
 
+- [Prerequisite]()
 - [Preparation]()
-- [Step &#10102; Access an npm Account]()
-  - [Login]()
-  - [Check Username]()
+- [Step &#10102; Setup Authenticationt]()
+  - [1) Generate an npm access token]()
+  - [2) Add the npm access token to Github secrets]()
   - [Logout]()
-- [Step &#10103; Register a Local Package to npm]()
-  - [Publish]()
-  - [Unpublish]()
+- [Step &#10103; Setup Github Actions workflows]()
+  - [1) Add a workflow directory and file in our local repository]()
+  - [2) Configure a workflow]()
+- [Step &#10104; Setup a new Github Release]()
+  - [1) Create a tag for our local package release]()
+  - [2) Create a new release to trigger the publish workflow]()
 
 ## Prerequisite
 
@@ -283,4 +287,4 @@ Now we can create a new release using the [web](https://docs.github.com/en/repos
 
 Once the first release is creaed in the Github repository, our publish workflow will be triggered and register our local package to the [public npm registory](https://docs.npmjs.com/about-the-public-npm-registry).
 
-(add some details)
+(TODO: test and add some details)
