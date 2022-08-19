@@ -285,7 +285,7 @@ git push origin --tags
 
 <br />
 
-**&#10074; Delete tags**
+**&#10074; Delete a tag**
 
 To delete a tag in the local repository, use the [`git tag -d <tagname>`](https://git-scm.com/book/en/v2/Git-Basics-Tagging#_deleting_tags) command:
 
