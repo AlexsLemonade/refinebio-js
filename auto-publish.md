@@ -128,8 +128,10 @@ An npm access token must be provided to Github for authentication and it may be 
 
 While generating the token;
 
-- be sure to select the type of access token as **publish**
+- be sure to select the type of access token as "**Automation**"
 - save the token value(only visible at the time of creation)
+
+In our case, name it as `GITHUB_AUTOMATION`.
 
 ### 2) Add the npm access token to Github secrets
 
@@ -185,7 +187,7 @@ We may configure [workflow triggers](https://docs.github.com/en/actions/using-wo
 - The [**`name`**](https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#name) property is used to deifne the name of a workflow which will be used in our Github repository's [actions page](https://docs.github.com/en/actions/learn-github-actions/understanding-github-actions#viewing-the-activity-for-a-workflow-run).
 - The [**`on`**](https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#on) property is used to define the event. In our case, we use the [`release`](https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#release) event to trigger a workflow to automatically publish the package when we [create a new release](https://docs.github.com/en/repositories/releasing-projects-on-github/managing-releases-in-a-repository#creating-a-release) in our Github repository. With that, the `Activity types` of the [`release`](https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#release) event is set to `created`.
 - The [**`jobs`**](https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#jobs) property is used to define tasks to run when the workflow is triggered. In a workflow, we can any number of jobs which run in parallel. A [unique identifier](https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_id) is assigned to each job and each job runs in a separate new instance of the virtual enviromnent specified by [`runs-on`](https://docs.github.com/en/actions/using-jobs/choosing-the-runner-for-a-job).
-- The [**`steps`**](https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idsteps) property is used to define a set of tasks to run in a job. Any number of steps can be added in a single job and those steps are excecuted in the order in which they are defined. A step can [run commands](https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idstepsrun) using the operating system's shell and [use an action](https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idstepsuses). We can also assign a [`name`](https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idsteps) to each step to display in [actions page](https://docs.github.com/en/actions/learn-github-actions/understanding-github-actions#viewing-the-activity-for-a-workflow-run).
+- The [**`steps`**](https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idsteps) property is used to define a set of tasks to run in a job. Any number of steps can be added in a single job and those steps are excecuted in the order in which they are defined. A step can [run commands](https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idstepsrun) using the operating system's shell and [use an action](https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idstepsuses). We can also assign a [`name`](https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idsteps) to each step to display in the [actions page](https://docs.github.com/en/actions/learn-github-actions/understanding-github-actions#viewing-the-activity-for-a-workflow-run).
 
 The below workflow publishes our local package to the [public npm registry](https://docs.npmjs.com/about-the-public-npm-registry) upon a new release if [CI tests](https://docs.github.com/en/actions/automating-builds-and-tests/about-continuous-integration) pass.
 
@@ -283,8 +285,6 @@ git push origin --tags
 
 ### 2) Create a new release to trigger the publish workflow
 
-Now we can create a new release using the [web](https://docs.github.com/en/repositories/releasing-projects-on-github/managing-releases-in-a-repository#creating-a-release).
+Now we can create a new release using the [web](https://docs.github.com/en/repositories/releasing-projects-on-github/managing-releases-in-a-repository#creating-a-release) in the Github repository, and our publish workflow will be triggered and register our local package to the [public npm registory](https://docs.npmjs.com/about-the-public-npm-registry).
 
-Once the first release is creaed in the Github repository, our publish workflow will be triggered and register our local package to the [public npm registory](https://docs.npmjs.com/about-the-public-npm-registry).
-
-(TODO: test and add some details)
+Once the publishing workflow passes in the [actions page](https://docs.github.com/en/actions/learn-github-actions/understanding-github-actions#viewing-the-activity-for-a-workflow-run), [sign in](https://www.npmjs.com) to our CCDL npm account. We will see that this newly registered package is publicly available for installation.
