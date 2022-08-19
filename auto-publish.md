@@ -282,3 +282,5 @@ git push origin --tags
 Now we can create a new release using the [web](https://docs.github.com/en/repositories/releasing-projects-on-github/managing-releases-in-a-repository#creating-a-release).
 
 Once the first release is creaed in the Github repository, our publish workflow will be triggered and register our local package to the [public npm registory](https://docs.npmjs.com/about-the-public-npm-registry).
+
+(add some details)
