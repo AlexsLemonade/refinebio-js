@@ -16,13 +16,12 @@ Step-by-Step Guide for publishing the refinebio npm package with Github Actions
 - [Step &#10102; Setup Authenticationt]()
   - [1) Generate an npm access token]()
   - [2) Add the npm access token to Github secrets]()
-  - [Logout]()
 - [Step &#10103; Setup Github Actions workflows]()
   - [1) Add a workflow directory and file in our local repository]()
   - [2) Configure a workflow]()
-- [Step &#10104; Setup a new Github Release]()
+- [Step &#10104; Setup Github Release]()
   - [1) Create a tag for our local package release]()
-  - [2) Create a new release to trigger the publish workflow]()
+  - [2) Create a release to trigger the publish workflow]()
 
 ## Prerequisite
 
@@ -102,12 +101,13 @@ Necessary information to be included:
 
 <details>
 <summary>&horbar; LICENSE file</summary>
- 
+
 > You can include an open source license in your repository to make it easier for other people to contribute.
-  
+
 [Licensing a repository](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/licensing-a-repository) with [BSD 3-Clause](https://opensource.org/licenses/BSD-3-Clause) can be easily done in the Github repository:
+
 - Create a new file and named `LICENSE` or `LICENSE.md`
-- Select the [BSD 3-Clause](https://opensource.org/licenses/BSD-3-Clause) template from the license picker provided by Github 
+- Select the [BSD 3-Clause](https://opensource.org/licenses/BSD-3-Clause) template from the license picker provided by Github
 - Review and commit the LICENSE file
 
 (For more information: [Adding a license to a repository](https://docs.github.com/en/communities/setting-up-your-project-for-healthy-contributions/adding-a-license-to-a-repository))
@@ -184,12 +184,12 @@ node_modules/
 
 We may configure [workflow triggers](https://docs.github.com/en/actions/using-workflows/triggering-a-workflow) using any supported [events](https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows).
 
-- The [**`name`**](https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#name) property is used to deifne the name of a workflow which will be used in our Github repository's [actions page](https://docs.github.com/en/actions/learn-github-actions/understanding-github-actions#viewing-the-activity-for-a-workflow-run).
-- The [**`on`**](https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#on) property is used to define the event. In our case, we use the [`release`](https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#release) event to trigger a workflow to automatically publish the package when we [create a new release](https://docs.github.com/en/repositories/releasing-projects-on-github/managing-releases-in-a-repository#creating-a-release) in our Github repository. With that, the `Activity types` of the [`release`](https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#release) event is set to `created`.
-- The [**`jobs`**](https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#jobs) property is used to define tasks to run when the workflow is triggered. In a workflow, we can any number of jobs which run in parallel. A [unique identifier](https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_id) is assigned to each job and each job runs in a separate new instance of the virtual enviromnent specified by [`runs-on`](https://docs.github.com/en/actions/using-jobs/choosing-the-runner-for-a-job).
-- The [**`steps`**](https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idsteps) property is used to define a set of tasks to run in a job. Any number of steps can be added in a single job and those steps are excecuted in the order in which they are defined. A step can [run commands](https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idstepsrun) using the operating system's shell and [use an action](https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idstepsuses). We can also assign a [`name`](https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idsteps) to each step to display in the [actions page](https://docs.github.com/en/actions/learn-github-actions/understanding-github-actions#viewing-the-activity-for-a-workflow-run).
+- The [**`name`**](https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#name) property is used to deifne the name of a workflow which will be displayed in our Github repository's [actions page](https://docs.github.com/en/actions/learn-github-actions/understanding-github-actions#viewing-the-activity-for-a-workflow-run).
+- The [**`on`**](https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#on) property is used to define the event. In our case, we use the [`release`](https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#release) event to trigger a workflow to automatically publish the package when we [create a new release](https://docs.github.com/en/repositories/releasing-projects-on-github/managing-releases-in-a-repository#creating-a-release) in our Github repository. With that, the `Activity types` of the [`release`](https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#release) event should be set to `created`.
+- The [**`jobs`**](https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#jobs) property is used to define tasks to run when the workflow is triggered. In a workflow, we can add any number of jobs which run in parallel. A [unique identifier](https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_id) is assigned to each job and each job runs in a separate new instance of the virtual enviromnent specified by [`runs-on`](https://docs.github.com/en/actions/using-jobs/choosing-the-runner-for-a-job).
+- The [**`steps`**](https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idsteps) property is used to define a set of tasks to run in a job. Any number of steps can be added in a single job and those steps are excecuted in the order in which they are defined. A step can [run commands](https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idstepsrun) using the operating system's shell and can [use an action](https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idstepsuses). We may also assign a [`name`](https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idsteps) to each step to display in the [actions page](https://docs.github.com/en/actions/learn-github-actions/understanding-github-actions#viewing-the-activity-for-a-workflow-run).
 
-The below workflow publishes our local package to the [public npm registry](https://docs.npmjs.com/about-the-public-npm-registry) upon a new release if [CI tests](https://docs.github.com/en/actions/automating-builds-and-tests/about-continuous-integration) pass.
+The below workflow publishes our local package to the [public npm registry](https://docs.npmjs.com/about-the-public-npm-registry) upon a new release if [CI tests](https://docs.github.com/en/actions/automating-builds-and-tests/about-continuous-integration) passes.
 
 **publish.yml:**
 
@@ -217,7 +217,7 @@ jobs:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
 ```
 
-## Step &#10104; Setup a new Github Release
+## Step &#10104; Setup Github Release
 
 ### 1) Create a tag for our local package release
 
@@ -228,24 +228,26 @@ Every [`release`](https://docs.github.com/en/repositories/releasing-projects-on-
 There are two types of tags supported in Github:
 |type||
 |:--:|---|
-|Lightweight| It is simply a pointer to a specific commit, is commonly used as a "bookmark", and is commonly used as private.|
+|Lightweight| It is simply a pointer to a specific commit, is commonly used as a "bookmark" and as private.|
 |Annotated| It is stored as a full object in the Git database, contains additonal meta data(a tagger name, email, and date; can have a tagging message etc), and is commonly used for a public release of a project.|
 
 **NOTE:** It’s generally recommended to create annotated tags so that we have all the information.
 
 <br />
 
-**&#10074; Create a new annotated tag in local**
+**&#10074; Create an annotated tag in local**
 
 In the root of our local repository, use the [`git tag -a <tagname> -m <msg>`](https://git-scm.com/docs/git-tag) command to create an annotated tag.
 
 (by passing the flag [`-a`](https://git-scm.com/docs/git-tag#Documentation/git-tag.txt--a) or [`--annotate`](https://git-scm.com/docs/git-tag#Documentation/git-tag.txt--a) makes an unsigned annotated tag object)
 
-e.g.) Creates the annotated tag, named as `v0.1.0` with the message "refinebio Release Version 1.0.0".
+e.g.) Creates an annotated tag named as `v1.0.0` with the message "refinebio Release Version 1.0.0"
 
 ```
 git tag -a v1.0.0 -m "refinebio Release Version 1.0.0"
 ```
+
+It tags the last commit in our local commit history.
 
 <br />
 
@@ -269,15 +271,15 @@ git tag
 
 <br />
 
-**&#10074; Share a tag to remote**
+**&#10074; Share a tag with remote**
 
-To share a tag in the local repository, we must explicitly push it the remote repository using the [`git push origin <tagname>`](https://git-scm.com/book/en/v2/Git-Basics-Tagging#_sharing_tags) command.
+To share a tag in the local repository, we must explicitly push it the remote repository using the [`git push origin <tagname>`](https://git-scm.com/book/en/v2/Git-Basics-Tagging#_sharing_tags) command:
 
 ```
 git push origin v1.0.0
 ```
 
-To push all the local tags to the remote at once, use the `--tags` flag which will transfer all tags that are not already there.
+To push all the local tags to the remote at once, use the `--tags` flag which will transfer all tags that are not already there:
 
 ```
 git push origin --tags
@@ -307,8 +309,8 @@ Or run the `git push origin -d <tagname>` command:
 git push origin -d v1.0.0
 ```
 
-### 2) Create a new release to trigger the publish workflow
+### 2) Create a release to trigger the publish workflow
 
-Now we can create a new release using the [web](https://docs.github.com/en/repositories/releasing-projects-on-github/managing-releases-in-a-repository#creating-a-release) in the Github repository, and our publish workflow will be triggered and register our local package to the [public npm registory](https://docs.npmjs.com/about-the-public-npm-registry).
+Now we can [create a new release ](https://docs.github.com/en/repositories/releasing-projects-on-github/managing-releases-in-a-repository#creating-a-release)in the Github repository. It'll instantly trigger the publish workflow and register our local package to the [public npm registory](https://docs.npmjs.com/about-the-public-npm-registry).
 
-Once the publishing workflow passes in the [actions page](https://docs.github.com/en/actions/learn-github-actions/understanding-github-actions#viewing-the-activity-for-a-workflow-run), [sign in](https://www.npmjs.com) to our CCDL npm account. We will see that this newly registered package is publicly available for installation.
+Once the publish workflow passes in the [actions page](https://docs.github.com/en/actions/learn-github-actions/understanding-github-actions#viewing-the-activity-for-a-workflow-run), [sign in](https://www.npmjs.com) to our CCDL npm account. We will see that this newly registered package is publicly available for installation.
