@@ -1,9 +1,8 @@
 /*
-@name mapObject 
-@description maps an object and transforms it using a callback function
-@param {Object} obj - an object to be mapped
-@param {func} callback - a function to be executed on each property
-@return {Object}: a new transformed object
+Maps an object and transforms it using a callback function
+@param {Object} obj - An object to be mapped
+@param {function([string, *], Object):*} callback - A function to be executed on each property
+@returns {Object} A new transformed object
 */
 
 export const mapObject = (obj, callback) => {

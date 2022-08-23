@@ -4,14 +4,13 @@ import { unionArray } from 'utils/unionArray'
 import { sortArray } from 'utils/sortArray'
 
 /*
-@name mergeDatasets 
-@description merges two objects and returns a new merged object 
+Merges two objects and returns a new merged object 
  - If no second argument was passed, then it returns the first argument
  - If both objects have the same keys with the array datatyp, then it returns a union of those arrays
    e.g) {a: [1,2]}, {a: [2,3]} should be {a: [1,2,3]}
-@param {object} base - a base object whose properties get overwriten by a change object if any
-@param {object} override - an object which gets merged into a base object
-@return {object} a new object or a base object if no second argument
+@param {Object} base - A base object whose properties get overwriten by a change object if any
+@param {Object} override - An object which gets merged into a base object
+@returns {Object} A new object or a base object if no second argument
 */
 export const mergeDatasets = (base, override) => {
   if (!override) return base
