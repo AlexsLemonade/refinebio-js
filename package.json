@@ -1,11 +1,29 @@
 {
-  "name": "refinebio",
-  "version": "0.1.0",
-  "description": "Javascript client for refine.bio",
+  "name": "@ccdl/refinebio",
+  "version": "0.0.1",
+  "description": "refinebio JS client",
   "main": "index.js",
-  "repository": "https://github.com/AlexsLemonade/refinebio-js.git",
-  "author": "nozomione <nozomi@ccdatalab.org>",
+  "repository": {
+    "type": "git",
+     "url": "https://github.com/AlexsLemonade/refinebio-js.git"
+  },
+  "keywords": ["refinebio", "refinebio-js", "refinebo JS client"],
+  "author": "CCDL <contact@ccdatalab.org>",
+  "contributors": [
+      {
+         "name": "David Mejia",
+         "email": "david@ccdatalab.org"
+      },
+     {
+         "name": "Nozomi Ichihara",
+         "email": "nozomi@ccdatalab.org"
+      }
+  ],
   "license": "BSD-3-Clause",
+  "bugs": {
+    "url": "https://github.com/AlexsLemonade/refinebio-js/issues"
+  },
+  "homepage": "https://github.com/AlexsLemonade/refinebio-js",
   "dependencies": {
     "@babel/runtime": "^7.17.9",
     "isomorphic-unfetch": "^3.1.0"
