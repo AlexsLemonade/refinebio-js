@@ -9,14 +9,11 @@ updates:
       interval: "daily"
     # Prefix all commit messages with "npm"  
     commit-message:
-      prefix: "npm"  
+      prefix: "[npm]"  
     # ignore all major(BREAKING-CHANGE) version updates
     ignore: 
       - dependency-name: "*"
         update-types: ["version-update:semver-major"]
-    # Labels on pull requests for security and version updates
-    labels:
-      - "npm dependencies"
     # Allow up to 10 open pull requests for npm dependencies
     open-pull-requests-limit: 10
     # Separate sections of the branch name with a hyphen
