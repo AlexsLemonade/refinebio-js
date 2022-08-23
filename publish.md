@@ -113,6 +113,8 @@ Necessary information to be included:
 
 ## Step &#10102; Access an npm Account
 
+**IMPORTANT:** Never use the CCDL account to publish a package, but instead use an individual member account.
+
 ### &#10074; Login
 
 <br/>
