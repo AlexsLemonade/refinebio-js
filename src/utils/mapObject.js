@@ -1,15 +1,15 @@
 /*
 @name mapObject 
-@description maps an object and passes an invoked callback as an argument to each method of that mapped object
-@param {object} object - an object to be transformed
-@param {func} callback - a function that is passed as an argument  
-@return {object}: returns a transformed object
+@description maps an object and transforms it using a callback function
+@param {Object} obj - an object to be mapped
+@param {func} callback - a function to be executed on each property
+@return {Object}: a new transformed object
 */
 
-export const mapObject = (object, callback) => {
+export const mapObject = (obj, callback) => {
   const newObject = {}
-  Object.entries(object).forEach(([k, v]) => {
-    newObject[k] = v(callback())
+  Object.entries(obj).forEach(([k, v]) => {
+    newObject[k] = callback([k, v], obj)
   })
   return newObject
 }

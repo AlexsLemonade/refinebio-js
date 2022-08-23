@@ -20,13 +20,16 @@ export const Dataset = (api) => {
     const set = (key, value) => {
       model[key] = value
     }
-    const instancePublicInterface = mapObject(publicInterface, () => ({
-      api,
-      model,
-      publicInterface,
-      get,
-      set
-    }))
+    // eslint-disable-next-line no-unused-vars
+    const instancePublicInterface = mapObject(publicInterface, ([_, v]) =>
+      v({
+        api,
+        model,
+        publicInterface,
+        get,
+        set
+      })
+    )
 
     return instancePublicInterface
   }
