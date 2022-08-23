@@ -19,3 +19,5 @@ updates:
     # Separate sections of the branch name with a hyphen
     pull-request-branch-name:
       separator: "-"  
+    # Always increase the version in both "package.json" and "lock" files   
+    versioning-strategy: increase
