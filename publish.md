@@ -39,7 +39,7 @@ To setup a package.json for a npm package, the following fields should be includ
 {
   "name": "@ccdl/refinebio",
   "version": "0.1.0",
-  "description": "refinebio JS client.",
+  "description": "refinebio JS client",
   "main": "index.js",
   "script": {},
   "dependencies": {},
@@ -48,14 +48,15 @@ To setup a package.json for a npm package, the following fields should be includ
     "url": "https://github.com/AlexsLemonade/refinebio-js.git"
   },
   "keywords": ["refinebio", "refinebio-js", "refinebo JS client"],
+  "author": "CCDL <contact@ccdatalab.org>",
   "contributors": [
     {
-      "name": "davidsmejia",
-      "email": "...@ccdatalab.org"
+      "name": "David Mejia",
+      "email": "david@ccdatalab.org"
     },
     {
-      "name": "nozomione",
-      "email": "...@ccdatalab.org"
+      "name": "Nozomi Ichihara",
+      "email": "nozomi@ccdatalab.org"
     }
   ],
   "license": "BSD-3-Clause",
