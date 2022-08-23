@@ -1,8 +1,8 @@
 ### Update
 
-The refinebio v0.0.1 has been manually published to the public npm registry under the CCDL organization scope and now publically available for installatio.
+The refinebio v0.0.1 has been manually published to the public npm registry under the CCDL organization scope and now publicly available for installation.
 
-- The `package.json` has been udpated for this release and merged to dev/main
+- The `package.json` has been updated for this release and merged to dev/main
 - It can be unpublished at any time, except that the same `package@version` combination won't be available(the npm registry data is immutable)
 
 ### NOTE
