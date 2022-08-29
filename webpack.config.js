@@ -11,7 +11,7 @@ module.exports = {
     alias: {
       config: path.resolve(__dirname, 'src/'),
       utils: path.resolve(__dirname, 'src/utils/'),
-      token: path.resolve(__dirname, 'src/token/')
+      resources: path.resolve(__dirname, 'src/resources/')
     }
   },
   module: {

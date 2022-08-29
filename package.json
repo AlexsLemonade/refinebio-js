@@ -2,7 +2,7 @@
   "name": "@ccdl/refinebio",
   "version": "0.0.1",
   "description": "refinebio JS client",
-  "main": "index.js",
+  "main": "dist/refinebio.js",
   "repository": {
     "type": "git",
      "url": "https://github.com/AlexsLemonade/refinebio-js.git"
