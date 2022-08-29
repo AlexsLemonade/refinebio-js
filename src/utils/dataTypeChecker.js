@@ -2,7 +2,7 @@
 Checks if the argument is an accessor 
 @param {Object} obj - A parent object
 @param {string} key - A key to be tested
-@return {boolean} A boolean
+@returns {boolean} A boolean
 */
 export const isAccessor = (obj, key) =>
   typeof Object.getOwnPropertyDescriptor(obj, key).get === 'function' ||
@@ -11,14 +11,14 @@ export const isAccessor = (obj, key) =>
 /*
 Checks if the argument is an array 
 @param {any} - An item to be checked
-@return {boolean} A boolean
+@returns {boolean} A boolean
 */
 export const isArray = (item) => Array.isArray(item)
 
 /*
 Checks if the argument is an object and not null
 @param {any} - An item to be checked
-@return {boolean} A boolean
+@returns {boolean} A boolean
 */
 export const isObject = (item) => typeof item === 'object' && item !== null
 
@@ -26,7 +26,7 @@ export const isObject = (item) => typeof item === 'object' && item !== null
 Checks if the first and second arguments have the same datatype
 @param {any} a - An item to be compared to
 @param {any} b - An item to be compared to
-@return {boolean} A boolean
+@returns {boolean} A boolean
 */
 export const isTypeMatch = (a, b) => {
   switch (typeof a) {
