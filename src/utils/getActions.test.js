@@ -1,5 +1,8 @@
 import defaultConfig from 'config'
 import { getActions } from 'utils/getActions'
+import { urlSearchParamsFromKeys } from 'utils/urlSearchParamsFromKeys'
+
+const basePath = `${defaultConfig.path}example`
 
 jest.mock('utils/getResponse', () => ({
   getResponse: jest.fn((config, url, requestConfig) => {
@@ -26,13 +29,12 @@ test('create request', async () => {
   const createRequest = await exampleResource.create({
     example: 'example'
   })
-
   const { method, headers } = createRequest.requestConfig
 
   expect(method).toBe('POST')
   expect(headers['content-type']).toBe('application/json')
   expect(createRequest.isOk).toBeTruthy()
-  expect(createRequest.url).toBe(`${defaultConfig.path}example`) // check path
+  expect(createRequest.url).toBe(`${basePath}`) // check path
 })
 
 test('get request', async () => {
@@ -41,18 +43,17 @@ test('get request', async () => {
   const { method } = getRequest.requestConfig
 
   expect(method).toBe('GET')
-  expect(getRequest.url).toBe(`${defaultConfig.path}example/${id}`)
+  expect(getRequest.url).toBe(`${basePath}/${id}`)
 })
 
 test('filter request', async () => {
-  const filterRequest = await exampleResource.filter({
-    term: ['term1', 'term2']
-  })
+  const query = { term: ['term1', 'term2'] }
+  const filterRequest = await exampleResource.filter(query)
   const { method } = filterRequest.requestConfig
 
   expect(method).toBe('GET')
   expect(filterRequest.url).toBe(
-    `${defaultConfig.path}example?term=term1&term=term2`
+    `${basePath}?${urlSearchParamsFromKeys(query)}`
   )
 })
 
@@ -63,7 +64,7 @@ test('update request', async () => {
 
   expect(method).toBe('PUT')
   expect(headers['content-type']).toBe('application/json')
-  expect(updateRequest.url).toBe(`${defaultConfig.path}example/${id}`)
+  expect(updateRequest.url).toBe(`${basePath}/${id}`)
 })
 
 test('remove request', async () => {
@@ -71,5 +72,5 @@ test('remove request', async () => {
   const removeRequest = await exampleResource.delete(id)
 
   expect(removeRequest.requestConfig.method).toBe('DELETE')
-  expect(removeRequest.url).toBe(`${defaultConfig.path}example/${id}`)
+  expect(removeRequest.url).toBe(`${basePath}/${id}`)
 })
