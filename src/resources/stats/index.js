@@ -3,12 +3,14 @@ import { getActions } from 'utils/getActions'
 import { availableActions } from 'utils/availableActions'
 
 export const stats = (config = defaultConfig) => {
-  const { get } = getActions(config, 'stats')
-  const downloader = getActions(config, 'stats/failures/downloader').filter
-  const processor = getActions(config, 'stats/failures/processor').filter
+  const path = 'stats'
+  const specificPath = `${path}/failures/`
+  const { get } = getActions(config, path)
+  const downloader = getActions(config, `${specificPath}downloader`).filter
+  const processor = getActions(config, `${specificPath}processor`).filter
 
   return {
-    ...availableActions('stats'),
+    ...availableActions(path),
     get,
     failures: {
       downloader: {

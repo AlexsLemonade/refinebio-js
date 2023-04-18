@@ -4,7 +4,8 @@ const api = Refinebio({ verbose: true })
 let createRequest
 
 beforeAll(async () => {
-  createRequest = await api.token.create({ is_activated: true })
+  const data = { is_activated: true }
+  createRequest = await api.token.create(data)
 })
 
 test('create a token', async () => {
