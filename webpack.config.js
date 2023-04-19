@@ -10,6 +10,8 @@ module.exports = {
     extensions: ['*', '.js'],
     alias: {
       config: path.resolve(__dirname, 'src/'),
+      dataset: path.resolve(__dirname, 'src/dataset/'),
+      resources: path.resolve(__dirname, 'src/resources/'),
       utils: path.resolve(__dirname, 'src/utils/'),
       token: path.resolve(__dirname, 'src/token/')
     }
