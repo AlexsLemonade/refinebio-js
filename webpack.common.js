@@ -3,15 +3,16 @@ const path = require('path')
 module.exports = {
   entry: path.resolve(__dirname, 'src/index.js'),
   output: {
-    path: path.resolve(__dirname, 'dist'),
-    filename: 'refinebio.js'
+    clean: true,
+    filename: 'index.js',
+    path: path.resolve(__dirname, 'dist')
   },
   resolve: {
     extensions: ['*', '.js'],
     alias: {
       config: path.resolve(__dirname, 'src/'),
       utils: path.resolve(__dirname, 'src/utils/'),
-      token: path.resolve(__dirname, 'src/token/')
+      resources: path.resolve(__dirname, 'src/resources/')
     }
   },
   module: {
@@ -24,8 +25,7 @@ module.exports = {
         }
       }
     ]
-  },
-  devtool: 'source-map'
+  }
 }
 
 // https://webpack.js.org/loaders/babel-loader/#root

@@ -2,22 +2,26 @@
   "name": "@ccdl/refinebio",
   "version": "0.0.1",
   "description": "refinebio JS client",
-  "main": "index.js",
+  "main": "dist/index.js",
   "repository": {
     "type": "git",
-     "url": "https://github.com/AlexsLemonade/refinebio-js.git"
+    "url": "https://github.com/AlexsLemonade/refinebio-js.git"
   },
-  "keywords": ["refinebio", "refinebio-js", "refinebo JS client"],
+  "keywords": [
+    "refinebio",
+    "refinebio-js",
+    "refinebo JS client"
+  ],
   "author": "CCDL <contact@ccdatalab.org>",
   "contributors": [
-      {
-         "name": "David Mejia",
-         "email": "david@ccdatalab.org"
-      },
-     {
-         "name": "Nozomi Ichihara",
-         "email": "nozomi@ccdatalab.org"
-      }
+    {
+      "name": "David Mejia",
+      "email": "david@ccdatalab.org"
+    },
+    {
+      "name": "Nozomi Ichihara",
+      "email": "nozomi@ccdatalab.org"
+    }
   ],
   "license": "BSD-3-Clause",
   "bugs": {
@@ -26,12 +30,14 @@
   "homepage": "https://github.com/AlexsLemonade/refinebio-js",
   "dependencies": {
     "@babel/runtime": "^7.17.9",
-    "isomorphic-unfetch": "^3.1.0"
+    "isomorphic-unfetch": "^3.1.0",
+    "webpack-merge": "^5.8.0"
   },
   "scripts": {
     "test": "jest --no-cache",
-    "dev": "webpack --watch --progress",
-    "build": "webpack",
+    "dev": "webpack --watch --progress --config webpack.dev.js",
+    "build:dev": "webpack --config webpack.dev.js",
+    "build:prod": "webpack --config webpack.prod.js",
     "lint": "npx eslint --fix --ext .js src/"
   },
   "devDependencies": {
