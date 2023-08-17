@@ -3,10 +3,12 @@ import { getActions } from 'utils/getActions'
 import { availableActions } from 'utils/availableActions'
 
 export const token = (config = defaultConfig) => {
-  const { create, get, update } = getActions(config, 'token')
+  const path = 'token'
+  const { create } = getActions(config, `${path}/`)
+  const { get, update } = getActions(config, path)
 
   return {
-    ...availableActions('token'),
+    ...availableActions(path),
     create,
     get,
     update

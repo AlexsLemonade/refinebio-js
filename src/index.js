@@ -3,7 +3,6 @@ import defaultConfig from 'config'
 import { mergeConfig } from 'utils/mergeConfig'
 import { compendia } from 'resources/compendia'
 import { computationalResults } from 'resources/computationalResults'
-import { computedFiles } from 'resources/computedFiles'
 import { dataset } from 'resources/dataset'
 import { experiments } from 'resources/experiments'
 import { institutions } from 'resources/institutions'
@@ -23,7 +22,6 @@ import { transcriptomeIndices } from 'resources/transcriptomeIndices'
 export {
   compendia,
   computationalResults,
-  computedFiles,
   dataset,
   experiments,
   institutions,
@@ -50,7 +48,6 @@ export default (override = {}) => {
     updateConfig: (changes) => mergeConfig(config, changes),
     compendia: compendia(config),
     computationalResults: computationalResults(config),
-    computedFiles: computedFiles(config),
     dataset: dataset(config),
     experiments: experiments(config),
     institutions: institutions(config),

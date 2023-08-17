@@ -1,4 +1,4 @@
-const ACTIONS = ['create', 'get', 'filter', 'update', 'delete']
+const ACTIONS = ['create', 'get', 'filter', 'update']
 
 export const availableActions = (resource) => {
   const defaultActions = {}
