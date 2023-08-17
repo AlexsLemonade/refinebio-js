@@ -6,15 +6,15 @@ export const makeRequest = async (
   config,
   url,
   {
-    headers = { 'content-type': 'application/json' },
     authorization,
+    headers = { 'content-type': 'application/json' },
     ...options
   } = {},
+
   query = {}
 ) => {
   const APIUrl = getAPIUrl(config, url, query)
   const requestConfig = { headers, ...options }
-
   // add authorization token to headers
   if (authorization) {
     requestConfig.headers['api-key'] = authorization

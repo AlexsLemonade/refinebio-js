@@ -3,10 +3,12 @@ import { getActions } from 'utils/getActions'
 import { availableActions } from 'utils/availableActions'
 
 export const dataset = (config = defaultConfig) => {
-  const { create, get, update } = getActions(config, 'dataset')
+  const path = 'dataset'
+  const { create } = getActions(config, `${path}/`)
+  const { get, update } = getActions(config, path)
 
   return {
-    ...availableActions('dataset'),
+    ...availableActions(path),
     create,
     get,
     update
