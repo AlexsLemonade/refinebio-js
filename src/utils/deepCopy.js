@@ -1,9 +1,10 @@
 import { isAccessor, isArray, isObject } from 'utils/dataTypeChecker'
 
 /*
-Performs a deep copy of an object and returns a new copied object
-@param {Object} source - A source object to be deep copied
-@returns {Object} A new object
+@name deepCopy
+@description performs a deep copy of an object and returns a new copied object
+@param {object} source - a source object to be deep copied
+@return {object} a new object
 */
 
 export const deepCopy = (source) => {

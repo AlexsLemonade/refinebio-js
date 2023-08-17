@@ -1,11 +1,13 @@
 import { deepCopy } from 'utils/deepCopy'
 
 /*
-Overwrite the config with a new configuration setting
-@param {Object} changes - A new configration setting
-@param {Object} source - The current config object
-@returns {Object} A shallow-merged and deep-copied updated config (TEMPORARY)
+@name mergeConfig 
+@description overwrite the config with a new configuration setting
+@param {object} changes - a new configration setting
+@param {object} source - the current config 
+@return {object} (TEMP): returns a shallow-merged and deep-copied updated config 
 */
+
 export const mergeConfig = (source, changes) => ({
   ...deepCopy(source),
   ...deepCopy(changes)
