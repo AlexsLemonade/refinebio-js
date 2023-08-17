@@ -159,7 +159,6 @@ const getSearchResults = await api.search.filter({
   
  * [**compendia**](#compendia)
  * [**computationalResults**](#computationalresults)
- * [**computedFiles**](#computedfiles)
  * [**dataset**](#dataset)
  * [**experiments**](#experiments)
  * [**institutions**](#institutions)
@@ -228,34 +227,6 @@ const getComputationalResults = await Refinebio().computationalResults.filter(
   query
 )
 ```
-
-</details>
-
----
-
-#### computedFiles
-
-This resource can be used to get the computed file. This may return a specific computed file by its corresponding identifier or a list of all computed files with filtering.
-
-ComputedFiles are representation of files created by refinebio processes. It's possible to download each one of these files by providing a valid token. To
-acquire and activate an API key see the documentation for the [token](#token) endpoint.
-
-Please view the API documentation for more details.
-| Action | Type | ReDoc | SwaggerUI |
-| :--- | :--- | :--- | :--- |
-| `computedFiles.get` | `computed_files_read` | [view](https://api.refine.bio/v1/#operation/computed_files_read) | [view](https://api.refine.bio/v1/swagger/) |
-| `computedFiles.filter` | `computed_files_list` | [view](https://api.refine.bio/v1/#operation/computed_files_list) | [view](https://api.refine.bio/v1/swagger/) |
-
-<details> 
-  <summary>Example</summary>
-  
-  ```js
-  // get a specific computed file
-  const getComputedFile = await Refinebio().computedFiles.get(id)
-  
-  // get a list of all computed files
-  const getComputedFiles = await Refinebio().computedFiles.filter(query)
-  ```
 
 </details>
 
