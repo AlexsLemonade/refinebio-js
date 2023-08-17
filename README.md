@@ -16,7 +16,7 @@ This is a Javascript API client for [refine.bio](https://www.refine.bio/).
 
 ## Links
 
-Here are the addtional resources for refine.bio API.
+Here are the addtional resources for refine.bio API:
 
 - [refine.bio API (v1) ReDoc](https://api.refine.bio/v1/)
 - [refine.bio API (v1) Swagger UI](https://api.refine.bio/v1/swagger/)
