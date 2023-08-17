@@ -23,11 +23,7 @@ export const getActions = (config, path, pk = 'id') => {
         method: 'PUT',
         body: JSON.stringify(data)
       })
-    },
-    delete: (id) =>
-      makeRequest(config, `${path}/${id}`, {
-        method: 'DELETE'
-      })
+    }
   }
 }
 

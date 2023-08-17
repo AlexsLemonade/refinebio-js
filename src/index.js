@@ -1,3 +1,4 @@
+import { Dataset as DatasetConstructor } from 'dataset'
 import defaultConfig from 'config'
 import { mergeConfig } from 'utils/mergeConfig'
 import { compendia } from 'resources/compendia'
@@ -38,8 +39,10 @@ export {
   transcriptomeIndices
 }
 
+let config
+
 export default (override = {}) => {
-  const config = mergeConfig(defaultConfig, override)
+  config = mergeConfig(defaultConfig, override)
 
   return {
     updateConfig: (changes) => mergeConfig(config, changes),
@@ -62,3 +65,5 @@ export default (override = {}) => {
     transcriptomeIndices: transcriptomeIndices(config)
   }
 }
+
+export const Dataset = DatasetConstructor(dataset(config))

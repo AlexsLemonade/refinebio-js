@@ -66,11 +66,3 @@ test('update request', async () => {
   expect(headers['content-type']).toBe('application/json')
   expect(updateRequest.url).toBe(`${basePath}/${id}`)
 })
-
-test('remove request', async () => {
-  const id = 1
-  const removeRequest = await exampleResource.delete(id)
-
-  expect(removeRequest.requestConfig.method).toBe('DELETE')
-  expect(removeRequest.url).toBe(`${basePath}/${id}`)
-})

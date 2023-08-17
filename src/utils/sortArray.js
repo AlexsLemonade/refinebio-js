@@ -1,11 +1,10 @@
 import { isArray } from './dataTypeChecker'
 
 /*
-@name sortArray
-@description sorts an array
-@param {array} arr - an array to be sorted
-@param {boolean} asc - if it's true, then the output is in ascending order or else it's in descending order
-@return {array} a new array
+Sorts an array
+@param {Array} arr - An array to be sorted
+@param {boolean} asc - A flag that indicates that the array is sorted in ascending (default) or in descending order
+@returns {Array} A new array
 */
 export const sortArray = (arr, asc = true) => {
   if (!isArray(arr)) return undefined
