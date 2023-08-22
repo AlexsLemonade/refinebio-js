@@ -1,4 +1,4 @@
-import { isArray } from './dataTypeChecker'
+import { isArray } from 'utils/isArray'
 
 /*
 Sorts an array

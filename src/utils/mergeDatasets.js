@@ -1,4 +1,5 @@
-import { isArray, isObject } from 'utils/dataTypeChecker'
+import { isArray } from 'utils/isArray'
+import { isObject } from 'utils/isObject'
 import { deepCopy } from 'utils/deepCopy'
 import { unionArray } from 'utils/unionArray'
 import { sortArray } from 'utils/sortArray'
