@@ -1,4 +1,4 @@
-import {isArray} from 'utils/isArray'
+import { isArray } from 'utils/isArray'
 
 describe("Check if it's an array", () => {
   test('shouild return true', () => {

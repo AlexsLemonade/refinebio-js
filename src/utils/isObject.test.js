@@ -1,4 +1,4 @@
-import {isObject} from 'utils/isObject.js'
+import { isObject } from 'utils/isObject'
 
 describe("Check if it's an object", () => {
   test('shouild return true', () => {
