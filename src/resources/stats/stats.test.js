@@ -8,13 +8,13 @@ test('get stats on the health of the system', async () => {
 })
 
 test('get stats on a failure downloader list', async () => {
-  const getFailureDownloader = await api.stats.failures.downloader.filter()
-  // TEMPORARY Returns 500
-  expect(getFailureDownloader.status).toBe(500)
+  const getFailureDownloader = await api.stats.get('downloader', true)
+  // Returns 404
+  expect(getFailureDownloader.status).toBe(404)
 })
 
 test('get stats on a failure processor list', async () => {
-  const getFailureProcessor = await api.stats.failures.processor.filter()
-  // TEMPORARY Returns 500
-  expect(getFailureProcessor.status).toBe(500)
+  const getFailureProcessor = await api.stats.get('processor', true)
+  // Returns 404
+  expect(getFailureProcessor.status).toBe(404)
 })
