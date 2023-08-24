@@ -2,18 +2,18 @@ import Refinebio from 'index'
 
 const api = Refinebio({ verbose: true })
 
-let filterRequest
+let getRequest
 
 beforeAll(async () => {
-  filterRequest = await api.processors.filter()
+  getRequest = await api.processors.get()
 })
 
-test('get all available processors with filtering', async () => {
-  expect(filterRequest.isOk).toBeTruthy()
+test('get all available processors', async () => {
+  expect(getRequest.isOk).toBeTruthy()
 })
 
 test('get a processor by its ID', async () => {
-  const { id } = filterRequest.response.results[0]
+  const { id } = getRequest.response.results[0]
   const getProcessor = await api.processors.get(id)
 
   expect(getProcessor.isOk).toBeTruthy()
