@@ -3,11 +3,12 @@ import { getActions } from 'utils/getActions'
 import { availableActions } from 'utils/availableActions'
 
 export const originalFiles = (config = defaultConfig) => {
-  const { get } = getActions(config, 'original_files')
+  const { get, filter } = getActions(config, 'original_files')
 
   return {
     ...availableActions('original_files'),
-    get
+    get,
+    filter
   }
 }
 

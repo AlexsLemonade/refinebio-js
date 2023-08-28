@@ -2,18 +2,18 @@ import Refinebio from 'index'
 
 const api = Refinebio({ verbose: true })
 
-let getRequest
+let filterRequest
 
 beforeAll(async () => {
-  getRequest = await api.computationalResults.get()
+  filterRequest = await api.computationalResults.filter()
 })
 
-test('get all computational results', async () => {
-  expect(getRequest.isOk).toBeTruthy()
+test('get all computational results with filtering', async () => {
+  expect(filterRequest.isOk).toBeTruthy()
 })
 
 test('get a computational result by ID', async () => {
-  const { id } = getRequest.response.results[0]
+  const { id } = filterRequest.response.results[0]
   const getComputationalResult = await api.computationalResults.get(id)
 
   expect(getComputationalResult.isOk).toBeTruthy()

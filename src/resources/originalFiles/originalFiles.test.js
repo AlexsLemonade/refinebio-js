@@ -2,18 +2,18 @@ import Refinebio from 'index'
 
 const api = Refinebio({ verbose: true })
 
-let getRequest
+let filterRequest
 
 beforeAll(async () => {
-  getRequest = await api.originalFiles.get()
+  filterRequest = await api.originalFiles.filter()
 })
 
-test('get original files', async () => {
-  expect(getRequest.isOk).toBeTruthy()
+test('get original files with filtering', async () => {
+  expect(filterRequest.isOk).toBeTruthy()
 })
 
 test('get an original file by ID', async () => {
-  const { id } = getRequest.response.results[0]
+  const { id } = filterRequest.response.results[0]
   const getOriginalFile = await api.originalFiles.get(id)
 
   expect(getOriginalFile.isOk).toBeTruthy()

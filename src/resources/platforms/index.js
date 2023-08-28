@@ -3,11 +3,11 @@ import { getActions } from 'utils/getActions'
 import { availableActions } from 'utils/availableActions'
 
 export const platforms = (config = defaultConfig) => {
-  const { get } = getActions(config, 'platforms')
+  const { filter } = getActions(config, 'platforms')
 
   return {
     ...availableActions('platforms'),
-    get
+    filter
   }
 }
 

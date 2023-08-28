@@ -3,11 +3,12 @@ import { getActions } from 'utils/getActions'
 import { availableActions } from 'utils/availableActions'
 
 export const compendia = (config = defaultConfig) => {
-  const { get } = getActions(config, 'compendia')
+  const { get, filter } = getActions(config, 'compendia')
 
   return {
     ...availableActions('compendia'),
-    get
+    get,
+    filter
   }
 }
 
