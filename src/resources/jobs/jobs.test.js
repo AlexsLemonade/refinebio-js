@@ -3,57 +3,57 @@ import Refinebio from 'index'
 const api = Refinebio({ verbose: true })
 
 describe('downloader job', () => {
-  let getRequest
+  let filterRequest
 
   beforeEach(async () => {
-    getRequest = await api.jobs.get('downloader')
+    filterRequest = await api.jobs.downloader.filter({})
   })
 
-  test('get a list of downloader jobs', async () => {
-    expect(getRequest.isOk).toBeTruthy()
+  test('get a list of downloader jobs with filtering', async () => {
+    expect(filterRequest.isOk).toBeTruthy()
   })
 
   test('get a downloader job', async () => {
-    const { id } = getRequest.response.results[0]
-    const getDownloaderJob = await api.jobs.get('downloader', id)
+    const { id } = filterRequest.response.results[0]
+    const getDownloaderJob = await api.jobs.downloader.get(id)
 
     expect(getDownloaderJob.isOk).toBeTruthy()
   })
 })
 
 describe('processor job', () => {
-  let getRequest
+  let filterRequest
 
   beforeEach(async () => {
-    getRequest = await api.jobs.get('processor')
+    filterRequest = await api.jobs.processor.filter({})
   })
 
-  test('get a list of processor jobs', async () => {
-    expect(getRequest.isOk).toBeTruthy()
+  test('get a list of processor jobs with filtering', async () => {
+    expect(filterRequest.isOk).toBeTruthy()
   })
 
   test('get a processor job', async () => {
-    const { id } = getRequest.response.results[0]
-    const getProcessorJob = await api.jobs.get('processor', id)
+    const { id } = filterRequest.response.results[0]
+    const getProcessorJob = await api.jobs.processor.get(id)
 
     expect(getProcessorJob.isOk).toBeTruthy()
   })
 })
 
 describe('suevey job', () => {
-  let getRequest
+  let filterRequest
 
   beforeEach(async () => {
-    getRequest = await api.jobs.get('survey')
+    filterRequest = await api.jobs.survey.filter({})
   })
 
-  test('get a list of survey jobs', async () => {
-    expect(getRequest.isOk).toBeTruthy()
+  test('get a list of survey jobs with filtering', async () => {
+    expect(filterRequest.isOk).toBeTruthy()
   })
 
   test('get a survey job', async () => {
-    const { id } = getRequest.response.results[0]
-    const getSurveyJob = await api.jobs.get('survey', id)
+    const { id } = filterRequest.response.results[0]
+    const getSurveyJob = await api.jobs.survey.get(id)
 
     expect(getSurveyJob.isOk).toBeTruthy()
   })

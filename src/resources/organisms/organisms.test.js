@@ -8,6 +8,10 @@ beforeAll(async () => {
   filterRequest = await api.organisms.filter()
 })
 
+test('get all available organisms with filtering', async () => {
+  expect(filterRequest.isOk).toBeTruthy()
+})
+
 test('get an organism by its name', async () => {
   const { name } = filterRequest.response.results[0]
   const getOrganism = await api.organisms.get(name)
