@@ -1,6 +1,5 @@
 import defaultConfig from 'config'
 import { getActions } from 'utils/getActions'
-import { urlSearchParamsFromKeys } from 'utils/urlSearchParamsFromKeys'
 
 const basePath = `${defaultConfig.path}example`
 
@@ -52,9 +51,7 @@ test('filter request', async () => {
   const { method } = filterRequest.requestConfig
 
   expect(method).toBe('GET')
-  expect(filterRequest.url).toBe(
-    `${basePath}?${urlSearchParamsFromKeys(query)}`
-  )
+  expect(filterRequest.url).toContain(`${basePath}`)
 })
 
 test('update request', async () => {

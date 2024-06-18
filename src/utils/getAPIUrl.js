@@ -1,11 +1,7 @@
-import { urlSearchParamsFromKeys } from 'utils/urlSearchParamsFromKeys'
-
-export const getAPIUrl = ({ path, verbose }, endpoint = '', query = {}) => {
+export const getAPIUrl = ({ path, verbose }, endpoint = '') => {
   const url = new URL(endpoint, path)
-  const search = urlSearchParamsFromKeys(query)
-  url.search = search
 
-  const apiUrl = url.href || url
+  const apiUrl = url.href
 
   if (verbose) {
     // eslint-disable-next-line no-console

@@ -1,4 +1,5 @@
-import { isAccessor, isArray, isObject } from 'utils/dataTypeChecker'
+import { isArray } from 'utils/isArray'
+import { isObject } from 'utils/isObject'
 
 /*
 Performs a deep copy of an object and returns a new copied object
@@ -13,12 +14,7 @@ export const deepCopy = (source) => {
   const keys = Object.keys(source)
 
   keys.forEach((key) => {
-    if (isAccessor(source, key)) {
-      const accessor = Object.getOwnPropertyDescriptor(source, key)
-      Object.defineProperty(newObj, key, accessor)
-    } else {
-      newObj[key] = isObject(source[key]) ? deepCopy(source[key]) : source[key]
-    }
+    newObj[key] = isObject(source[key]) ? deepCopy(source[key]) : source[key]
   })
 
   return newObj

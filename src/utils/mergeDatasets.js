@@ -1,7 +1,7 @@
-import { isArray, isObject } from 'utils/dataTypeChecker'
+import { isArray } from 'utils/isArray'
+import { isObject } from 'utils/isObject'
 import { deepCopy } from 'utils/deepCopy'
 import { unionArray } from 'utils/unionArray'
-import { sortArray } from 'utils/sortArray'
 
 /*
 Merges two objects and returns a new merged object 
@@ -27,7 +27,7 @@ export const mergeDatasets = (base, override) => {
     }
 
     if (isArray(newObj[key]) && isArray(overrideCopy[key])) {
-      newObj[key] = sortArray(unionArray(newObj[key], overrideCopy[key]))
+      newObj[key] = unionArray(newObj[key], overrideCopy[key])
     } else if (isObject(newObj[key]) && isObject(overrideCopy[key])) {
       const newObjKeys = Object.keys(newObj[key])
       newObjKeys.forEach((newObjKey) => {
@@ -35,8 +35,9 @@ export const mergeDatasets = (base, override) => {
           isArray(newObj[key][newObjKey]) &&
           isArray(overrideCopy[key][newObjKey])
         ) {
-          overrideCopy[key][newObjKey] = sortArray(
-            unionArray(newObj[key][newObjKey], overrideCopy[key][newObjKey])
+          overrideCopy[key][newObjKey] = unionArray(
+            newObj[key][newObjKey],
+            overrideCopy[key][newObjKey]
           )
         }
 
