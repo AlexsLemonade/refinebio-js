@@ -1,0 +1,23 @@
+version: 2
+updates:
+  # Enable version updates for npm
+  - package-ecosystem: "npm"
+    # Look for "package.json" and "lock" files in the root directory
+    directory: "/"
+    # Check the npm registry for updates every day (weekdays)
+    schedule:
+      interval: "daily"
+    # Prefix all commit messages with "npm"  
+    commit-message:
+      prefix: "[npm]"  
+    # ignore all major(BREAKING-CHANGE) version updates
+    ignore: 
+      - dependency-name: "*"
+        update-types: ["version-update:semver-major"]
+    # Allow up to 10 open pull requests for npm dependencies
+    open-pull-requests-limit: 10
+    # Separate sections of the branch name with a hyphen
+    pull-request-branch-name:
+      separator: "-"  
+    # Always increase the version in both "package.json" and "lock" files   
+    versioning-strategy: increase
